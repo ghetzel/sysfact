@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/sysfact/plugins"
 	"reflect"
 	"regexp"
@@ -38,7 +39,7 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 	outputData := make(map[string]interface{})
 
 	//  collected_at is ALWAYS set
-	outputData["collected_at"] = "now"
+	outputData["collected_at"] = time.Now()
 
 	//  for each plugin
 	for _, plugin := range self.Plugins {
@@ -92,8 +93,16 @@ func (self *Reporter) GetReportValues(fields []string) (map[string]interface{}, 
 	return filteredValues, nil
 }
 
-func (self *Reporter) PrintReportValues(fields []string) error {
+func (self *Reporter) PrintReportValues(fields []string, flat bool) error {
 	if filteredValues, err := self.GetReportValues(fields); err == nil {
+		if !flat {
+			if r, err := maputil.DiffuseMap(filteredValues, `.`); err == nil {
+				filteredValues = r
+			} else {
+				return err
+			}
+		}
+
 		// print selected values
 		if output, err := json.MarshalIndent(filteredValues, "", "    "); err == nil {
 			fmt.Println(string(output))
@@ -107,8 +116,16 @@ func (self *Reporter) PrintReportValues(fields []string) error {
 	return nil
 }
 
-func (self *Reporter) PrintReport() error {
+func (self *Reporter) PrintReport(flat bool) error {
 	if report, err := self.Report(); err == nil {
+		if !flat {
+			if r, err := maputil.DiffuseMap(report, `.`); err == nil {
+				report = r
+			} else {
+				return err
+			}
+		}
+
 		if output, err := json.MarshalIndent(report, "", "    "); err == nil {
 			fmt.Println(string(output))
 		} else {

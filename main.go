@@ -35,13 +35,19 @@ func main() {
 		{
 			Name:  `json`,
 			Usage: `Retrieve one or more facts`,
+			Flags: []cli.Flag{
+				cli.BoolFlag{
+					Name:  `flat, f`,
+					Usage: `Output the report as a single-level object instead of a deeply nested one.`,
+				},
+			},
 			Action: func(c *cli.Context) {
 				var err error
 
 				if c.NArg() > 0 {
-					err = reporter.PrintReportValues(c.Args())
+					err = reporter.PrintReportValues(c.Args(), c.Bool(`flat`))
 				} else {
-					err = reporter.PrintReport()
+					err = reporter.PrintReport(c.Bool(`flat`))
 				}
 
 				if err != nil {
