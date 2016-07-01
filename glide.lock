@@ -1,0 +1,16 @@
+hash: 601a2f107734cc70ad45dbafc8dda02806e99402872607dd9f7f93105904beac
+updated: 2016-07-01T16:33:02.125126952-04:00
+imports:
+- name: github.com/ghetzel/cli
+  version: bfeec1f0c1d3c1ae98c680c0a76cd3cca8b06de7
+- name: github.com/ghetzel/go-stockutil
+  version: 45fbaaaf36a08d5f6764c57cf3a2143e5d894bca
+- name: github.com/op/go-logging
+  version: bfeec1f0c1d3c1ae98c680c0a76cd3cca8b06de7
+- name: github.com/Sirupsen/logrus
+  version: bfeec1f0c1d3c1ae98c680c0a76cd3cca8b06de7
+- name: golang.org/x/sys
+  version: bfeec1f0c1d3c1ae98c680c0a76cd3cca8b06de7
+  subpackages:
+  - unix
+devImports: []

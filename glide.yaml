@@ -1,0 +1,6 @@
+package: github.com/ghetzel/sysfact
+import:
+- package: github.com/Sirupsen/logrus
+- package: github.com/ghetzel/cli
+- package: github.com/op/go-logging
+- package: github.com/ghetzel/go-stockutil
