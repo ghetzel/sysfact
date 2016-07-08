@@ -17,14 +17,28 @@ func main() {
 	app.Name = `sysfact`
 	app.Version = `0.0.1`
 	app.EnableBashCompletion = false
-	app.Flags = []cli.Flag{}
+	app.Flags = []cli.Flag{
+		cli.StringFlag{
+			Name:  `log-level, L`,
+			Usage: `The level of logging verbosity to output.`,
+			Value: `warning`,
+		},
+	}
 
 	var reporter *Reporter
 
 	app.Before = func(c *cli.Context) error {
 		logging.SetFormatter(logging.MustStringFormatter(`%{color}%{level:.4s}%{color:reset}[%{id:04d}] %{message}`))
-		logging.SetLevel(logging.WARNING, `main`)
-		logging.SetLevel(logging.CRITICAL, `plugins`)
+
+		level := logging.WARNING
+
+		if l, err := logging.LogLevel(c.String(`log-level`)); err == nil {
+			level = l
+		}
+
+		logging.SetLevel(level, `main`)
+		logging.SetLevel(level, `plugins`)
+
 		reporter = NewReporter()
 
 		return nil
