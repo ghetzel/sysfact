@@ -4,13 +4,18 @@ import (
 	"fmt"
 	"github.com/ghetzel/cli"
 	"github.com/ghetzel/go-stockutil/maputil"
-	"github.com/ghetzel/go-stockutil/stringutil"
+	// "github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/op/go-logging"
 	"os"
 	"sort"
 )
 
 var log = logging.MustGetLogger(`main`)
+
+type Tuple struct {
+	Key   string
+	Value interface{}
+}
 
 func main() {
 	app := cli.NewApp()
@@ -75,46 +80,45 @@ func main() {
 			Name:  `get`,
 			Usage: `Retrieve one or more facts output as a tab-separated table of values`,
 			Flags: []cli.Flag{
-				cli.BoolFlag{
-					Name:  `values, v`,
-					Usage: `Only print the values of the requested fields.`,
-				},
-				cli.BoolFlag{
-					Name:  `first, f`,
-					Usage: `Only print first field name that matches the given pattern.`,
+				cli.StringFlag{
+					Name:  `format, f`,
+					Usage: `How the output should be formatted.`,
+					Value: `flat`,
 				},
 			},
 			Action: func(c *cli.Context) {
+				var values map[string]interface{}
+
 				if c.NArg() > 0 {
-					if values, err := reporter.GetReportValues(c.Args()); err == nil {
-						keys := maputil.StringKeys(values)
-						sort.Strings(keys)
-
-						for _, fieldName := range keys {
-							if value, ok := values[fieldName]; ok {
-								var output string
-
-								if str, err := stringutil.ToString(value); err == nil {
-									output = str
-								} else {
-									output = fmt.Sprintf("!ERR<%v>!", err)
-								}
-
-								if c.Bool(`values`) {
-									fmt.Printf("%s\n", output)
-								} else {
-									fmt.Printf("%s: %s\n", fieldName, output)
-								}
-
-								if c.Bool(`first`) {
-									break
-								}
-							}
-						}
+					if v, err := reporter.GetReportValues(c.Args()); err == nil {
+						values = v
 					} else {
 						log.Fatal(err)
+						return
+					}
+				} else {
+					if v, err := reporter.Report(); err == nil {
+						values = v
+					} else {
+						log.Fatal(err)
+						return
 					}
 				}
+
+				keys := maputil.StringKeys(values)
+				sort.Strings(keys)
+				tuples := make([]Tuple, len(keys))
+
+				for i, fieldName := range keys {
+					if value, ok := values[fieldName]; ok {
+						tuples[i] = Tuple{
+							Key:   fieldName,
+							Value: value,
+						}
+					}
+				}
+
+				printWithFormat(c.String(`format`), tuples)
 			},
 		}, {
 			Name:  `version`,
@@ -126,4 +130,13 @@ func main() {
 	}
 
 	app.Run(os.Args)
+}
+
+func printWithFormat(format string, tuples []Tuple) {
+	switch format {
+	case `flat`:
+		for _, tuple := range tuples {
+			fmt.Printf("%s=%v\n", tuple.Key, tuple.Value)
+		}
+	}
 }
