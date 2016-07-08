@@ -23,6 +23,11 @@ func main() {
 			Usage: `The level of logging verbosity to output.`,
 			Value: `warning`,
 		},
+		cli.StringFlag{
+			Name:  `plugin-log-level, P`,
+			Usage: `The level of logging verbosity to output when executing plugins.`,
+			Value: `critical`,
+		},
 	}
 
 	var reporter *Reporter
@@ -30,14 +35,13 @@ func main() {
 	app.Before = func(c *cli.Context) error {
 		logging.SetFormatter(logging.MustStringFormatter(`%{color}%{level:.4s}%{color:reset}[%{id:04d}] %{message}`))
 
-		level := logging.WARNING
-
-		if l, err := logging.LogLevel(c.String(`log-level`)); err == nil {
-			level = l
+		if level, err := logging.LogLevel(c.String(`log-level`)); err == nil {
+			logging.SetLevel(level, `main`)
 		}
 
-		logging.SetLevel(level, `main`)
-		logging.SetLevel(level, `plugins`)
+		if level, err := logging.LogLevel(c.String(`plugin-log-level`)); err == nil {
+			logging.SetLevel(level, `plugins`)
+		}
 
 		reporter = NewReporter()
 

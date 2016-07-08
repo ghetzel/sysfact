@@ -230,19 +230,32 @@ func (self ShellPlugin) Collect() ([]Observation, error) {
 			}
 		}
 
-		platformFiles, _ := ioutil.ReadDir(path.Join(p, fmt.Sprintf("platform-%s", runtime.GOOS)))
-		globalFiles, _ := ioutil.ReadDir(p)
-		files := append(platformFiles, globalFiles...)
+		files := make([]string, 0)
 
-		for _, file := range files {
-			//is the file executable?
-			if file.Mode()&0111 != 0 {
-				fullPath := path.Join(p, file.Name())
-
-				log.Debugf("Calling exec for %s", fullPath)
-				waiter.Add(1)
-				go self.executePluginCommand(fullPath, valChan, &waiter)
+		// handle platform-specific implementations
+		platformRoot := path.Join(p, fmt.Sprintf("platform-%s", runtime.GOOS))
+		platformFiles, _ := ioutil.ReadDir(platformRoot)
+		for _, file := range platformFiles {
+			//is the file a file and is it executable?
+			if !file.IsDir() && file.Mode()&0111 != 0 {
+				files = append(files, path.Join(platformRoot, file.Name()))
 			}
+		}
+
+		// handle global implementations
+		globalFiles, _ := ioutil.ReadDir(p)
+		for _, file := range globalFiles {
+			//is the file a file and is it executable?
+			if !file.IsDir() && file.Mode()&0111 != 0 {
+				files = append(files, path.Join(p, file.Name()))
+			}
+		}
+
+		// execute all paths
+		for _, fullPath := range files {
+			log.Debugf("Calling exec for %s", fullPath)
+			waiter.Add(1)
+			go self.executePluginCommand(fullPath, valChan, &waiter)
 		}
 	}
 
