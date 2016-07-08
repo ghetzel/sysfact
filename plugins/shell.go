@@ -5,8 +5,10 @@ import (
 	"fmt"
 	"io/ioutil"
 	"os/exec"
+	"os/user"
 	"path"
 	"regexp"
+	"runtime"
 	"strconv"
 	"strings"
 	"sync"
@@ -77,7 +79,7 @@ func (self ShellPlugin) executePluginCommand(cmdPath string, values chan Observa
 	log.Debugf("Executing %s", cmdPath)
 	defer waiter.Done()
 
-	pluginCmd := exec.Command("bash", "-c", cmdPath)
+	pluginCmd := exec.Command(cmdPath)
 	observations := make([]Observation, 0)
 
 	pOut, _ := pluginCmd.StdoutPipe()
@@ -220,7 +222,18 @@ func (self ShellPlugin) Collect() ([]Observation, error) {
 	valChan := make(chan Observation)
 
 	for _, p := range self.ExecPath {
-		files, _ := ioutil.ReadDir(p)
+		if strings.HasPrefix(p, `~`) {
+			if u, err := user.Current(); err == nil {
+				p = strings.Replace(p, `~`, u.HomeDir, -1)
+			} else {
+				log.Warningf("Failed to determine current user while expanding path %q", p)
+			}
+		}
+
+		platformFiles, _ := ioutil.ReadDir(path.Join(p, fmt.Sprintf("platform-%s", runtime.GOOS)))
+		globalFiles, _ := ioutil.ReadDir(p)
+		files := append(platformFiles, globalFiles...)
+
 		for _, file := range files {
 			//is the file executable?
 			if file.Mode()&0111 != 0 {

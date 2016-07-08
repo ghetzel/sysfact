@@ -20,7 +20,7 @@ func NewReporter() *Reporter {
 	reporter := &Reporter{}
 
 	shellExecPath := []string{
-		`./shell.d`,
+		`~/.sysfact/shell.d`,
 		`/usr/local/lib/sysfact/shell.d`,
 		`/var/lib/sysfact/shell.d`,
 	}
@@ -68,7 +68,7 @@ func (self *Reporter) GetReportValues(fields []string) (map[string]interface{}, 
 		if strings.ContainsAny(pattern, "[]()^$*") {
 			patterns = append(patterns, regexp.MustCompile(pattern))
 		} else {
-			patterns = append(patterns, regexp.MustCompile("^"+self.FieldPrefix+pattern+"$"))
+			patterns = append(patterns, regexp.MustCompile("^"+self.FieldPrefix+pattern+"(?:\\..*)?$"))
 		}
 	}
 

@@ -8,7 +8,6 @@ import (
 	"github.com/op/go-logging"
 	"os"
 	"sort"
-	"strings"
 )
 
 var log = logging.MustGetLogger(`main`)
@@ -57,26 +56,43 @@ func main() {
 		}, {
 			Name:  `get`,
 			Usage: `Retrieve one or more facts output as a tab-separated table of values`,
+			Flags: []cli.Flag{
+				cli.BoolFlag{
+					Name:  `values, v`,
+					Usage: `Only print the values of the requested fields.`,
+				},
+				cli.BoolFlag{
+					Name:  `first, f`,
+					Usage: `Only print first field name that matches the given pattern.`,
+				},
+			},
 			Action: func(c *cli.Context) {
 				if c.NArg() > 0 {
 					if values, err := reporter.GetReportValues(c.Args()); err == nil {
 						keys := maputil.StringKeys(values)
 						sort.Strings(keys)
-						fields := make([]string, len(keys))
 
-						for i, fieldName := range keys {
+						for _, fieldName := range keys {
 							if value, ok := values[fieldName]; ok {
-								if str, err := stringutil.ToString(value); err == nil {
-									fields[i] = str
-								} else {
-									fields[i] = fmt.Sprintf("!ERR<%v>!", err)
-								}
-							} else {
+								var output string
 
+								if str, err := stringutil.ToString(value); err == nil {
+									output = str
+								} else {
+									output = fmt.Sprintf("!ERR<%v>!", err)
+								}
+
+								if c.Bool(`values`) {
+									fmt.Printf("%s\n", output)
+								} else {
+									fmt.Printf("%s: %s\n", fieldName, output)
+								}
+
+								if c.Bool(`first`) {
+									break
+								}
 							}
 						}
-
-						fmt.Println(strings.Join(fields, "\t"))
 					} else {
 						log.Fatal(err)
 					}

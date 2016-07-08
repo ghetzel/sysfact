@@ -1,10 +1,6 @@
 #!/usr/bin/env ruby
 
 begin
-# TODO: remove this once we figure out a better way to index documents
-#       presently this causes many nodes to exceed 32KB docsize, causing indexing to fail
-  exit 0
-
   lspci = %x{lspci -vmmknnD}
 
 # exit early with no output if this is missing
