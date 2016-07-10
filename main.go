@@ -10,6 +10,7 @@ import (
 	"os"
 	"reflect"
 	"sort"
+	"strings"
 	"time"
 )
 
@@ -56,13 +57,21 @@ func main() {
 		},
 		cli.StringFlag{
 			Name:  `format, f`,
-			Usage: `How the output should be formatted (one of "flat", "json", "yaml", "graphite", or "tsdb")`,
+			Usage: `How the output should be formatted (one of "flat", "json", "yaml", "graphite", "tsdb", or "influxdb")`,
 			Value: `flat`,
 		},
 		cli.StringSliceFlag{
-			Name:   `additional-paths, p`,
+			Name:   `additional-paths, A`,
 			Usage:  `Zero or more additional paths to search for plugins in.`,
 			EnvVar: `SYSFACT_PATH`,
+		},
+		cli.StringSliceFlag{
+			Name:  `tag, t`,
+			Usage: `Zero or key=value pairs to include in output formats that support additional data.`,
+		},
+		cli.StringFlag{
+			Name:  `prefix, p`,
+			Usage: `A prefix to prepend to all facts. For output types the represent nested data structures, all output will be nested under this dot-separated path.`,
 		},
 	}
 
@@ -81,11 +90,22 @@ func main() {
 
 		reporter = NewReporter(c.StringSlice(`additional-paths`)...)
 
+		reporter.FieldPrefix = c.String(`prefix`)
+
 		return nil
 	}
 
 	app.Action = func(c *cli.Context) {
 		var values map[string]interface{}
+		tags := make(map[string]interface{})
+
+		for _, kv := range c.StringSlice(`tag`) {
+			parts := strings.SplitN(kv, `=`, 2)
+
+			if len(parts) == 2 {
+				tags[parts[0]] = parts[1]
+			}
+		}
 
 		if c.NArg() > 0 {
 			if v, err := reporter.GetReportValues(c.Args()); err == nil {
@@ -116,13 +136,13 @@ func main() {
 			}
 		}
 
-		printWithFormat(c.String(`format`), tuples)
+		printWithFormat(c.String(`format`), tuples, tags)
 	}
 
 	app.Run(os.Args)
 }
 
-func printWithFormat(format string, tuples TupleSet) {
+func printWithFormat(format string, tuples TupleSet, tags map[string]interface{}) {
 	now := time.Now()
 
 	switch format {
@@ -154,10 +174,27 @@ func printWithFormat(format string, tuples TupleSet) {
 
 	case `tsdb`:
 		epochMs := int64(now.UnixNano() / 1000000)
+		tags := strings.TrimSpace(` ` + maputil.Join(tags, `=`, ` `))
 
 		for _, tuple := range tuples {
 			if value, err := toFloat(tuple.Value); err == nil {
-				fmt.Printf("put %s %d %f\n", tuple.Key, epochMs, value)
+				fmt.Printf("put %s %d %f%s\n", tuple.Key, epochMs, value, tags)
+			} else {
+				log.Notice(err)
+			}
+		}
+
+	case `influxdb`:
+		epochNs := now.UnixNano()
+		tags := maputil.Join(tags, `=`, `,`)
+
+		if tags != `` {
+			tags = `,` + tags
+		}
+
+		for _, tuple := range tuples {
+			if value, err := toFloat(tuple.Value); err == nil {
+				fmt.Printf("%s%s value=%f %d\n", tuple.Key, tags, value, epochNs)
 			} else {
 				log.Notice(err)
 			}
