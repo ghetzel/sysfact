@@ -82,7 +82,7 @@ if not acpi_output.empty?
             else
                 [ "acpi.thermal.zones.#{ tz }.#{ key }:#{ get_type(value) }:#{ value }" ]
             end
-        }.compact.flatten.each do |line|
+        }.compact.flatten.uniq.each do |line|
             puts line
         end
     end

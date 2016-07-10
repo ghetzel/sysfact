@@ -47,7 +47,7 @@ func main() {
 		cli.StringFlag{
 			Name:  `log-level, L`,
 			Usage: `The level of logging verbosity to output.`,
-			Value: `warning`,
+			Value: `error`,
 		},
 		cli.StringFlag{
 			Name:  `plugin-log-level, P`,
