@@ -16,3 +16,11 @@ build: fmt
 
 clean:
 	rm -rf vendor bin
+
+install:
+	./bin/sysfact -v
+	cp ./bin/sysfact /usr/bin/sysfact
+	chmod +x /usr/bin/sysfact
+	test -d /var/lib/sysfact || mkdir -p /var/lib/sysfact
+	rsync -r --delete ./shell.d /var/lib/sysfact/
+
