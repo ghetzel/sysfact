@@ -59,6 +59,11 @@ func main() {
 			Usage: `How the output should be formatted (one of "flat", "json", "yaml", "graphite", or "tsdb")`,
 			Value: `flat`,
 		},
+		cli.StringSliceFlag{
+			Name:   `additional-paths, p`,
+			Usage:  `Zero or more additional paths to search for plugins in.`,
+			EnvVar: `SYSFACT_PATH`,
+		},
 	}
 
 	var reporter *Reporter
@@ -74,7 +79,7 @@ func main() {
 			logging.SetLevel(level, `plugins`)
 		}
 
-		reporter = NewReporter()
+		reporter = NewReporter(c.StringSlice(`additional-paths`)...)
 
 		return nil
 	}
