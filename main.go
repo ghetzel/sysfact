@@ -54,6 +54,11 @@ func main() {
 			Usage: `The level of logging verbosity to output when executing plugins.`,
 			Value: `critical`,
 		},
+		cli.StringFlag{
+			Name:  `format, f`,
+			Usage: `How the output should be formatted (one of "flat", "json", "yaml", "graphite", or "tsdb")`,
+			Value: `flat`,
+		},
 	}
 
 	var reporter *Reporter
@@ -74,58 +79,39 @@ func main() {
 		return nil
 	}
 
-	app.Commands = []cli.Command{
-		{
-			Name:  `get`,
-			Usage: `Retrieve one or more facts output as a tab-separated table of values`,
-			Flags: []cli.Flag{
-				cli.StringFlag{
-					Name:  `format, f`,
-					Usage: `How the output should be formatted.`,
-					Value: `flat`,
-				},
-			},
-			Action: func(c *cli.Context) {
-				var values map[string]interface{}
+	app.Action = func(c *cli.Context) {
+		var values map[string]interface{}
 
-				if c.NArg() > 0 {
-					if v, err := reporter.GetReportValues(c.Args()); err == nil {
-						values = v
-					} else {
-						log.Fatal(err)
-						return
-					}
-				} else {
-					if v, err := reporter.Report(); err == nil {
-						values = v
-					} else {
-						log.Fatal(err)
-						return
-					}
+		if c.NArg() > 0 {
+			if v, err := reporter.GetReportValues(c.Args()); err == nil {
+				values = v
+			} else {
+				log.Fatal(err)
+				return
+			}
+		} else {
+			if v, err := reporter.Report(); err == nil {
+				values = v
+			} else {
+				log.Fatal(err)
+				return
+			}
+		}
+
+		keys := maputil.StringKeys(values)
+		sort.Strings(keys)
+		tuples := make(TupleSet, len(keys))
+
+		for i, fieldName := range keys {
+			if value, ok := values[fieldName]; ok {
+				tuples[i] = Tuple{
+					Key:   fieldName,
+					Value: value,
 				}
+			}
+		}
 
-				keys := maputil.StringKeys(values)
-				sort.Strings(keys)
-				tuples := make(TupleSet, len(keys))
-
-				for i, fieldName := range keys {
-					if value, ok := values[fieldName]; ok {
-						tuples[i] = Tuple{
-							Key:   fieldName,
-							Value: value,
-						}
-					}
-				}
-
-				printWithFormat(c.String(`format`), tuples)
-			},
-		}, {
-			Name:  `version`,
-			Usage: `Output only the version string and exit`,
-			Action: func(c *cli.Context) {
-				fmt.Println(c.App.Version)
-			},
-		},
+		printWithFormat(c.String(`format`), tuples)
 	}
 
 	app.Run(os.Args)
