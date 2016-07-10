@@ -1,9 +1,6 @@
 package main
 
 import (
-	"encoding/json"
-	"fmt"
-	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/sysfact/plugins"
 	"reflect"
 	"regexp"
@@ -16,14 +13,14 @@ type Reporter struct {
 	FieldPrefix string
 }
 
-func NewReporter() *Reporter {
+func NewReporter(paths ...string) *Reporter {
 	reporter := &Reporter{}
 
-	shellExecPath := []string{
+	shellExecPath := append([]string{
 		`~/.sysfact/shell.d`,
 		`/usr/local/lib/sysfact/shell.d`,
 		`/var/lib/sysfact/shell.d`,
-	}
+	}, paths...)
 
 	reporter.Plugins = append(reporter.Plugins, plugins.ShellPlugin{
 		ExecPath:         shellExecPath,
@@ -34,6 +31,8 @@ func NewReporter() *Reporter {
 	return reporter
 }
 
+// Generate and return the full report from all discovered plugins.
+//
 func (self *Reporter) Report() (map[string]interface{}, error) {
 	log.Info("Gathering report data...")
 	outputData := make(map[string]interface{})
@@ -59,6 +58,8 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 	return outputData, nil
 }
 
+// Generates a report and retrieves the values of the given fields.
+//
 func (self *Reporter) GetReportValues(fields []string) (map[string]interface{}, error) {
 	filteredValues := make(map[string]interface{})
 	patterns := make([]*regexp.Regexp, 0)
@@ -91,49 +92,4 @@ func (self *Reporter) GetReportValues(fields []string) (map[string]interface{}, 
 	}
 
 	return filteredValues, nil
-}
-
-func (self *Reporter) PrintReportValues(fields []string, flat bool) error {
-	if filteredValues, err := self.GetReportValues(fields); err == nil {
-		if !flat {
-			if r, err := maputil.DiffuseMap(filteredValues, `.`); err == nil {
-				filteredValues = r
-			} else {
-				return err
-			}
-		}
-
-		// print selected values
-		if output, err := json.MarshalIndent(filteredValues, "", "    "); err == nil {
-			fmt.Println(string(output))
-		} else {
-			return err
-		}
-	} else {
-		return err
-	}
-
-	return nil
-}
-
-func (self *Reporter) PrintReport(flat bool) error {
-	if report, err := self.Report(); err == nil {
-		if !flat {
-			if r, err := maputil.DiffuseMap(report, `.`); err == nil {
-				report = r
-			} else {
-				return err
-			}
-		}
-
-		if output, err := json.MarshalIndent(report, "", "    "); err == nil {
-			fmt.Println(string(output))
-		} else {
-			return err
-		}
-	} else {
-		return err
-	}
-
-	return nil
 }

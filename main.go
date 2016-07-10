@@ -1,13 +1,16 @@
 package main
 
 import (
+	"encoding/json"
 	"fmt"
 	"github.com/ghetzel/cli"
 	"github.com/ghetzel/go-stockutil/maputil"
-	// "github.com/ghetzel/go-stockutil/stringutil"
+	"github.com/ghodss/yaml"
 	"github.com/op/go-logging"
 	"os"
+	"reflect"
 	"sort"
+	"time"
 )
 
 var log = logging.MustGetLogger(`main`)
@@ -15,6 +18,24 @@ var log = logging.MustGetLogger(`main`)
 type Tuple struct {
 	Key   string
 	Value interface{}
+}
+
+type TupleSet []Tuple
+
+func (self TupleSet) ToMap(flat bool) map[string]interface{} {
+	output := make(map[string]interface{})
+
+	for _, tuple := range self {
+		output[tuple.Key] = tuple.Value
+	}
+
+	if !flat {
+		if nestedOutput, err := maputil.DiffuseMap(output, `.`); err == nil {
+			output = nestedOutput
+		}
+	}
+
+	return output
 }
 
 func main() {
@@ -55,28 +76,6 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
-			Name:  `json`,
-			Usage: `Retrieve one or more facts`,
-			Flags: []cli.Flag{
-				cli.BoolFlag{
-					Name:  `flat, f`,
-					Usage: `Output the report as a single-level object instead of a deeply nested one.`,
-				},
-			},
-			Action: func(c *cli.Context) {
-				var err error
-
-				if c.NArg() > 0 {
-					err = reporter.PrintReportValues(c.Args(), c.Bool(`flat`))
-				} else {
-					err = reporter.PrintReport(c.Bool(`flat`))
-				}
-
-				if err != nil {
-					log.Fatal(err)
-				}
-			},
-		}, {
 			Name:  `get`,
 			Usage: `Retrieve one or more facts output as a tab-separated table of values`,
 			Flags: []cli.Flag{
@@ -107,7 +106,7 @@ func main() {
 
 				keys := maputil.StringKeys(values)
 				sort.Strings(keys)
-				tuples := make([]Tuple, len(keys))
+				tuples := make(TupleSet, len(keys))
 
 				for i, fieldName := range keys {
 					if value, ok := values[fieldName]; ok {
@@ -132,11 +131,56 @@ func main() {
 	app.Run(os.Args)
 }
 
-func printWithFormat(format string, tuples []Tuple) {
+func printWithFormat(format string, tuples TupleSet) {
+	now := time.Now()
+
 	switch format {
 	case `flat`:
 		for _, tuple := range tuples {
 			fmt.Printf("%s=%v\n", tuple.Key, tuple.Value)
 		}
+
+	case `yaml`:
+		if data, err := yaml.Marshal(tuples.ToMap(false)); err == nil {
+			fmt.Println(string(data[:]))
+		}
+
+	case `json`:
+		if data, err := json.MarshalIndent(tuples.ToMap(false), ``, `  `); err == nil {
+			fmt.Println(string(data[:]))
+		}
+
+	case `graphite`:
+		epoch := now.Unix()
+
+		for _, tuple := range tuples {
+			if value, err := toFloat(tuple.Value); err == nil {
+				fmt.Printf("%s %f %d\n", tuple.Key, value, epoch)
+			} else {
+				log.Notice(err)
+			}
+		}
+
+	case `tsdb`:
+		epochMs := int64(now.UnixNano() / 1000000)
+
+		for _, tuple := range tuples {
+			if value, err := toFloat(tuple.Value); err == nil {
+				fmt.Printf("put %s %d %f\n", tuple.Key, epochMs, value)
+			} else {
+				log.Notice(err)
+			}
+		}
 	}
+}
+
+func toFloat(in interface{}) (float64, error) {
+	floatT := reflect.TypeOf(float64(0))
+
+	if reflect.TypeOf(in).ConvertibleTo(floatT) {
+		floatV := reflect.ValueOf(in).Convert(floatT)
+		return floatV.Float(), nil
+	}
+
+	return 0.0, fmt.Errorf("Cannot convert %T to float64", in)
 }
