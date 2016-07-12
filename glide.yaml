@@ -1,0 +1,7 @@
+package: github.com/ghetzel/sysfact
+import:
+- package: github.com/ghetzel/cli
+- package: github.com/op/go-logging
+- package: github.com/ghetzel/go-stockutil
+- package: github.com/ghodss/yaml
+- package: github.com/cloudfoundry-incubator/candiedyaml
