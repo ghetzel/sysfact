@@ -1,2 +1,4 @@
 /bin
 /vendor
+/pkg
+/*.tar.gz
