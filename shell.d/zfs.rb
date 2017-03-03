@@ -55,7 +55,7 @@ else
         type = 'int'
       end
 
-      puts "zfs.pools.#{ i }.#{ key }:#{ type }:#{ value }"
+      puts "zfs.pools.#{ pool }.#{ key }:#{ type }:#{ value }"
     end
 
     i += 1
