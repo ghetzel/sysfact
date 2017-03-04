@@ -60,30 +60,61 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 
 // Generates a report and retrieves the values of the given fields.
 //
-func (self *Reporter) GetReportValues(fields []string) (map[string]interface{}, error) {
+func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error) {
 	filteredValues := make(map[string]interface{})
 	patterns := make([]*regexp.Regexp, 0)
+	antipatterns := make([]*regexp.Regexp, 0)
 
-	// built regexp patterns from input fields
+	// build regexp patterns from input fields
 	for _, pattern := range fields {
+		var rx *regexp.Regexp
+
 		if strings.ContainsAny(pattern, "[]()^$*") {
-			patterns = append(patterns, regexp.MustCompile(pattern))
+			rx = regexp.MustCompile(pattern)
 		} else {
-			patterns = append(patterns, regexp.MustCompile("^"+self.FieldPrefix+pattern+"(?:\\..*)?$"))
+			rx = regexp.MustCompile("^" + self.FieldPrefix + pattern + "(?:\\..*)?$")
 		}
+
+		patterns = append(patterns, rx)
 	}
 
-	// short circuit if none provided
-	if len(patterns) == 0 {
-		return filteredValues, nil
+	// build regexp patterns for fields to skip
+	for _, antipattern := range skipFields {
+		var rx *regexp.Regexp
+
+		if strings.ContainsAny(antipattern, "[]()^$*") {
+			rx = regexp.MustCompile(antipattern)
+		} else {
+			rx = regexp.MustCompile("^" + self.FieldPrefix + antipattern + "(?:\\..*)?$")
+		}
+
+		antipatterns = append(antipatterns, rx)
 	}
 
 	// generate report
 	if report, err := self.Report(); err == nil {
 		for field, value := range report {
-			for _, pattern := range patterns {
-				if pattern.MatchString(field) {
-					filteredValues[field] = value
+			skip := false
+
+			for _, antipattern := range antipatterns {
+				if antipattern.MatchString(field) {
+					skip = true
+					break
+				}
+			}
+
+			if skip {
+				continue
+			}
+
+			if len(patterns) == 0 {
+				filteredValues[field] = value
+			} else {
+				for _, pattern := range patterns {
+					if pattern.MatchString(field) {
+						filteredValues[field] = value
+						break
+					}
 				}
 			}
 		}

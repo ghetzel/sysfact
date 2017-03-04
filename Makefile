@@ -22,7 +22,7 @@ install:
 bsd:
 	@mkdir -p pkg/usr/local/bin
 	@mkdir -p pkg/usr/local/lib/sysfact
-	@cp bin/sysfact pkg/usr/local/bin/sysfact
+	GOOS=freebsd GOARCH=amd64 go build -o pkg/usr/local/bin/sysfact
 	@chmod +x pkg/usr/local/bin/sysfact
 	@rsync -r --delete ./shell.d pkg/usr/local/lib/sysfact/
 	@tar czf sysfact-freebsd.tar.gz -C pkg .

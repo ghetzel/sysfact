@@ -46,10 +46,18 @@ func (self InfluxdbPayload) Generate(series TupleSet, tags map[string]interface{
 				joinedTags += `,` + maputil.Join(finalTags, `=`, `,`)
 			}
 
-			self = append(self, fmt.Sprintf("%s%s value=%v %d",
+			var value string
+
+			if v, err := stringutil.ToString(metric.Value); err == nil {
+				value = v
+			}else{
+				return ``, err
+			}
+
+			self = append(self, fmt.Sprintf("%s%s value=%s %d",
 				metric.NormalizedKey,
 				joinedTags,
-				metric.Value,
+				value,
 				epochUs,
 			))
 		}

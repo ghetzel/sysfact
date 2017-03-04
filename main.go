@@ -44,6 +44,10 @@ func main() {
 			EnvVar: `SYSFACT_PATH`,
 		},
 		cli.StringSliceFlag{
+			Name:  `skip-field, x`,
+			Usage: `Zero of more patterns of fields to explicitly omit from the output.`,
+		},
+		cli.StringSliceFlag{
 			Name:  `tag, t`,
 			Usage: `Zero or key=value pairs to include in output formats that support additional data.`,
 		},
@@ -63,7 +67,7 @@ func main() {
 		logging.SetFormatter(logging.MustStringFormatter(`%{color}%{level:.4s}%{color:reset}[%{id:04d}] %{message}`))
 
 		if level, err := logging.LogLevel(c.String(`log-level`)); err == nil {
-			logging.SetLevel(level, `main`)
+			logging.SetLevel(level, ``)
 		}
 
 		if level, err := logging.LogLevel(c.String(`plugin-log-level`)); err == nil {
@@ -89,20 +93,11 @@ func main() {
 			}
 		}
 
-		if c.NArg() > 0 {
-			if v, err := reporter.GetReportValues(c.Args()); err == nil {
-				report = v
-			} else {
-				log.Fatal(err)
-				return
-			}
+		if v, err := reporter.GetReportValues(c.Args(), c.StringSlice(`skip-field`)); err == nil {
+			report = v
 		} else {
-			if v, err := reporter.Report(); err == nil {
-				report = v
-			} else {
-				log.Fatal(err)
-				return
-			}
+			log.Fatal(err)
+			return
 		}
 
 		tagsets := make(map[string]map[string]interface{})

@@ -14,6 +14,10 @@ type Tuple struct {
 
 type TupleSet []Tuple
 
+func (self TupleSet) Remove(i int) {
+	self = append(self[:i], self[i+1:]...)
+}
+
 func (self TupleSet) Len() int {
 	return len(self)
 }

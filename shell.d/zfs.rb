@@ -11,7 +11,7 @@ else
       pool_name = pool_line.strip.chomp.split(/\s+/).first
 
       pools[pool_name.to_sym] ||= {
-        'name': pool_name,
+        'pool': pool_name,
       }
 
       IO.popen("zpool get all '#{ pool_name }'").read.split("\n").each do |line|
@@ -71,7 +71,7 @@ else
         type = 'int'
       end
 
-      puts "zfs.pools.#{ pool }.#{ key }:#{ type }:#{ value }"
+      puts "zfs.pools.#{ i }.#{ key }:#{ type }:#{ value }"
     end
 
     i += 1
