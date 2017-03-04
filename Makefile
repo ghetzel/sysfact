@@ -1,12 +1,7 @@
-all: vendor fmt build
+all: fmt deps build
 
-update:
-	test -d vendor && rm -rf vendor || exit 0
-	glide up --strip-vcs --update-vendored
-
-vendor:
-	go list github.com/Masterminds/glide
-	glide install --strip-vcs --update-vendored
+deps:
+	go get .
 
 fmt:
 	gofmt -w .
@@ -15,7 +10,7 @@ build: fmt
 	go build -o bin/`basename ${PWD}`
 
 clean:
-	rm -rf vendor bin pkg
+	-rm -rf bin pkg
 
 install:
 	./bin/sysfact -v
