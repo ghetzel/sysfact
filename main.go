@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/ghetzel/cli"
 	"github.com/ghetzel/go-stockutil/maputil"
+	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghodss/yaml"
 	"github.com/op/go-logging"
 	"os"
@@ -15,29 +16,6 @@ import (
 )
 
 var log = logging.MustGetLogger(`main`)
-
-type Tuple struct {
-	Key   string
-	Value interface{}
-}
-
-type TupleSet []Tuple
-
-func (self TupleSet) ToMap(flat bool) map[string]interface{} {
-	output := make(map[string]interface{})
-
-	for _, tuple := range self {
-		output[tuple.Key] = tuple.Value
-	}
-
-	if !flat {
-		if nestedOutput, err := maputil.DiffuseMap(output, `.`); err == nil {
-			output = nestedOutput
-		}
-	}
-
-	return output
-}
 
 func main() {
 	app := cli.NewApp()
@@ -73,6 +51,10 @@ func main() {
 			Name:  `prefix, p`,
 			Usage: `A prefix to prepend to all facts. For output types the represent nested data structures, all output will be nested under this dot-separated path.`,
 		},
+		cli.BoolFlag{
+			Name:  `extract-tags, T`,
+			Usage: `Automatically extract related tag values from arrays of items.`,
+		},
 	}
 
 	var reporter *Reporter
@@ -96,7 +78,7 @@ func main() {
 	}
 
 	app.Action = func(c *cli.Context) {
-		var values map[string]interface{}
+		var report map[string]interface{}
 		tags := make(map[string]interface{})
 
 		for _, kv := range c.StringSlice(`tag`) {
@@ -109,34 +91,118 @@ func main() {
 
 		if c.NArg() > 0 {
 			if v, err := reporter.GetReportValues(c.Args()); err == nil {
-				values = v
+				report = v
 			} else {
 				log.Fatal(err)
 				return
 			}
 		} else {
 			if v, err := reporter.Report(); err == nil {
-				values = v
+				report = v
 			} else {
 				log.Fatal(err)
 				return
 			}
 		}
 
-		keys := maputil.StringKeys(values)
-		sort.Strings(keys)
-		tuples := make(TupleSet, len(keys))
+		tagsets := make(map[string]map[string]interface{})
+		tuples := make(TupleSet, 0)
+		modifiedTuples := make(map[string]TupleSet)
 
-		for i, fieldName := range keys {
-			if value, ok := values[fieldName]; ok {
-				tuples[i] = Tuple{
-					Key:   fieldName,
-					Value: value,
+		if err := maputil.Walk(report, func(value interface{}, path []string, leaf bool) error {
+			if leaf && len(path) > 0 {
+				path = strings.Split(path[0], `.`)
+				key := strings.Join(path, `.`)
+				normalizedPath := make([]string, 0)
+				tagsetKey := ``
+				firstIndexAfterTagsetKey := 0
+
+				for i, part := range path {
+					if v, err := stringutil.ConvertToInteger(part); err == nil {
+						tagsetKey = strings.Join(path[0:(i+1)], `.`)
+						firstIndexAfterTagsetKey = (i + 1)
+
+						if tags, ok := tagsets[tagsetKey]; !ok {
+							tagsets[tagsetKey] = map[string]interface{}{
+								`index`: v,
+							}
+						} else {
+							tags[`index`] = v
+						}
+
+						normalizedPath = append(path[0:i])
+						break
+					}
+				}
+
+				if !c.Bool(`extract-tags`) || tagsetKey == `` {
+					tuples = append(tuples, Tuple{
+						Key:           key,
+						Value:         value,
+						NormalizedKey: key,
+					})
+				} else {
+					if stringutil.IsInteger(value) || stringutil.IsFloat(value) {
+						if v, err := stringutil.ConvertToFloat(value); err == nil {
+							var currentTupleSet TupleSet
+
+							if ts, ok := modifiedTuples[tagsetKey]; ok {
+								currentTupleSet = ts
+							} else {
+								currentTupleSet = make(TupleSet, 0)
+							}
+
+							currentTupleSet = append(currentTupleSet, Tuple{
+								Key:   key,
+								Value: v,
+								NormalizedKey: strings.Join(
+									append(normalizedPath, path[firstIndexAfterTagsetKey:]...),
+									`.`,
+								),
+							})
+
+							modifiedTuples[tagsetKey] = currentTupleSet
+						} else {
+							log.Warningf("Failed to convert value for %s: %v", key, err)
+						}
+					} else if tags, ok := tagsets[tagsetKey]; ok {
+						// non-numeric values become tags
+						tagKey := strings.Join(path[firstIndexAfterTagsetKey:], `_`)
+
+						tags[tagKey] = value
+					}
+				}
+
+			}
+
+			return nil
+		}); err == nil {
+			for tagsetKey, tupleset := range modifiedTuples {
+				for _, tuple := range tupleset {
+					if tags, ok := tagsets[tagsetKey]; ok {
+						tuple.Tags = tags
+					}
+
+					tuples = append(tuples, tuple)
 				}
 			}
+
+			sort.Sort(tuples)
+
+			printWithFormat(c.String(`format`), tuples, tags)
+		} else {
+			log.Fatal(err)
 		}
 
-		printWithFormat(c.String(`format`), tuples, tags)
+		// for i, fieldName := range keys {
+		// 	if value, ok := values[fieldName]; ok {
+		// 		tuples[i] = Tuple{
+		// 			Key:           fieldName,
+		// 			Value:         value,
+		// 		}
+		// 	}
+		// }
+
 	}
 
 	app.Run(os.Args)
@@ -185,19 +251,12 @@ func printWithFormat(format string, tuples TupleSet, tags map[string]interface{}
 		}
 
 	case `influxdb`:
-		epochNs := now.UnixNano()
-		tags := maputil.Join(tags, `=`, `,`)
+		var writer InfluxdbPayload
 
-		if tags != `` {
-			tags = `,` + tags
-		}
-
-		for _, tuple := range tuples {
-			if value, err := toFloat(tuple.Value); err == nil {
-				fmt.Printf("%s%s value=%f %d\n", tuple.Key, tags, value, epochNs)
-			} else {
-				log.Notice(err)
-			}
+		if out, err := writer.Generate(tuples, tags, &now); err == nil {
+			fmt.Println(out)
+		} else {
+			log.Error(err)
 		}
 	}
 }

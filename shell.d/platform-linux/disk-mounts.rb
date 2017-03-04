@@ -24,10 +24,13 @@ if File.readable?('/proc/mounts')
                 puts "disk.mounts.#{ i }.percent_used:float:#{ percent_used.tr('%','') }"
             end
 
-            findex = 0
             line.strip.chomp.split(' ')[3].split(',').each do |flag|
-                puts "disk.mounts.#{ i }.flags.#{ findex }:str:#{ flag }"
-                findex += 1
+                case flag
+                when 'rw'
+                    puts "disk.mounts.#{ i }.readonly:bool:false"
+                when 'ro'
+                    puts "disk.mounts.#{ i }.readonly:bool:true"
+                end
             end
 
             i += 1

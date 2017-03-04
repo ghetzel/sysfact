@@ -17,7 +17,7 @@ install:
 	cp ./bin/sysfact /usr/bin/sysfact
 	chmod +x /usr/bin/sysfact
 	test -d /var/lib/sysfact || mkdir -p /var/lib/sysfact
-	rsync -r --delete ./shell.d /var/lib/sysfact/
+	rsync -rv --delete ./shell.d /var/lib/sysfact/
 
 bsd:
 	@mkdir -p pkg/usr/local/bin
