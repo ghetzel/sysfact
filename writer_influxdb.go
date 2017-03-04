@@ -50,7 +50,7 @@ func (self InfluxdbPayload) Generate(series TupleSet, tags map[string]interface{
 
 			if v, err := stringutil.ToString(metric.Value); err == nil {
 				value = v
-			}else{
+			} else {
 				return ``, err
 			}
 
