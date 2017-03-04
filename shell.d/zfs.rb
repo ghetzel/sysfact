@@ -38,7 +38,7 @@ else
       pool_name = pool_line.strip.chomp.split(/\s+/).first
 
       pools[pool_name.to_sym] ||= {
-        'pool': pool_name,
+        'name': pool_name,
       }
 
       # get pool properties
@@ -115,6 +115,7 @@ else
 
             zvols[current_zvol] = {
               'name' => name,
+              'type' => name.gsub(/-\d+$/, ''),
               'state' => state.downcase.to_sym,
               'state_value' => state_to_status(state),
               'errors.read' => read_err.to_i,
@@ -169,7 +170,7 @@ else
               v.each do |device|
                 device.each do |dk, dv|
                   dv, t = autotype(dv)
-                  puts "zfs.pool.#{ i }.zvol.#{ zi }.devices.#{ zdi }.#{ dk }:#{ t }:#{ dv }"
+                  puts "zfs.pools.#{ i }.zvol.#{ zi }.devices.#{ zdi }.#{ dk }:#{ t }:#{ dv }"
                 end
 
                 zdi += 1
@@ -177,7 +178,7 @@ else
 
             else
               v, t = autotype(v)
-              puts "zfs.pool.#{ i }.zvol.#{ zi }.#{ k }:#{ t }:#{ v }"
+              puts "zfs.pools.#{ i }.zvol.#{ zi }.#{ k }:#{ t }:#{ v }"
             end
           end
 
@@ -189,7 +190,7 @@ else
         value.each do |name, device|
           device.each do |k, v|
             v, t = autotype(v)
-            puts "zfs.pool.#{ i }.devices.#{ di }.#{ k }:#{ t }:#{ v }"
+            puts "zfs.pools.#{ i }.devices.#{ di }.#{ k }:#{ t }:#{ v }"
           end
 
           di += 1

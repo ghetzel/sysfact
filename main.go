@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	// "github.com/davecgh/go-spew/spew"
 	"github.com/ghetzel/cli"
 	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/go-stockutil/stringutil"
@@ -110,23 +111,25 @@ func main() {
 				key := strings.Join(path, `.`)
 				normalizedPath := make([]string, 0)
 				tagsetKey := ``
-				firstIndexAfterTagsetKey := 0
 
 				for i, part := range path {
 					if v, err := stringutil.ConvertToInteger(part); err == nil {
 						tagsetKey = strings.Join(path[0:(i+1)], `.`)
-						firstIndexAfterTagsetKey = (i + 1)
+						index_key := `index`
+
+						if (i - 1) > 0 {
+							index_key = string(path[i-1]) + `_` + index_key
+						}
 
 						if tags, ok := tagsets[tagsetKey]; !ok {
 							tagsets[tagsetKey] = map[string]interface{}{
-								`index`: v,
+								index_key: v,
 							}
 						} else {
-							tags[`index`] = v
+							tags[index_key] = v
 						}
-
-						normalizedPath = append(path[0:i])
-						break
+					} else {
+						normalizedPath = append(normalizedPath, part)
 					}
 				}
 
@@ -148,12 +151,9 @@ func main() {
 							}
 
 							currentTupleSet = append(currentTupleSet, Tuple{
-								Key:   key,
-								Value: v,
-								NormalizedKey: strings.Join(
-									append(normalizedPath, path[firstIndexAfterTagsetKey:]...),
-									`.`,
-								),
+								Key:           key,
+								Value:         v,
+								NormalizedKey: strings.Join(normalizedPath, `.`),
 							})
 
 							modifiedTuples[tagsetKey] = currentTupleSet
@@ -162,7 +162,7 @@ func main() {
 						}
 					} else if tags, ok := tagsets[tagsetKey]; ok {
 						// non-numeric values become tags
-						tagKey := strings.Join(path[firstIndexAfterTagsetKey:], `_`)
+						tagKey := strings.Join(normalizedPath[len(normalizedPath)-2:len(normalizedPath)], `_`)
 
 						tags[tagKey] = value
 					}
@@ -172,10 +172,14 @@ func main() {
 
 			return nil
 		}); err == nil {
+			// spew.Dump(tagsets)
+
 			for tagsetKey, tupleset := range modifiedTuples {
 				for _, tuple := range tupleset {
-					if tags, ok := tagsets[tagsetKey]; ok {
-						tuple.Tags = tags
+					for key, tags := range tagsets {
+						if strings.HasPrefix(tagsetKey, key) {
+							tuple.Tags = maputil.Append(tuple.Tags, tags)
+						}
 					}
 
 					tuples = append(tuples, tuple)
