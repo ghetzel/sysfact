@@ -1,14 +1,16 @@
 package main
 
 import (
+	"bytes"
 	"encoding/json"
 	"fmt"
-	// "github.com/davecgh/go-spew/spew"
 	"github.com/ghetzel/cli"
 	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghodss/yaml"
 	"github.com/op/go-logging"
+	"io"
+	"net/http"
 	"os"
 	"reflect"
 	"sort"
@@ -59,6 +61,28 @@ func main() {
 		cli.BoolFlag{
 			Name:  `extract-tags, T`,
 			Usage: `Automatically extract related tag values from arrays of items.`,
+		},
+		cli.StringFlag{
+			Name:  `http-url, u`,
+			Usage: `Submit the formatted output to the given URL via HTTP`,
+		},
+		cli.StringFlag{
+			Name:  `http-method, m`,
+			Usage: `The HTTP method to use when submitting output.`,
+			Value: `post`,
+		},
+		cli.StringSliceFlag{
+			Name:  `http-header, H`,
+			Usage: `Zero or more HTTP headers to include in the request (specfied as 'Header-Name=value')`,
+		},
+		cli.StringSliceFlag{
+			Name:  `http-query, q`,
+			Usage: `Zero or more query string parameters to include in the request (specfied as 'key=value')`,
+		},
+		cli.DurationFlag{
+			Name:  `http-timeout`,
+			Usage: `The time to wait for the HTTP request to complete.`,
+			Value: (10 * time.Second),
 		},
 	}
 
@@ -188,42 +212,83 @@ func main() {
 
 			sort.Sort(tuples)
 
-			printWithFormat(c.String(`format`), tuples, tags)
+			if url := c.String(`http-url`); url == `` {
+				writeWithFormat(os.Stdout, c.String(`format`), tuples, tags)
+			} else {
+				timeout := c.Duration(`http-timeout`)
+				client := http.Client{
+					Timeout: timeout,
+				}
+
+				var buffer bytes.Buffer
+
+				writeWithFormat(&buffer, c.String(`format`), tuples, tags)
+
+				if req, err := http.NewRequest(
+					strings.ToUpper(c.String(`http-method`)),
+					url,
+					&buffer,
+				); err == nil {
+					for _, kv := range c.StringSlice(`http-header`) {
+						parts := strings.SplitN(kv, `=`, 2)
+
+						if len(parts) == 2 {
+							req.Header.Set(parts[0], parts[1])
+						}
+					}
+
+					qs := req.URL.Query()
+
+					for _, kv := range c.StringSlice(`http-query`) {
+						parts := strings.SplitN(kv, `=`, 2)
+
+						if len(parts) == 2 {
+							qs.Set(parts[0], parts[1])
+						}
+					}
+
+					req.URL.RawQuery = qs.Encode()
+
+					log.Infof("Performing request: %v %v", req.Method, req.URL)
+
+					if response, err := client.Do(req); err == nil {
+						if response.StatusCode < 400 {
+							log.Infof("Request completed successfully (%s)", response.Status)
+						} else {
+							log.Fatalf("Request failed: %s", response.Status)
+						}
+					} else {
+						log.Fatal(err)
+					}
+				} else {
+					log.Fatal(err)
+				}
+			}
 		} else {
 			log.Fatal(err)
 		}
-
-		// for i, fieldName := range keys {
-		// 	if value, ok := values[fieldName]; ok {
-		// 		tuples[i] = Tuple{
-		// 			Key:           fieldName,
-		// 			Value:         value,
-		// 		}
-		// 	}
-		// }
-
 	}
 
 	app.Run(os.Args)
 }
 
-func printWithFormat(format string, tuples TupleSet, tags map[string]interface{}) {
+func writeWithFormat(w io.Writer, format string, tuples TupleSet, tags map[string]interface{}) {
 	now := time.Now()
 
 	switch format {
 	case `flat`:
 		for _, tuple := range tuples {
-			fmt.Printf("%s=%v\n", tuple.Key, tuple.Value)
+			fmt.Fprintf(w, "%s=%v\n", tuple.Key, tuple.Value)
 		}
 
 	case `yaml`:
 		if data, err := yaml.Marshal(tuples.ToMap(false)); err == nil {
-			fmt.Println(string(data[:]))
+			fmt.Fprintln(w, (string(data[:])))
 		}
 
 	case `json`:
 		if data, err := json.MarshalIndent(tuples.ToMap(false), ``, `  `); err == nil {
-			fmt.Println(string(data[:]))
+			fmt.Fprintln(w, string(data[:]))
 		}
 
 	case `graphite`:
@@ -231,7 +296,7 @@ func printWithFormat(format string, tuples TupleSet, tags map[string]interface{}
 
 		for _, tuple := range tuples {
 			if value, err := toFloat(tuple.Value); err == nil {
-				fmt.Printf("%s %f %d\n", tuple.Key, value, epoch)
+				fmt.Fprintf(w, "%s %f %d\n", tuple.Key, value, epoch)
 			} else {
 				log.Notice(err)
 			}
@@ -243,7 +308,7 @@ func printWithFormat(format string, tuples TupleSet, tags map[string]interface{}
 
 		for _, tuple := range tuples {
 			if value, err := toFloat(tuple.Value); err == nil {
-				fmt.Printf("put %s %d %f%s\n", tuple.Key, epochMs, value, tags)
+				fmt.Fprintf(w, "put %s %d %f%s\n", tuple.Key, epochMs, value, tags)
 			} else {
 				log.Notice(err)
 			}
@@ -253,7 +318,7 @@ func printWithFormat(format string, tuples TupleSet, tags map[string]interface{}
 		var writer InfluxdbPayload
 
 		if out, err := writer.Generate(tuples, tags, &now); err == nil {
-			fmt.Println(out)
+			fmt.Fprintln(w, out)
 		} else {
 			log.Error(err)
 		}
