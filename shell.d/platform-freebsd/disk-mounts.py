@@ -50,4 +50,4 @@ try:
         pass
 
 except CalledProcessError:
-    exit(0)
+    os.exit(0)
