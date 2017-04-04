@@ -23,8 +23,8 @@ try:
             _fs, total, used, available, percent_used = re.split('\s+', dfout.strip(), 4)
 
             total = int(total) * 1024
-            used = int(total) * 1024
-            available = int(total) * 1024
+            used = int(used) * 1024
+            available = int(available) * 1024
 
             print("disk.mounts.{0}.mount:str:{1}".format(i, mount))
             print("disk.mounts.{0}.device:str:{1}".format(i, device))
