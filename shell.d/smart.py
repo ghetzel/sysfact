@@ -8,6 +8,8 @@ INFO_FIELD_MAP = {
     'device_model':     'model',
     'lu_wwn_device_id': 'wwn',
     'user_capacity':    'capacity',
+    'serial_number':    'serial',
+    'firmware_version': 'firmware',
 }
 
 try:
