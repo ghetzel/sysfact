@@ -29,13 +29,13 @@ This is what the above would look like using the "json" format option:
     "items": [
       {
         "count": 42,
-        "factor": 3.140000104904175,
+        "factor": 3.14,
         "name": "Item 1: Things"
       },
       {
         "active": true,
         "count": 99,
-        "factor": 2.177999973297119,
+        "factor": 2.178,
         "name": "Item 2: Stuff"
       }
     ],
