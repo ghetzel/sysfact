@@ -23,7 +23,8 @@ var log = logging.MustGetLogger(`main`)
 func main() {
 	app := cli.NewApp()
 	app.Name = `sysfact`
-	app.Version = `0.0.1`
+	app.Usage = `A utility for collecting and formatting system information.`
+	app.Version = `0.5.0`
 	app.EnableBashCompletion = false
 	app.Flags = []cli.Flag{
 		cli.StringFlag{

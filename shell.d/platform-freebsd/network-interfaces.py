@@ -1,5 +1,6 @@
 #!/usr/bin/env python2.7
 import os
+import sys
 import re
 from subprocess import check_output, CalledProcessError
 
@@ -307,4 +308,4 @@ try:
         print("network.ip.{0}:str:{1}".format(gi, address))
 
 except CalledProcessError:
-    os.exit(0)
+    sys.exit(0)

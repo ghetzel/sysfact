@@ -1,5 +1,6 @@
 #!/usr/bin/env python2.7
 import os
+import sys
 import re
 from subprocess import check_output, check_call, CalledProcessError
 
@@ -50,4 +51,4 @@ try:
         pass
 
 except CalledProcessError:
-    os.exit(0)
+    sys.exit(0)

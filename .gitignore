@@ -1,5 +1,7 @@
 /bin
 /vendor
 /pkg
-/*.tar.gz
+*.tar.gz
 *.pyc
+/tmp
+*.deb
