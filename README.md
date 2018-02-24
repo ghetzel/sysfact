@@ -51,4 +51,4 @@ Output can be formatted into JSON, YAML, as a flat list of "key=value" items, or
 
 ## Output
 
-Finally, the results of formatting the collected data can be output, either via standard output (the default), or using the built-in HTTP client.  You can specify a URL, HTTP method, request headers, query string parameters (as command line flags), and timeouts.  This provides a flexible and powerful mechanism for using `sysfact` as a component in monitoring, inventory collection, and other system data collection systems.
+Finally, the results of formatting the collected data can be output, either via standard output (the default), or using the built-in HTTP client.  You can specify a URL, HTTP method, request headers, query string parameters (as command line flags), and timeouts.  This provides a flexible and powerful mechanism for using `sysfact` as a component in monitoring, inventory collection, and other data collection systems.
