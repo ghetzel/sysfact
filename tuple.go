@@ -1,8 +1,9 @@
-package main
+package sysfact
 
 import (
-	"github.com/ghetzel/go-stockutil/maputil"
 	"strings"
+
+	"github.com/ghetzel/go-stockutil/maputil"
 )
 
 type Tuple struct {

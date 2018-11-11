@@ -4,11 +4,6 @@ import (
 	"bytes"
 	"encoding/json"
 	"fmt"
-	"github.com/ghetzel/cli"
-	"github.com/ghetzel/go-stockutil/maputil"
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghodss/yaml"
-	"github.com/op/go-logging"
 	"io"
 	"net/http"
 	"os"
@@ -16,15 +11,20 @@ import (
 	"sort"
 	"strings"
 	"time"
-)
 
-var log = logging.MustGetLogger(`main`)
+	"github.com/ghetzel/cli"
+	"github.com/ghetzel/go-stockutil/log"
+	"github.com/ghetzel/go-stockutil/maputil"
+	"github.com/ghetzel/go-stockutil/stringutil"
+	"github.com/ghetzel/sysfact"
+	"github.com/ghodss/yaml"
+)
 
 func main() {
 	app := cli.NewApp()
 	app.Name = `sysfact`
 	app.Usage = `A utility for collecting and formatting system information.`
-	app.Version = `0.5.0`
+	app.Version = `0.6.0`
 	app.EnableBashCompletion = false
 	app.Flags = []cli.Flag{
 		cli.StringFlag{
@@ -87,21 +87,12 @@ func main() {
 		},
 	}
 
-	var reporter *Reporter
+	var reporter *sysfact.Reporter
 
 	app.Before = func(c *cli.Context) error {
-		logging.SetFormatter(logging.MustStringFormatter(`%{color}%{level:.4s}%{color:reset}[%{id:04d}] %{message}`))
+		log.SetLevelString(c.String(`log-level`))
 
-		if level, err := logging.LogLevel(c.String(`log-level`)); err == nil {
-			logging.SetLevel(level, ``)
-		}
-
-		if level, err := logging.LogLevel(c.String(`plugin-log-level`)); err == nil {
-			logging.SetLevel(level, `plugins`)
-		}
-
-		reporter = NewReporter(c.StringSlice(`additional-paths`)...)
-
+		reporter = sysfact.NewReporter(c.StringSlice(`additional-paths`)...)
 		reporter.FieldPrefix = c.String(`prefix`)
 
 		return nil
@@ -127,8 +118,8 @@ func main() {
 		}
 
 		tagsets := make(map[string]map[string]interface{})
-		tuples := make(TupleSet, 0)
-		modifiedTuples := make(map[string]TupleSet)
+		tuples := make(sysfact.TupleSet, 0)
+		modifiedTuples := make(map[string]sysfact.TupleSet)
 
 		if err := maputil.Walk(report, func(value interface{}, path []string, leaf bool) error {
 			if leaf && len(path) > 0 {
@@ -159,7 +150,7 @@ func main() {
 				}
 
 				if !c.Bool(`extract-tags`) || tagsetKey == `` {
-					tuples = append(tuples, Tuple{
+					tuples = append(tuples, sysfact.Tuple{
 						Key:           key,
 						Value:         value,
 						NormalizedKey: key,
@@ -167,15 +158,15 @@ func main() {
 				} else {
 					if stringutil.IsInteger(value) || stringutil.IsFloat(value) {
 						if v, err := stringutil.ConvertToFloat(value); err == nil {
-							var currentTupleSet TupleSet
+							var currentTupleSet sysfact.TupleSet
 
 							if ts, ok := modifiedTuples[tagsetKey]; ok {
 								currentTupleSet = ts
 							} else {
-								currentTupleSet = make(TupleSet, 0)
+								currentTupleSet = make(sysfact.TupleSet, 0)
 							}
 
-							currentTupleSet = append(currentTupleSet, Tuple{
+							currentTupleSet = append(currentTupleSet, sysfact.Tuple{
 								Key:           key,
 								Value:         v,
 								NormalizedKey: strings.Join(normalizedPath, `.`),
@@ -273,7 +264,7 @@ func main() {
 	app.Run(os.Args)
 }
 
-func writeWithFormat(w io.Writer, format string, tuples TupleSet, tags map[string]interface{}) {
+func writeWithFormat(w io.Writer, format string, tuples sysfact.TupleSet, tags map[string]interface{}) {
 	now := time.Now()
 
 	switch format {
@@ -316,7 +307,7 @@ func writeWithFormat(w io.Writer, format string, tuples TupleSet, tags map[strin
 		}
 
 	case `influxdb`:
-		var writer InfluxdbPayload
+		var writer sysfact.InfluxdbPayload
 
 		if out, err := writer.Generate(tuples, tags, &now); err == nil {
 			fmt.Fprintln(w, out)

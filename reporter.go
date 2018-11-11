@@ -1,4 +1,4 @@
-package main
+package sysfact
 
 import (
 	"reflect"
@@ -6,6 +6,7 @@ import (
 	"strings"
 	"time"
 
+	"github.com/ghetzel/go-stockutil/log"
 	"github.com/ghetzel/sysfact/plugins"
 )
 

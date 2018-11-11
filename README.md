@@ -6,6 +6,17 @@ A utility for collecting and formatting system information.
 
 The `sysfact` utility provides a simple, structured mechanism for collecting and formatting pieces of information about Linux, BSD, macOS, and other operating systems.  It achieves this using _collection scripts_, which run in parallel when `sysfact` is invoked to gather details.  Collection scripts can be written in any language, as they are called via a shell process-- they only need to be executable to run.  Scripts emit details, one per line, to standard output with a simple format: `metricname:type:value\n`
 
+## Installation
+
+### Binaries
+
+Soon.  _Soon..._
+
+### From Source
+```
+go get -u github.com/ghetzel/sysfact/cmd/sysfact
+```
+
 ## Formatting
 
 For example, here is a some output that would be usable by `sysfact`:

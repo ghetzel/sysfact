@@ -1,12 +1,13 @@
-package main
+package sysfact
 
 import (
 	"fmt"
-	"github.com/ghetzel/go-stockutil/maputil"
-	"github.com/ghetzel/go-stockutil/stringutil"
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/ghetzel/go-stockutil/maputil"
+	"github.com/ghetzel/go-stockutil/stringutil"
 )
 
 type InfluxdbPayload []string

@@ -21,4 +21,5 @@ test: fmt deps
 	go test $(PKGS)
 
 build: fmt
-	go build -o bin/sysfact .
+	go build -o bin/sysfact ./cmd/sysfact
+	which sysfact && cp -v bin/sysfact `which sysfact` || true
