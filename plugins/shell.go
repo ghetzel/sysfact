@@ -13,6 +13,8 @@ import (
 	"strings"
 	"sync"
 	"time"
+
+	"github.com/ghetzel/go-stockutil/log"
 )
 
 type ShellPlugin struct {

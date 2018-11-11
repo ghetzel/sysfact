@@ -2,6 +2,7 @@
 
 PKGS        := $(shell go list ./... 2> /dev/null | grep -v '/vendor')
 LOCALS      := $(shell find . -type f -name '*.go' -not -path "./vendor*/*")
+BIN         ?= sysfact
 
 .EXPORT_ALL_VARIABLES:
 GO111MODULE  = on
@@ -21,9 +22,14 @@ test: fmt deps
 	go test $(PKGS)
 
 build: fmt
-	go build -o bin/sysfact ./cmd/sysfact
+	go build -o bin/$(BIN) ./cmd/sysfact
 	which sysfact && cp -v bin/sysfact `which sysfact` || true
 
+binaries: fmt deps
+	GOOS=linux BIN=sysfact make build
+	GOOS=freebsd BIN=sysfact.freebsd make build
+	GOOS=darwin BIN=sysfact.darwin make build
+
 copy-to-and-run:
-	scp bin/sysfact $(IP):
-	ssh $(IP) 'chmod +x sysfact && sysfact'
+	scp bin/$(BIN) $(IP):sysfact
+	ssh $(IP) 'chmod +x sysfact && sysfact -L debug'

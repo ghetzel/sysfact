@@ -24,7 +24,7 @@ func main() {
 	app := cli.NewApp()
 	app.Name = `sysfact`
 	app.Usage = `A utility for collecting and formatting system information.`
-	app.Version = `0.6.0`
+	app.Version = sysfact.Version
 	app.EnableBashCompletion = false
 	app.Flags = []cli.Flag{
 		cli.StringFlag{

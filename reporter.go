@@ -16,23 +16,25 @@ type Reporter struct {
 }
 
 func NewReporter(paths ...string) *Reporter {
-	reporter := &Reporter{}
+	shellExecPath := append([]string{
+		`~/.sysfact/shell.d`,
+		`/usr/local/lib/sysfact/shell.d`,
+		`/var/lib/sysfact/shell.d`,
+	}, paths...)
 
-	// shellExecPath := append([]string{
-	// 	`~/.sysfact/shell.d`,
-	// 	`/usr/local/lib/sysfact/shell.d`,
-	// 	`/var/lib/sysfact/shell.d`,
-	// }, paths...)
+	return &Reporter{
+		Plugins: []plugins.Plugin{
+			// add built-in system data collection plugin
+			plugins.EmbeddedPlugin{},
 
-	// reporter.Plugins = append(reporter.Plugins, plugins.ShellPlugin{
-	// 	ExecPath:         shellExecPath,
-	// 	PerPluginTimeout: (30 * time.Second),
-	// 	MaxTimeout:       (60 * time.Second),
-	// })
-
-	reporter.Plugins = append(reporter.Plugins, plugins.EmbeddedPlugin{})
-
-	return reporter
+			// add shell script plugin
+			plugins.ShellPlugin{
+				ExecPath:         shellExecPath,
+				PerPluginTimeout: (30 * time.Second),
+				MaxTimeout:       (60 * time.Second),
+			},
+		},
+	}
 }
 
 // Generate and return the full report from all discovered plugins.
