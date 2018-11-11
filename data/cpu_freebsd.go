@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"strings"
 
+	"github.com/ghetzel/go-stockutil/mathutil"
 	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghetzel/go-stockutil/typeutil"
 )
@@ -27,7 +28,7 @@ func (self CPU) Collect() map[string]interface{} {
 
 	for i := 0; i < ncpu; i++ {
 		out[fmt.Sprintf("cpu.cores.%d.model", i)] = model
-		out[fmt.Sprintf("cpu.cores.%d.speed", i)] = speed
+		out[fmt.Sprintf("cpu.cores.%d.speed", i)] = mathutil.Round(typeutil.Float(speed) * 1000)
 		out[fmt.Sprintf("cpu.cores.%d.temperature", i)] = typeutil.Float(strings.TrimSuffix(
 			shell("sysctl -n dev.cpu.%d.temperature", i).String(),
 			`C`,
