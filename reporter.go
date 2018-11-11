@@ -1,11 +1,12 @@
 package main
 
 import (
-	"github.com/ghetzel/sysfact/plugins"
 	"reflect"
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/ghetzel/sysfact/plugins"
 )
 
 type Reporter struct {
@@ -27,6 +28,8 @@ func NewReporter(paths ...string) *Reporter {
 		PerPluginTimeout: (30 * time.Second),
 		MaxTimeout:       (60 * time.Second),
 	})
+
+	reporter.Plugins = append(reporter.Plugins, plugins.EmbeddedPlugin{})
 
 	return reporter
 }

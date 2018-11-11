@@ -17,7 +17,6 @@ import (
 
 type ShellPlugin struct {
 	Plugin
-
 	ExecPath         []string
 	PerPluginTimeout time.Duration
 	MaxTimeout       time.Duration
