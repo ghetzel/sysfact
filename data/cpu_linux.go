@@ -37,10 +37,10 @@ func (self CPU) Collect() map[string]interface{} {
 				}
 			}
 
-			if index := (physical - 1); index >= 0 {
+			if index := (logical - 1); index >= 0 {
 				switch key {
 				case `cpu mhz`:
-					out[fmt.Sprintf("cpu.processors.%d.current_speed", index)] = mathutil.Round(value.Float())
+					out[fmt.Sprintf("cpu.cores.%d.current_speed", index)] = mathutil.Round(value.Float())
 				case `model name`:
 					model, speed := stringutil.SplitPair(value.String(), `@`)
 					model = strings.TrimSpace(model)
@@ -50,17 +50,17 @@ func (self CPU) Collect() map[string]interface{} {
 					speed = strings.ToLower(speed)
 					speed = strings.TrimSuffix(speed, `ghz`)
 
-					out[fmt.Sprintf("cpu.processors.%d.model", index)] = model
+					out[fmt.Sprintf("cpu.cores.%d.model", index)] = model
 
 					// NOTE: assumes the bit after @ is in GHz
-					out[fmt.Sprintf("cpu.processors.%d.speed", index)] = (typeutil.V(speed).Float() * 1000)
+					out[fmt.Sprintf("cpu.cores.%d.speed", index)] = (typeutil.V(speed).Float() * 1000)
 				case `flags`:
 					for i, flag := range strings.Split(value.String(), ` `) {
-						out[fmt.Sprintf("cpu.processors.%d.flags.%d", index, i)] = flag
+						out[fmt.Sprintf("cpu.cores.%d.flags.%d", index, i)] = flag
 					}
 				case `bugs`:
 					for i, flag := range strings.Split(value.String(), ` `) {
-						out[fmt.Sprintf("cpu.processors.%d.bugs.%d", index, i)] = flag
+						out[fmt.Sprintf("cpu.cores.%d.bugs.%d", index, i)] = flag
 					}
 				}
 			}

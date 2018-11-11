@@ -18,17 +18,17 @@ type Reporter struct {
 func NewReporter(paths ...string) *Reporter {
 	reporter := &Reporter{}
 
-	shellExecPath := append([]string{
-		`~/.sysfact/shell.d`,
-		`/usr/local/lib/sysfact/shell.d`,
-		`/var/lib/sysfact/shell.d`,
-	}, paths...)
+	// shellExecPath := append([]string{
+	// 	`~/.sysfact/shell.d`,
+	// 	`/usr/local/lib/sysfact/shell.d`,
+	// 	`/var/lib/sysfact/shell.d`,
+	// }, paths...)
 
-	reporter.Plugins = append(reporter.Plugins, plugins.ShellPlugin{
-		ExecPath:         shellExecPath,
-		PerPluginTimeout: (30 * time.Second),
-		MaxTimeout:       (60 * time.Second),
-	})
+	// reporter.Plugins = append(reporter.Plugins, plugins.ShellPlugin{
+	// 	ExecPath:         shellExecPath,
+	// 	PerPluginTimeout: (30 * time.Second),
+	// 	MaxTimeout:       (60 * time.Second),
+	// })
 
 	reporter.Plugins = append(reporter.Plugins, plugins.EmbeddedPlugin{})
 

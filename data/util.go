@@ -1,11 +1,11 @@
 package data
 
 import (
+	"fmt"
 	"os/exec"
 	"strings"
 	"sync"
 
-	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/go-stockutil/sliceutil"
 	"github.com/ghetzel/go-stockutil/typeutil"
 	"github.com/mattn/go-shellwords"
@@ -33,8 +33,8 @@ func normalize(in interface{}) interface{} {
 	}
 }
 
-func shell(cmdline string) typeutil.Variant {
-	if words, err := shellwords.Parse(cmdline); err == nil {
+func shell(cmdline string, values ...interface{}) typeutil.Variant {
+	if words, err := shellwords.Parse(fmt.Sprintf(cmdline, values...)); err == nil {
 		cmd := exec.Command(words[0], words[1:]...)
 
 		if data, err := cmd.Output(); err == nil {
@@ -63,7 +63,11 @@ func Collect(only ...string) map[string]interface{} {
 		go func() {
 			if len(only) == 0 || sliceutil.ContainsString(only, want) {
 				mergelock.Lock()
-				output, _ = maputil.Merge(output, collector.Collect())
+
+				for k, v := range collector.Collect() {
+					output[k] = normalize(v)
+				}
+
 				mergelock.Unlock()
 			}
 

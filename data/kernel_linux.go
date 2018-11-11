@@ -19,10 +19,10 @@ func (self Kernel) Collect() map[string]interface{} {
 
 	if line, err := fileutil.ReadFirstLine(`/proc/uptime`); err == nil {
 		seconds, _ := stringutil.SplitPair(strings.TrimSpace(line), ` `)
-		sec := (time.Second * time.Duration(typeutil.Float(seconds)))
+		sec := (time.Second * time.Duration(typeutil.Float(seconds))).Round(time.Second)
 
-		bootedAt := time.Now().Add(-1 * sec)
-		out[`booted_at`] = bootedAt.Format(time.RFC1123Z)
+		bootedAt := time.Now().Add(-1 * sec).Round(time.Second)
+		out[`booted_at`] = bootedAt
 		out[`uptime`] = sec
 	}
 

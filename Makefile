@@ -23,3 +23,7 @@ test: fmt deps
 build: fmt
 	go build -o bin/sysfact ./cmd/sysfact
 	which sysfact && cp -v bin/sysfact `which sysfact` || true
+
+copy-to-and-run:
+	scp bin/sysfact $(IP):
+	ssh $(IP) 'chmod +x sysfact && sysfact'
