@@ -5,14 +5,25 @@ import (
 	"regexp"
 	"strings"
 	"time"
+	"unicode"
 
 	"github.com/ghetzel/go-stockutil/log"
+	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghetzel/sysfact/plugins"
+)
+
+type ReporterKeyFormat int
+
+const (
+	FormatUnderscore ReporterKeyFormat = iota
+	FormatPascalize
+	FormatCamelize
 )
 
 type Reporter struct {
 	Plugins     []plugins.Plugin
 	FieldPrefix string
+	KeyFormat   ReporterKeyFormat
 }
 
 func NewReporter(paths ...string) *Reporter {
@@ -44,7 +55,7 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 	outputData := make(map[string]interface{})
 
 	//  collected_at is ALWAYS set
-	outputData["collected_at"] = time.Now()
+	outputData[self.keyformat("collected_at")] = time.Now()
 
 	//  for each plugin
 	for _, plugin := range self.Plugins {
@@ -53,10 +64,12 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 
 		//  save all collected observations into an output map
 		for _, observation := range observations {
-			if _, exists := outputData[observation.Name]; !exists {
-				outputData[self.FieldPrefix+observation.Name] = observation.Value
+			key := self.keyformat(observation.Name)
+
+			if _, exists := outputData[key]; !exists {
+				outputData[self.FieldPrefix+key] = observation.Value
 			} else {
-				log.Warningf("Cannot set value for field '%s', another plugin has already set a value for this field", observation.Name)
+				log.Warningf("Cannot set value for field '%s', another plugin has already set a value for this field", key)
 			}
 		}
 	}
@@ -129,4 +142,25 @@ func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map
 	}
 
 	return filteredValues, nil
+}
+
+func (self *Reporter) keyformat(key string) string {
+	parts := strings.Split(key, `.`)
+
+	for i, part := range parts {
+		switch self.KeyFormat {
+		case FormatPascalize:
+			// NOTE: stringutil.Camelize is wrong and actually returns PascalCase
+			parts[i] = stringutil.Camelize(part)
+		case FormatCamelize:
+			for i, v := range stringutil.Camelize(part) {
+				parts[i] = string(unicode.ToLower(v)) + key[i+1:]
+				break
+			}
+		default:
+			parts[i] = stringutil.Underscore(key)
+		}
+	}
+
+	return strings.Join(parts, `.`)
 }

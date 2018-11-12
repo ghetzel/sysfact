@@ -59,6 +59,10 @@ func main() {
 			Name:  `prefix, p`,
 			Usage: `A prefix to prepend to all facts. For output types the represent nested data structures, all output will be nested under this dot-separated path.`,
 		},
+		cli.StringFlag{
+			Name:  `key-format`,
+			Usage: `How keys in the output data should be formatted.  One of: "underscore", "camel", "pascal"`,
+		},
 		cli.BoolFlag{
 			Name:  `extract-tags, T`,
 			Usage: `Automatically extract related tag values from arrays of items.`,
@@ -94,6 +98,15 @@ func main() {
 
 		reporter = sysfact.NewReporter(c.StringSlice(`additional-paths`)...)
 		reporter.FieldPrefix = c.String(`prefix`)
+
+		switch c.String(`key-format`) {
+		case `camel`:
+			reporter.KeyFormat = sysfact.FormatCamelize
+		case `pascal`:
+			reporter.KeyFormat = sysfact.FormatPascalize
+		case `underscore`:
+			reporter.KeyFormat = sysfact.FormatUnderscore
+		}
 
 		return nil
 	}
