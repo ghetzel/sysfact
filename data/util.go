@@ -3,10 +3,13 @@ package data
 import (
 	"fmt"
 	"os/exec"
+	"path/filepath"
 	"strings"
 	"sync"
 
+	"github.com/ghetzel/go-stockutil/fileutil"
 	"github.com/ghetzel/go-stockutil/sliceutil"
+	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghetzel/go-stockutil/typeutil"
 	"github.com/mattn/go-shellwords"
 )
@@ -14,6 +17,8 @@ import (
 func normalize(in interface{}) interface{} {
 	if inS, ok := in.(string); ok {
 		inS = strings.TrimSpace(inS)
+		inS = strings.TrimSuffix(inS, `-`)
+		inS = stringutil.SqueezeSpace(inS)
 
 		switch strings.ToLower(inS) {
 		case `yes`, `on`:
@@ -48,6 +53,14 @@ func lines(cmdline string) []string {
 	return strings.Split(shell(cmdline).String(), "\n")
 }
 
+func readvalue(path ...string) interface{} {
+	if line, err := fileutil.ReadFirstLine(filepath.Join(path...)); err == nil {
+		return typeutil.Auto(normalize(line))
+	}
+
+	return nil
+}
+
 type Collector interface {
 	Collect() map[string]interface{}
 }
@@ -80,6 +93,8 @@ func Collect(only ...string) map[string]interface{} {
 	collect(&wg, `network`, Network{})
 	collect(&wg, `os`, OS{})
 	collect(&wg, `system`, System{})
+	collect(&wg, `disk.block`, BlockDevices{})
+	collect(&wg, `disk.mounts`, Mounts{})
 
 	wg.Wait()
 

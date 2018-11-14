@@ -154,11 +154,11 @@ func (self *Reporter) keyformat(key string) string {
 			parts[i] = stringutil.Camelize(part)
 		case FormatCamelize:
 			for i, v := range stringutil.Camelize(part) {
-				parts[i] = string(unicode.ToLower(v)) + key[i+1:]
+				parts[i] = string(unicode.ToLower(v)) + part[i+1:]
 				break
 			}
 		default:
-			parts[i] = stringutil.Underscore(key)
+			parts[i] = stringutil.Underscore(part)
 		}
 	}
 

@@ -7,7 +7,7 @@ BIN         ?= sysfact
 .EXPORT_ALL_VARIABLES:
 GO111MODULE  = on
 
-all: fmt deps build
+all: deps fmt build
 
 fmt:
 	gofmt -w $(LOCALS)
