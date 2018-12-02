@@ -202,14 +202,13 @@ func (self ShellPlugin) closeAfterCommandsFinish(values chan Observation, waiter
 	done := make(chan bool)
 
 	go func() {
-		log.Debug("Waiting for all commands to complete...")
 		waiter.Wait()
 		done <- true
 	}()
 
 	select {
 	case <-done:
-		log.Debug("All commands exited")
+		break
 	case <-time.After(self.MaxTimeout):
 		log.Warning("Timed out waiting for all plugins to complete")
 	}
