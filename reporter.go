@@ -1,13 +1,11 @@
 package sysfact
 
 import (
-	"reflect"
 	"regexp"
 	"strings"
 	"time"
 	"unicode"
 
-	"github.com/ghetzel/go-stockutil/log"
 	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghetzel/sysfact/plugins"
 )
@@ -51,7 +49,6 @@ func NewReporter(paths ...string) *Reporter {
 // Generate and return the full report from all discovered plugins.
 //
 func (self *Reporter) Report() (map[string]interface{}, error) {
-	log.Info("Gathering report data...")
 	outputData := make(map[string]interface{})
 
 	//  collected_at is ALWAYS set
@@ -59,7 +56,6 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 
 	//  for each plugin
 	for _, plugin := range self.Plugins {
-		log.Infof("Collecting data for %s", reflect.TypeOf(plugin))
 		observations, _ := plugin.Collect()
 
 		//  save all collected observations into an output map
@@ -68,8 +64,6 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 
 			if _, exists := outputData[key]; !exists {
 				outputData[self.FieldPrefix+key] = observation.Value
-			} else {
-				log.Warningf("Cannot set value for field '%s', another plugin has already set a value for this field", key)
 			}
 		}
 	}
