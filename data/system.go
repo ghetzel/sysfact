@@ -1,18 +1,10 @@
 package data
 
-import (
-	"os"
-)
-
 type System struct {
 }
 
 func (self System) Collect() map[string]interface{} {
 	out := make(map[string]interface{})
-
-	if hostname, err := os.Hostname(); err == nil {
-		out[`hostname`] = hostname
-	}
 
 	out[`uuid`] = shell(`dmidecode -s system-uuid`).String()
 	out[`system.serial`] = shell(`dmidecode -s system-serial-number`).String()

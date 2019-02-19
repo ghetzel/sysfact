@@ -3,8 +3,10 @@ package data
 import (
 	"fmt"
 	"net"
+	"os"
 
 	"github.com/ghetzel/go-stockutil/netutil"
+	"github.com/ghetzel/go-stockutil/stringutil"
 )
 
 type Network struct {
@@ -12,6 +14,17 @@ type Network struct {
 
 func (self Network) Collect() map[string]interface{} {
 	out := make(map[string]interface{})
+
+	if hostname, err := os.Hostname(); err == nil {
+		out[`hostname`] = hostname
+	}
+
+	if fqdn := shell(`hostname -f`).String(); fqdn != `` {
+		_, domain := stringutil.SplitPair(fqdn, `.`)
+
+		out[`fqdn`] = fqdn
+		out[`domain`] = domain
+	}
 
 	if defaultIP := netutil.DefaultAddress(); defaultIP != nil {
 		out[`network.default.ip`] = defaultIP.IP.String()
