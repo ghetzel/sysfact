@@ -24,6 +24,7 @@ type Reporter struct {
 	KeyFormat   ReporterKeyFormat
 }
 
+// Create a new Reporter instance that can be configured.
 func NewReporter(paths ...string) *Reporter {
 	shellExecPath := append([]string{
 		`~/.sysfact/shell.d`,
@@ -47,7 +48,6 @@ func NewReporter(paths ...string) *Reporter {
 }
 
 // Generate and return the full report from all discovered plugins.
-//
 func (self *Reporter) Report() (map[string]interface{}, error) {
 	outputData := make(map[string]interface{})
 
@@ -72,7 +72,6 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 }
 
 // Generates a report and retrieves the values of the given fields.
-//
 func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error) {
 	filteredValues := make(map[string]interface{})
 	patterns := make([]*regexp.Regexp, 0)
@@ -157,4 +156,9 @@ func (self *Reporter) keyformat(key string) string {
 	}
 
 	return strings.Join(parts, `.`)
+}
+
+// Generate a system report using the default settings.
+func Report(paths ...string) (map[string]interface{}, error) {
+	return NewReporter(paths...).Report()
 }
