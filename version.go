@@ -1,3 +1,3 @@
 package sysfact
 
-const Version = `0.6.7`
+const Version = `0.6.8`

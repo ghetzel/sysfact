@@ -21,7 +21,8 @@ func (self Kernel) Collect() map[string]interface{} {
 			time.Unix(typeutil.Int(m.Group(`epoch`)), 0),
 		).Round(time.Second)
 
-		out[`uptime`] = uptime
+		out[`uptime`] = (uptime / time.Second)
+		out[`uptime_readable`] = uptime.String()
 		out[`booted_at`] = time.Now().Add(-1 * uptime).Round(time.Second)
 	}
 

@@ -31,7 +31,7 @@ func normalize(in interface{}) interface{} {
 			inS = strings.Replace(inS, `(R)`, ``, -1)
 			inS = strings.Replace(inS, `(TM)`, ``, -1)
 
-			return typeutil.Auto(inS)
+			return inS
 		}
 	} else {
 		return in

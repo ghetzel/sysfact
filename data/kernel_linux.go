@@ -23,7 +23,8 @@ func (self Kernel) Collect() map[string]interface{} {
 
 		bootedAt := time.Now().Add(-1 * sec).Round(time.Second)
 		out[`booted_at`] = bootedAt
-		out[`uptime`] = sec
+		out[`uptime`] = (sec / time.Second)
+		out[`uptime_readable`] = sec.String()
 	}
 
 	out[`kernel.version`] = shell(`uname -r`).String()
