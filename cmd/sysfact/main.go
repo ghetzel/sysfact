@@ -39,7 +39,7 @@ func main() {
 		},
 		cli.StringFlag{
 			Name:  `format, f`,
-			Usage: `How the output should be formatted (one of "flat", "json", "yaml", "graphite", "tsdb", or "influxdb")`,
+			Usage: `How the output should be formatted (one of "flat", "values", "json", "yaml", "graphite", "tsdb", or "influxdb")`,
 			Value: `flat`,
 		},
 		cli.StringSliceFlag{
@@ -284,6 +284,11 @@ func writeWithFormat(w io.Writer, format string, tuples sysfact.TupleSet, tags m
 	case `flat`:
 		for _, tuple := range tuples {
 			fmt.Fprintf(w, "%s=%v\n", tuple.Key, tuple.Value)
+		}
+
+	case `values`:
+		for _, tuple := range tuples {
+			fmt.Fprintf(w, "%v\n", tuple.Value)
 		}
 
 	case `yaml`:
