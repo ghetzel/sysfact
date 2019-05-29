@@ -7,6 +7,7 @@ import (
 	"strings"
 
 	"github.com/ghetzel/go-stockutil/log"
+	"github.com/ghetzel/go-stockutil/typeutil"
 )
 
 type geomConfig struct {
@@ -24,7 +25,7 @@ type geomConfig struct {
 	SecOffset    int64  `xml:"secoffset"`
 	Scheme       string `xml:"scheme"`
 	Start        int64  `xml:"start"`
-	RotationRate int    `xml:"rotationrate"`
+	RotationRate string `xml:"rotationrate"`
 	WWID         string `xml:"lunid"`
 	State        string `xml:"state"`
 	Description  string `xml:"descr"`
@@ -115,8 +116,8 @@ func (self BlockDevices) collectDevice(cls *geomClass) map[string]interface{} {
 		`device`:             fmt.Sprintf("/dev/%s", cls.Name),
 		`size`:               provider.MediaSize,
 		`removable`:          false,
-		`ssd`:                (provider.Config.RotationRate == 0),
-		`rotation_rate`:      provider.Config.RotationRate,
+		`ssd`:                (typeutil.Int(provider.Config.RotationRate) == 0),
+		`rotation_rate`:      typeutil.Int(provider.Config.RotationRate),
 		`wwid`:               provider.Config.WWID,
 		`model`:              strings.TrimSpace(provider.Config.Description),
 		`serial`:             strings.TrimSpace(provider.Config.Identifier),
