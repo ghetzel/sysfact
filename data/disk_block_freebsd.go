@@ -112,8 +112,8 @@ func (self BlockDevices) collectDevice(cls *geomClass) map[string]interface{} {
 	}
 
 	return map[string]interface{}{
-		`name`:               cls.Name,
-		`device`:             fmt.Sprintf("/dev/%s", cls.Name),
+		`name`:               provider.Name,
+		`device`:             fmt.Sprintf("/dev/%s", provider.Name),
 		`size`:               provider.MediaSize,
 		`removable`:          false,
 		`ssd`:                (typeutil.Int(provider.Config.RotationRate) == 0),
