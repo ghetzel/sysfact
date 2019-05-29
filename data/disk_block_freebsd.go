@@ -49,8 +49,6 @@ type geomTarget struct {
 
 type geomDescriptor struct {
 	ID        string       `xml:"id,attr,omitempty"`
-	Ref       string       `xml:"ref,attr,omitempty"`
-	Class     geomClass    `xml:"class,omitempty"`
 	Name      string       `xml:"name,omitempty"`
 	Rank      int          `xml:"rank,omitempty"`
 	Config    geomConfig   `xml:"config,omitempty"`
