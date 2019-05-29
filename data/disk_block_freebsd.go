@@ -5,8 +5,6 @@ import (
 	"fmt"
 	"os/exec"
 	"strings"
-
-	"github.com/ghetzel/go-stockutil/typeutil"
 )
 
 type geomConfig struct {
@@ -96,8 +94,6 @@ func (self BlockDevices) Collect() map[string]interface{} {
 }
 
 func (self BlockDevices) collectDevice(cls *geomClass) map[string]interface{} {
-	physical := typeutil.Int(readvalue(blockpath, `queue`, `physical_block_size`))
-	logical := typeutil.Int(readvalue(blockpath, `queue`, `logical_block_size`))
 	var provider geomTarget
 
 	if len(cls.GEOM.Providers) > 0 {
