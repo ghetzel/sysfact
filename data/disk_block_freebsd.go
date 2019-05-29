@@ -5,6 +5,8 @@ import (
 	"fmt"
 	"os/exec"
 	"strings"
+
+	"github.com/ghetzel/go-stockutil/log"
 )
 
 type geomConfig struct {
@@ -87,7 +89,11 @@ func (self BlockDevices) Collect() map[string]interface{} {
 					devid += 1
 				}
 			}
+		} else {
+			log.Warningf("Failed to parse XML: %v", err)
 		}
+	} else {
+		log.Warningf("Failed to retrieve XML: %v", err)
 	}
 
 	return out
