@@ -58,9 +58,9 @@ type geomDescriptor struct {
 }
 
 type geomClass struct {
-	ID   string         `xml:"id,attr"`
-	Name string         `xml:"name"`
-	GEOM geomDescriptor `xml:"geom"`
+	ID    string           `xml:"id,attr"`
+	Name  string           `xml:"name"`
+	GEOMs []geomDescriptor `xml:"geom"`
 }
 
 type geomXml struct {
@@ -85,11 +85,13 @@ func (self BlockDevices) Collect() map[string]interface{} {
 			for _, cls := range geom.Classes {
 				switch strings.ToUpper(cls.Name) {
 				case `DISK`:
-					for k, v := range self.collectDevice(&cls) {
-						out[fmt.Sprintf("disk.block.%d.%s", devid, k)] = v
-					}
+					for _, geom := range cls.GEOMs {
+						for k, v := range self.collectDevice(&cls) {
+							out[fmt.Sprintf("disk.block.%d.%s", devid, k)] = v
+						}
 
-					devid += 1
+						devid += 1
+					}
 				}
 			}
 		} else {
@@ -102,11 +104,11 @@ func (self BlockDevices) Collect() map[string]interface{} {
 	return out
 }
 
-func (self BlockDevices) collectDevice(cls *geomClass) map[string]interface{} {
+func (self BlockDevices) collectDevice(geom *geomDescriptor) map[string]interface{} {
 	var provider geomTarget
 
-	if len(cls.GEOM.Providers) > 0 {
-		provider = cls.GEOM.Providers[0]
+	if len(geom.Providers) > 0 {
+		provider = geom.Providers[0]
 	} else {
 		return nil
 	}
