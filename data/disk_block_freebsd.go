@@ -79,6 +79,8 @@ func (self BlockDevices) Collect() map[string]interface{} {
 
 	if data, err := exec.Command(`sysctl`, `-n`, `kern.geom.confxml`).Output(); err == nil {
 		if err := xml.Unmarshal(data, &geom); err == nil {
+			log.Dump(geom)
+
 			for _, cls := range geom.Classes {
 				switch strings.ToUpper(cls.Name) {
 				case `DISK`:
