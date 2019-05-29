@@ -4,9 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/typeutil"
-
 	"github.com/ghetzel/go-stockutil/fileutil"
+	"github.com/ghetzel/go-stockutil/typeutil"
 )
 
 type Mounts struct {
