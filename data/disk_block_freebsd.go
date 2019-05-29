@@ -86,7 +86,7 @@ func (self BlockDevices) Collect() map[string]interface{} {
 				switch strings.ToUpper(cls.Name) {
 				case `DISK`:
 					for _, geom := range cls.GEOMs {
-						for k, v := range self.collectDevice(&cls) {
+						for k, v := range self.collectDevice(&geom) {
 							out[fmt.Sprintf("disk.block.%d.%s", devid, k)] = v
 						}
 
