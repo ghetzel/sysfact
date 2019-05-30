@@ -4,6 +4,7 @@ import (
 	"encoding/xml"
 	"fmt"
 	"os/exec"
+	"sort"
 	"strings"
 
 	"github.com/ghetzel/go-stockutil/log"
@@ -85,6 +86,11 @@ func (self BlockDevices) Collect() map[string]interface{} {
 			for _, cls := range geom.Classes {
 				switch strings.ToUpper(cls.Name) {
 				case `DISK`:
+					// sort disks by name
+					sort.Slice(cls.GEOMs, func(i int, j int) bool {
+						return cls.GEOMs[i].Name < cls.GEOMs[j].Name
+					})
+
 					for _, geom := range cls.GEOMs {
 						for k, v := range self.collectDevice(&geom) {
 							out[fmt.Sprintf("disk.block.%d.%s", devid, k)] = v
