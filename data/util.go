@@ -93,6 +93,7 @@ func Collect(only ...string) map[string]interface{} {
 	collect(&wg, `network`, Network{})
 	collect(&wg, `os`, OS{})
 	collect(&wg, `system`, System{})
+	collect(&wg, `ipmi`, IPMI{})
 	collect(&wg, `disk.block`, BlockDevices{})
 	collect(&wg, `disk.mounts`, Mounts{})
 
