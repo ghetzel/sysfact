@@ -28,6 +28,7 @@ func (self Memory) Collect() map[string]interface{} {
 	out[`memory.active`] = active
 	out[`memory.inactive`] = inactive
 	out[`memory.swap`] = swap
+	out[`memory.cached`] = cached
 	out[`memory.used`] = used
 	out[`memory.percent_used`] = mathutil.RoundPlaces(float64(used)/float64(total)*100.0, 2)
 
