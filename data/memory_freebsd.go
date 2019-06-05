@@ -4,6 +4,7 @@ import (
 	"strings"
 
 	"github.com/ghetzel/go-stockutil/mathutil"
+	"github.com/ghetzel/go-stockutil/sliceutil"
 	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghetzel/go-stockutil/typeutil"
 )
@@ -49,7 +50,7 @@ func (self Memory) Collect() map[string]interface{} {
 	out[`memory.available`] = total - free
 	out[`memory.active`] = active
 	out[`memory.inactive`] = inactive
-	out[`memory.swap`] = bytes
+	out[`memory.swap`] = swap
 	out[`memory.used`] = used
 	out[`memory.percent_used`] = mathutil.RoundPlaces(float64(used)/float64(total)*100.0, 2)
 
