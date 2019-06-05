@@ -46,7 +46,7 @@ func (self Memory) Collect() map[string]interface{} {
 
 	out[`memory.total`] = total
 	out[`memory.free`] = free
-	out[`memory.available`] = total - free
+	out[`memory.available`] = total - used
 	out[`memory.active`] = active
 	out[`memory.inactive`] = inactive
 	out[`memory.swap`] = swap
