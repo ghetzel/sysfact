@@ -46,18 +46,20 @@ func (self Memory) Collect() map[string]interface{} {
 		if i < len(keys) {
 			syskey := keys[i]
 
-			if key, ok := freebsdSysctlOutMap[syskey]; ok {
+			if outkey, ok := freebsdSysctlOutMap[syskey]; ok {
 				multiply := int64(1)
 
 				if strings.HasSuffix(syskey, `_count`) {
 					multiply = pagesize
 				}
 
-				switch key {
+				switch outkey {
 				case `_pagesize`:
 					pagesize = value
+				case `memory.wired`:
+					out[outkey] = value
 				default:
-					out[key] = multiply * value
+					out[outkey] = multiply * value
 				}
 			}
 		}
