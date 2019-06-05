@@ -1,11 +1,7 @@
 package data
 
 import (
-	"strings"
-
 	"github.com/ghetzel/go-stockutil/mathutil"
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
 )
 
 type Memory struct {
@@ -14,34 +10,17 @@ type Memory struct {
 func (self Memory) Collect() map[string]interface{} {
 	out := make(map[string]interface{})
 
-	var total, swap, active, inactive, free, pgsz int64
+	var pgsz, total, swap, wired, active, inactive, free, cache int64
 
+	pgsz = shellfl(`sysctl -n vm.stats.vm.v_page_size`).Int()
 	total = shellfl(`sysctl -n hw.realmem`).Int()
 	swap = shellfl(`sysctl -n vm.swap_total`).Int()
-
-	for _, line := range shell(`vmstat -s`).Split("\n") {
-		line = strings.TrimSpace(line)
-
-		v, k := stringutil.SplitPair(line, ` `)
-		k = stringutil.SqueezeSpace(k)
-		vi := typeutil.Int(v)
-
-		switch k {
-		case `pages free`:
-			free = vi
-		case `pages active`:
-			active = vi
-		case `pages inactive`:
-			inactive = vi
-		case `bytes per page`:
-			pgsz = vi
-		}
-	}
-
-	active *= pgsz
-	inactive *= pgsz
-	free *= pgsz
-	used := total - free - inactive
+	wired = shellfl(`sysctl -n vm.stats.vm.v_wire_count`).Int()
+	active = pgsz * shellfl(`sysctl -n vm.stats.vm.v_active_count`).Int()
+	inactive = pgsz * shellfl(`sysctl -n vm.stats.vm.v_inactive_count`).Int()
+	free = pgsz * shellfl(`sysctl -n vm.stats.vm.v_free_count`).Int()
+	cache = pgsz * shellfl(`sysctl -n vm.stats.vm.v_cache_count`).Int()
+	used := active + wired
 
 	out[`memory.total`] = total
 	out[`memory.free`] = free
