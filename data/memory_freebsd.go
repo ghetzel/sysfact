@@ -1,6 +1,7 @@
 package data
 
 import (
+	"fmt"
 	"sort"
 	"strings"
 
@@ -36,6 +37,7 @@ func (self Memory) Collect() map[string]interface{} {
 		return (iV < jV)
 	})
 
+	fmt.Println(keys)
 	values := lines(`sysctl -n ` + strings.Join(keys, ` `))
 
 	for i, line := range values {
