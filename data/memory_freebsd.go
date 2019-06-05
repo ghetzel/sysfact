@@ -46,7 +46,7 @@ func (self Memory) Collect() map[string]interface{} {
 					multiply = pagesize
 				}
 
-				switch out {
+				switch key {
 				case `_pagesize`:
 					pagesize = value
 				default:
