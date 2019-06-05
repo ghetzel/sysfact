@@ -6,7 +6,6 @@ import (
 	"path/filepath"
 
 	"github.com/ghetzel/go-stockutil/fileutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
 )
 
 type BlockDevices struct {
@@ -40,18 +39,18 @@ func (self BlockDevices) Collect() map[string]interface{} {
 }
 
 func (self BlockDevices) collectDevice(blockpath string) map[string]interface{} {
-	physical := typeutil.Int(readvalue(blockpath, `queue`, `physical_block_size`))
-	logical := typeutil.Int(readvalue(blockpath, `queue`, `logical_block_size`))
+	physical := readvalue(blockpath, `queue`, `physical_block_size`).Int()
+	logical := readvalue(blockpath, `queue`, `logical_block_size`).Int()
 
 	return map[string]interface{}{
 		`name`:               filepath.Base(blockpath),
 		`device`:             fmt.Sprintf("/dev/%s", filepath.Base(blockpath)),
-		`size`:               typeutil.Int(readvalue(blockpath, `size`)) * physical,
-		`removable`:          typeutil.Bool(readvalue(blockpath, `removable`)),
-		`ssd`:                !typeutil.Bool(readvalue(blockpath, `queue`, `rotational`)),
-		`vendor`:             typeutil.String(readvalue(blockpath, `device`, `vendor`)),
-		`model`:              typeutil.String(readvalue(blockpath, `device`, `model`)),
-		`revision`:           typeutil.String(readvalue(blockpath, `device`, `rev`)),
+		`size`:               readvalue(blockpath, `size`).Int() * physical,
+		`removable`:          readvalue(blockpath, `removable`).Bool(),
+		`ssd`:                !readvalue(blockpath, `queue`, `rotational`).Bool(),
+		`vendor`:             readvalue(blockpath, `device`, `vendor`).String(),
+		`model`:              readvalue(blockpath, `device`, `model`).String(),
+		`revision`:           readvalue(blockpath, `device`, `rev`).String(),
 		`blocksize.physical`: physical,
 		`blocksize.logical`:  logical,
 	}

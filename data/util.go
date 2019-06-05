@@ -53,12 +53,20 @@ func lines(cmdline string) []string {
 	return strings.Split(shell(cmdline).String(), "\n")
 }
 
-func readvalue(path ...string) interface{} {
+func shellfl(cmdline string) typeutil.Variant {
+	if value := strings.TrimSpace(lines(cmdline)[0]); value != `` {
+		return typeutil.V(value)
+	} else {
+		return typeutil.V(nil)
+	}
+}
+
+func readvalue(path ...string) typeutil.Variant {
 	if line, err := fileutil.ReadFirstLine(filepath.Join(path...)); err == nil {
-		return typeutil.Auto(normalize(line))
+		return typeutil.V(normalize(line))
 	}
 
-	return nil
+	return typeutil.V(nil)
 }
 
 type Collector interface {
@@ -89,6 +97,7 @@ func Collect(only ...string) map[string]interface{} {
 	}
 
 	collect(&wg, `cpu`, CPU{})
+	collect(&wg, `memory`, Memory{})
 	collect(&wg, `kernel`, Kernel{})
 	collect(&wg, `network`, Network{})
 	collect(&wg, `os`, OS{})
