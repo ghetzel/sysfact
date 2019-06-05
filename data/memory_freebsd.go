@@ -29,7 +29,12 @@ func (self Memory) Collect() map[string]interface{} {
 	var pagesize int64
 
 	keys := maputil.StringKeys(freebsdSysctlOutMap)
-	sort.Strings(keys)
+	sort.Slice(keys, func(i int, j int) bool {
+		iV := freebsdSysctlOutMap[keys[i]]
+		jV := freebsdSysctlOutMap[keys[j]]
+
+		return (iV < jV)
+	})
 
 	values := lines(`sysctl -n ` + strings.Join(keys, ` `))
 
