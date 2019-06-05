@@ -1,8 +1,24 @@
 package data
 
 import (
+	"sort"
+	"strings"
+
+	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/go-stockutil/mathutil"
+	"github.com/ghetzel/go-stockutil/typeutil"
 )
+
+var freebsdSysctlOutMap = map[string]string{
+	`vm.stats.vm.v_page_size`:      `_pagesize`,
+	`hw.realmem`:                   `memory.total`,
+	`vm.swap_total`:                `memory.swap`,
+	`vm.stats.vm.v_free_count`:     `memory.free`,
+	`vm.stats.vm.v_wire_count`:     `memory.wired`,
+	`vm.stats.vm.v_active_count`:   `memory.active`,
+	`vm.stats.vm.v_inactive_count`: `memory.inactive`,
+	`vm.stats.vm.v_cache_count`:    `memory.cached`,
+}
 
 type Memory struct {
 }
@@ -10,25 +26,40 @@ type Memory struct {
 func (self Memory) Collect() map[string]interface{} {
 	out := make(map[string]interface{})
 
-	var pgsz, total, swap, wired, active, inactive, free, cache int64
+	var pagesize int64
 
-	pgsz = shellfl(`sysctl -n vm.stats.vm.v_page_size`).Int()
-	total = shellfl(`sysctl -n hw.realmem`).Int()
-	swap = shellfl(`sysctl -n vm.swap_total`).Int()
-	wired = shellfl(`sysctl -n vm.stats.vm.v_wire_count`).Int()
-	active = pgsz * shellfl(`sysctl -n vm.stats.vm.v_active_count`).Int()
-	inactive = pgsz * shellfl(`sysctl -n vm.stats.vm.v_inactive_count`).Int()
-	free = pgsz * shellfl(`sysctl -n vm.stats.vm.v_free_count`).Int()
-	cache = pgsz * shellfl(`sysctl -n vm.stats.vm.v_cache_count`).Int()
-	used := active + wired
+	keys := maputil.StringKeys(freebsdSysctlOutMap)
+	sort.Strings(keys)
 
-	out[`memory.total`] = total
-	out[`memory.free`] = free
+	values := lines(`sysctl -n ` + strings.Join(keys, ` `))
+
+	for i, line := range values {
+		value := typeutil.Int(strings.TrimSpace(line))
+
+		if i < len(keys) {
+			syskey := keys[i]
+
+			if key, ok := freebsdSysctlOutMap[syskey]; ok {
+				multiply := int64(1)
+
+				if strings.HasSuffix(key, `_count`) {
+					multiply = pagesize
+				}
+
+				switch out {
+				case `_pagesize`:
+					pagesize = value
+				default:
+					out[key] = multiply * value
+				}
+			}
+		}
+	}
+
+	total := typeutil.V(out[`memory.total`]).Int()
+	used := typeutil.V(out[`memory.active`]).Int() + typeutil.V(out[`memory.wired`]).Int()
+
 	out[`memory.available`] = total - used
-	out[`memory.active`] = active
-	out[`memory.inactive`] = inactive
-	out[`memory.swap`] = swap
-	out[`memory.cached`] = cache
 	out[`memory.used`] = used
 	out[`memory.percent_used`] = mathutil.RoundPlaces(float64(used)/float64(total)*100.0, 2)
 
