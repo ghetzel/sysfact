@@ -4,7 +4,6 @@ import (
 	"strings"
 
 	"github.com/ghetzel/go-stockutil/mathutil"
-	"github.com/ghetzel/go-stockutil/sliceutil"
 	"github.com/ghetzel/go-stockutil/stringutil"
 	"github.com/ghetzel/go-stockutil/typeutil"
 )
@@ -24,7 +23,7 @@ func (self Memory) Collect() map[string]interface{} {
 		line = strings.TrimSpace(line)
 
 		v, k := stringutil.SplitPair(line, ` `)
-		k = sliceutil.SqueezeSpace(k)
+		k = stringutil.SqueezeSpace(k)
 		vi := typeutil.Int(v)
 
 		switch k {
