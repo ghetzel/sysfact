@@ -56,8 +56,6 @@ func (self Memory) Collect() map[string]interface{} {
 				switch outkey {
 				case `_pagesize`:
 					pagesize = value
-				case `memory.wired`:
-					out[outkey] = value
 				default:
 					out[outkey] = multiply * value
 				}
