@@ -41,7 +41,7 @@ func (self Memory) Collect() map[string]interface{} {
 	active *= pgsz
 	inactive *= pgsz
 	free *= pgsz
-	used := total - active
+	used := total - free - inactive
 
 	out[`memory.total`] = total
 	out[`memory.free`] = free
