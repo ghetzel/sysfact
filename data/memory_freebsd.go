@@ -15,7 +15,7 @@ func (self Memory) Collect() map[string]interface{} {
 	pgsz = shellfl(`sysctl -n vm.stats.vm.v_page_size`).Int()
 	total = shellfl(`sysctl -n hw.realmem`).Int()
 	swap = shellfl(`sysctl -n vm.swap_total`).Int()
-	wired = shellfl(`sysctl -n vm.stats.vm.v_wire_count`).Int()
+	wired = pgsz * shellfl(`sysctl -n vm.stats.vm.v_wire_count`).Int()
 	active = pgsz * shellfl(`sysctl -n vm.stats.vm.v_active_count`).Int()
 	inactive = pgsz * shellfl(`sysctl -n vm.stats.vm.v_inactive_count`).Int()
 	free = pgsz * shellfl(`sysctl -n vm.stats.vm.v_free_count`).Int()
