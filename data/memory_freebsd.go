@@ -38,7 +38,6 @@ func (self Memory) Collect() map[string]interface{} {
 		}
 	}
 
-	total *= pgsz
 	active *= pgsz
 	inactive *= pgsz
 	free *= pgsz
