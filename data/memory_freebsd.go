@@ -47,7 +47,7 @@ func (self Memory) Collect() map[string]interface{} {
 			if key, ok := freebsdSysctlOutMap[syskey]; ok {
 				multiply := int64(1)
 
-				if strings.HasSuffix(key, `_count`) {
+				if strings.HasSuffix(syskey, `_count`) {
 					multiply = pagesize
 				}
 
