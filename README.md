@@ -64,7 +64,7 @@ Output can be formatted into JSON, YAML, as a flat list of "key=value" items, or
 
 Finally, the results of formatting the collected data can be output, either via standard output (the default), or using the built-in HTTP client. You can specify a URL, HTTP method, request headers, query string parameters (as command line flags), and timeouts. This provides a flexible and powerful mechanism for using `sysfact` as a component in monitoring, inventory collection, and other data collection systems.
 
-## Source File Tree
+# File Management & Templating
 
 Sysfact also has a built-in mechanism for copying directory trees from one location to another, while also allowing for individual files and filenames to make use of data gathered by a Sysfact report. This is a simple but powerful mechanism for providing very bare-bones management of files on a system.
 
@@ -96,13 +96,13 @@ For example, lets take the following directory tree:
 
 By default, these files and directories represent files that you want to copy to their respective locations relative to your home directory (`~`). When you run `sysfact apply`, each file in this tree will be visited and copied into your home directory. Intermediate directories will be created, and the files will be placed in them.
 
-# File Templating
+## Using Templates to Generate Files
 
 Note the `@` symbol in the filename `@.bashrc`. This tells Sysfact that the file should be treated as a template. The template engine will pass the complete Sysfact Report as input, along with any additional values you provide, and generate a text file as output with the values interopolated in. The resulting filename will have the leading `@` omitted. In this example, the rendered template will be placed at `~/.bashrc`.
 
 Templates are standard [Golang text/template](https://golang.org/pkg/text/template/#pkg-overview) files, with additional functions provided by the [Diecast Standard Function Library](https://ghetzel.github.io/diecast/#funcref).
 
-### Environment-Specific Overrides
+## Environment-Specific Overrides
 
 Note that there are several roots in play here. The bulk of the files reside in `./any/any/`, but some of them are in the `./ubuntu/x86_64/` directory. Sysfact allows you to specify files and directories that should only be copied to the destination directory under specific OS, Distribution, Archicture, or OS Family combinations. Below is a list of the default order used to determine which files are copied over. You may also provide additional search patterns that will be appended to this default list. Patterns may use any value that appears in the `sysfact` report.
 
@@ -119,7 +119,7 @@ Note that there are several roots in play here. The bulk of the files reside in 
 
 It is entirely possible to have the same filenames reside in multiple roots, with more-specific ones overwriting less specific versions. For example, the file `./any/any/.bashrc` would be copied to `~/.bashrc` first. If `sysfact` is being run on a 64-bit Ubuntu installation (any version), the `./ubuntu/x86_64/@.bashrc` file will be read, rendered as a template (because of the leading `@`), and overwrite the `~/.bashrc` file that was copied from before. This simple but powerful mechanism allows for very flexible file structures to be created that adapt to the needs of the system being configured.
 
-### Default Paths
+## Default Paths
 
 When `sysfact` is run as a normal (i.e.: non-root) user, the default source and destination paths are:
 
