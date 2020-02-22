@@ -20,6 +20,7 @@ deps:
 
 test: fmt deps
 	go test $(PKGS)
+	./bin/$(BIN) apply -s test/src/ -d test/dest/
 
 build: fmt
 	go build -o bin/$(BIN) ./cmd/sysfact

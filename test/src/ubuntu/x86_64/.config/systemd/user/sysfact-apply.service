@@ -1,0 +1,10 @@
+[Unit]
+Description=Sysfact Apply
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/sysfact -L info apply
+
+[Install]
+WantedBy=default.target
+

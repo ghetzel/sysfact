@@ -1,0 +1,9 @@
+[Unit]
+Description=Periodically run Sysfact Apply
+
+[Timer]
+OnBootSec=30s
+OnUnitActiveSec=10min
+
+[Install]
+WantedBy=timer.target

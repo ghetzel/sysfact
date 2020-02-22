@@ -300,12 +300,22 @@ func main() {
 					Name:  `dry-run, n`,
 					Usage: `Don't actually modify the destination directory, just report what would be done.`,
 				},
+				cli.BoolFlag{
+					Name:  `follow-links, L`,
+					Usage: `Follow symlinks and copy the contents of the linked file instead of re-creating symlinks in the destination.`,
+				},
+				cli.StringSliceFlag{
+					Name:  `srcdir-pattern, P`,
+					Usage: `Provide an additional pattern string to use when searching for files to copy from srcdir.`,
+				},
 			},
 			Action: func(c *cli.Context) {
 				var opts sysfact.RenderOptions
 
 				opts.DestDir = c.String(`destdir`)
 				opts.DryRun = c.Bool(`dry-run`)
+				opts.AdditionalPatterns = c.StringSlice(`srcdir-pattern`)
+				opts.FollowSymlinks = c.Bool(`follow-links`)
 
 				log.FatalIf(sysfact.Render(c.String(`srcdir`), &opts))
 			},

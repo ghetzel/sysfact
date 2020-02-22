@@ -34,13 +34,15 @@ var RenderPatterns = []string{
 }
 
 type RenderOptions struct {
-	DestDir         string `default:"~"`
-	DefaultDirMode  int    `default:"493"`
-	DefaultFileMode int    `default:"420"`
-	Owner           string
-	Group           string
-	DryRun          bool
-	report          map[string]interface{}
+	DestDir            string `default:"~"`
+	DefaultDirMode     int    `default:"493"`
+	DefaultFileMode    int    `default:"420"`
+	Owner              string
+	Group              string
+	DryRun             bool
+	FollowSymlinks     bool
+	AdditionalPatterns []string
+	report             map[string]interface{}
 }
 
 func (self *RenderOptions) log(format string, args ...interface{}) {
@@ -136,7 +138,7 @@ func Render(basedir string, options *RenderOptions) error {
 
 		options.report = r
 
-		for _, srcDirPattern := range RenderPatterns {
+		for _, srcDirPattern := range append(RenderPatterns, options.AdditionalPatterns...) {
 			var srcdir = report.Sprintf(srcDirPattern)
 			srcdir = filepath.Join(basedir, srcdir)
 			srcdir = fileutil.MustExpandUser(srcdir)
@@ -182,6 +184,14 @@ func renderTree(srcdir string, options *RenderOptions) error {
 		var mode = options.ModeFor(info)
 		var source io.ReadCloser
 		var verb string = `create`
+		var linkTarget string
+
+		if !options.FollowSymlinks {
+			if t, err := os.Readlink(srcpath); err == nil {
+				linkTarget = t
+				verb = `  link`
+			}
+		}
 
 		if info.IsDir() {
 			if fileutil.FileExists(dstpath) {
@@ -215,12 +225,35 @@ func renderTree(srcdir string, options *RenderOptions) error {
 			return err
 		}
 
-		if source != nil {
+		if linkTarget != `` {
+			if fileutil.Exists(dstpath) {
+				if err := os.Remove(dstpath); err != nil {
+					return err
+				}
+			}
+
+			if target, err := os.Readlink(srcpath); err == nil {
+				if err := os.Symlink(target, dstpath); err == nil {
+					options.log("%s | %v | %v -> %v", verb, mode, dstpath, target)
+					return nil
+				} else {
+					return err
+				}
+			} else {
+				return err
+			}
+		} else if source != nil {
 			defer source.Close()
 
 			if options.DryRun {
 				options.log("%s | %v | %v", verb, mode, dstpath)
 			} else {
+				if fileutil.Exists(dstpath) {
+					if err := os.Remove(dstpath); err != nil {
+						return err
+					}
+				}
+
 				if dest, err := os.Create(dstpath); err == nil {
 					defer dest.Close()
 
