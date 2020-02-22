@@ -1,0 +1,295 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/sysfact/-/bootstrap.min.css">
+        <link rel="stylesheet" href="/sysfact/-/site.css">
+
+        <title>sysfact - Golang Package Documentation</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/sysfact/index.html">
+                        <strong>go-owndoc</strong>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="/sysfact/index.html">Home</a>
+                        </li>
+
+                        <li class="dropdown active">
+                            <a
+                                href="#"
+                                class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                role="button"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                Packages
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                
+                                <li>
+                                    <a href="/sysfact/pkg/data.html">data</a>
+                                </li>
+                                <li>
+                                    <a href="/sysfact/pkg/plugins.html">plugins</a>
+                                </li>
+                                <li>
+                                    <a href="/sysfact/pkg/sysfact.html">sysfact</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="/sysfact/-/module.html">Manifest</a>
+                        </li>
+
+                        <li class="">
+                            <a href="/sysfact/-/about.html">About</a>
+                        </li>
+                    </ul>
+
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-text">
+                            v0.7.0
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            
+<br>
+<div class="clearfix" id="x-projnav">
+	<a href="https://github.com/ghetzel/sysfact"><strong>sysfact:</strong></a>
+	
+	<a href="/sysfact/pkg/sysfact.html">https://github.com/ghetzel/sysfact</a><span class="text-muted">/</span><span class="text-muted">plugins</span>
+	
+
+	<span class="pull-right">
+		<a href="#pkg-index">Index</a>
+		<span class="text-muted">|</span>
+		<a href="#pkg-files">Files</a>
+	</span>
+</div>
+
+<span class="pull-right">Doc Coverage: 0%</span>
+<h2 id="pkg-overview">package plugins</h2>
+
+<p>
+	<code>import "github.com/ghetzel/sysfact/plugins"</code>
+</p>
+
+
+
+<h3 id="pkg-index" class="section-header">
+	Index <a class="permalink" href="#pkg-index">&#182;</a>
+</h3>
+
+<ul class="list-unstyled">
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+    <li>
+		<a href="#EmbeddedPlugin">type EmbeddedPlugin</a>
+
+		
+		
+		<ul>
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#EmbeddedPlugin.Collect">
+					func
+					(self EmbeddedPlugin)
+					Collect() ([]Observation, error)
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Observation">type Observation</a>
+
+		
+		
+		<ul>
+			
+
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Plugin">type Plugin </a>
+
+		
+		
+	</li>
+	
+    <li>
+		<a href="#ShellPlugin">type ShellPlugin</a>
+
+		
+		
+		<ul>
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#ShellPlugin.Collect">
+					func
+					(self ShellPlugin)
+					Collect() ([]Observation, error)
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+</ul>
+
+
+
+
+<h4 id="pkg-files">
+	<a href="https://github.com/ghetzel/sysfact">Package Files</a>
+	<a class="permalink" href="#pkg-files">&#182;</a>
+</h4>
+
+<table class="table table-compact table-hover">
+<thead>
+	<tr>
+		<th class="text-left">Filename</th>
+		<th class="text-right">Size</th>
+		<th class="text-right"><abbr title="Source Lines Of Code">SLOC</abbr></th>
+		<th class="text-right"><code>func</code></th>
+		<th class="text-right"><code>type</code></th>
+		<th class="text-right"><code>const</code></th>
+		<th class="text-right"><code>var</code></th>
+	</tr>
+</thead>
+<tbody>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="embedded.go">embedded.go</a>
+			
+		</td>
+		<td class="text-right">441B</td>
+		<td class="text-right">20</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="plugins.go">plugins.go</a>
+			
+		</td>
+		<td class="text-right">139B</td>
+		<td class="text-right">8</td>
+		<td class="text-right"></td>
+		<td class="text-right">2</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="shell.go">shell.go</a>
+			
+		</td>
+		<td class="text-right">7KB</td>
+		<td class="text-right">204</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+        </div>
+        <div id="x-footer" class="clearfix">
+            <div class="container">
+                
+                Generated by <i><a target="_blank" href="https://github.com/ghetzel/go-owndoc">go-owndoc</a></i> v0.0.3
+                
+
+                <span class="pull-right">
+                    <a href="#">Back to top</a>
+                </span>
+            </div>
+        </div>
+
+        <script src="/sysfact/-/jquery-2.2.4.min.js"></script>
+        <script src="/sysfact/-/bootstrap.min.js"></script>
+        <script src="/sysfact/-/site.js"></script>
+    </body>
+</html>

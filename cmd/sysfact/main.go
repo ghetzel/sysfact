@@ -13,6 +13,7 @@ import (
 	"time"
 
 	"github.com/ghetzel/cli"
+	"github.com/ghetzel/go-stockutil/executil"
 	"github.com/ghetzel/go-stockutil/log"
 	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/go-stockutil/stringutil"
@@ -272,6 +273,43 @@ func main() {
 		} else {
 			log.Fatal(err)
 		}
+	}
+
+	app.Commands = []cli.Command{
+		{
+			Name:  `apply`,
+			Usage: `Recursively copy a given source directory over top of a destination directory, selectively treating filenames starting with "@" as text templates that are given a Sysfact report as input.`,
+			Flags: []cli.Flag{
+				cli.StringFlag{
+					Name:  `srcdir, s`,
+					Usage: `The source directory tree containing the files to render.`,
+					Value: executil.RootOrString(
+						`/etc/sysfact/apply`,
+						`~/.config/sysfact/apply`,
+					),
+				},
+				cli.StringFlag{
+					Name:  `destdir, d`,
+					Usage: `The destination directory tree where files will be copied/rendered to.`,
+					Value: executil.RootOrString(
+						`/`,
+						`~`,
+					),
+				},
+				cli.BoolFlag{
+					Name:  `dry-run, n`,
+					Usage: `Don't actually modify the destination directory, just report what would be done.`,
+				},
+			},
+			Action: func(c *cli.Context) {
+				var opts sysfact.RenderOptions
+
+				opts.DestDir = c.String(`destdir`)
+				opts.DryRun = c.Bool(`dry-run`)
+
+				log.FatalIf(sysfact.Render(c.String(`srcdir`), &opts))
+			},
+		},
 	}
 
 	app.Run(os.Args)

@@ -1,0 +1,1226 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/sysfact/-/bootstrap.min.css">
+        <link rel="stylesheet" href="/sysfact/-/site.css">
+
+        <title>sysfact - Golang Package Documentation</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/sysfact/index.html">
+                        <strong>go-owndoc</strong>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="/sysfact/index.html">Home</a>
+                        </li>
+
+                        <li class="dropdown active">
+                            <a
+                                href="#"
+                                class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                role="button"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                Packages
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                
+                                <li>
+                                    <a href="/sysfact/pkg/data.html">data</a>
+                                </li>
+                                <li>
+                                    <a href="/sysfact/pkg/plugins.html">plugins</a>
+                                </li>
+                                <li>
+                                    <a href="/sysfact/pkg/sysfact.html">sysfact</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="/sysfact/-/module.html">Manifest</a>
+                        </li>
+
+                        <li class="">
+                            <a href="/sysfact/-/about.html">About</a>
+                        </li>
+                    </ul>
+
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-text">
+                            v0.7.0
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            
+<br>
+<div class="clearfix" id="x-projnav">
+	<a href="https://github.com/ghetzel/sysfact"><strong>sysfact:</strong></a>
+	
+	<a href="/sysfact/pkg/sysfact.html">https://github.com/ghetzel/sysfact</a><span class="text-muted">/</span><span class="text-muted">data</span>
+	
+
+	<span class="pull-right">
+		<a href="#pkg-index">Index</a>
+		<span class="text-muted">|</span>
+		<a href="#pkg-files">Files</a>
+	</span>
+</div>
+
+<span class="pull-right">Doc Coverage: 0%</span>
+<h2 id="pkg-overview">package data</h2>
+
+<p>
+	<code>import "github.com/ghetzel/sysfact/data"</code>
+</p>
+
+
+
+<h3 id="pkg-index" class="section-header">
+	Index <a class="permalink" href="#pkg-index">&#182;</a>
+</h3>
+
+<ul class="list-unstyled">
+	
+	
+
+	
+	
+
+	
+	
+
+	
+	
+    <li>
+		
+		<a href="#Collect">func Collect(only ...string) map[string]interface{}</a>
+		
+	</li>
+	
+
+	
+	
+    <li>
+		<a href="#BlockDevices">type BlockDevices</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#BlockDevices.Collect">
+					func
+					(self BlockDevices)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#BlockDevices.Collect">
+					func
+					(self BlockDevices)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#CPU">type CPU</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#CPU.Collect">
+					func
+					(self CPU)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#CPU.Collect">
+					func
+					(self CPU)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Collector">type Collector </a>
+
+		
+		
+	</li>
+	
+    <li>
+		<a href="#IPMI">type IPMI</a>
+
+		
+		
+		<ul>
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#IPMI.Collect">
+					func
+					(self IPMI)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Kernel">type Kernel</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#Kernel.Collect">
+					func
+					(self Kernel)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#Kernel.Collect">
+					func
+					(self Kernel)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Memory">type Memory</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#Memory.Collect">
+					func
+					(self Memory)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#Memory.Collect">
+					func
+					(self Memory)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Mounts">type Mounts</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#Mounts.Collect">
+					func
+					(self Mounts)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#Mounts.Collect">
+					func
+					(self Mounts)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Network">type Network</a>
+
+		
+		
+		<ul>
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#Network.Collect">
+					func
+					(self Network)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#OS">type OS</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#OS.Collect">
+					func
+					(self OS)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#OS.Collect">
+					func
+					(self OS)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#System">type System</a>
+
+		
+		
+		<ul>
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#System.Collect">
+					func
+					(self System)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+</ul>
+
+
+
+
+<h4 id="pkg-files">
+	<a href="https://github.com/ghetzel/sysfact">Package Files</a>
+	<a class="permalink" href="#pkg-files">&#182;</a>
+</h4>
+
+<table class="table table-compact table-hover">
+<thead>
+	<tr>
+		<th class="text-left">Filename</th>
+		<th class="text-right">Size</th>
+		<th class="text-right"><abbr title="Source Lines Of Code">SLOC</abbr></th>
+		<th class="text-right"><code>func</code></th>
+		<th class="text-right"><code>type</code></th>
+		<th class="text-right"><code>const</code></th>
+		<th class="text-right"><code>var</code></th>
+	</tr>
+</thead>
+<tbody>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="cpu_freebsd.go">cpu_freebsd.go</a>
+			
+		</td>
+		<td class="text-right">1KB</td>
+		<td class="text-right">34</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="cpu_linux.go">cpu_linux.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">60</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="disk_block_freebsd.go">disk_block_freebsd.go</a>
+			
+		</td>
+		<td class="text-right">4KB</td>
+		<td class="text-right">116</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="disk_block_linux.go">disk_block_linux.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">46</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="disk_mounts_freebsd.go">disk_mounts_freebsd.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">7</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="disk_mounts_linux.go">disk_mounts_linux.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">46</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="ipmi.go">ipmi.go</a>
+			
+		</td>
+		<td class="text-right">1KB</td>
+		<td class="text-right">40</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="kernel_freebsd.go">kernel_freebsd.go</a>
+			
+		</td>
+		<td class="text-right">765B</td>
+		<td class="text-right">26</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="kernel_linux.go">kernel_linux.go</a>
+			
+		</td>
+		<td class="text-right">850B</td>
+		<td class="text-right">25</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="memory_freebsd.go">memory_freebsd.go</a>
+			
+		</td>
+		<td class="text-right">1KB</td>
+		<td class="text-right">30</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="memory_linux.go">memory_linux.go</a>
+			
+		</td>
+		<td class="text-right">1KB</td>
+		<td class="text-right">54</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="memory_util.go">memory_util.go</a>
+			
+		</td>
+		<td class="text-right">3KB</td>
+		<td class="text-right">112</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="network.go">network.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">72</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="os_freebsd.go">os_freebsd.go</a>
+			
+		</td>
+		<td class="text-right">496B</td>
+		<td class="text-right">22</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="os_linux.go">os_linux.go</a>
+			
+		</td>
+		<td class="text-right">1KB</td>
+		<td class="text-right">32</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="system.go">system.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">25</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="util.go">util.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">91</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+<h3 id="Collect" data-kind="f">
+	func <a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h3>
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func Collect(only ...string) map[string]interface{}</pre>
+</div>
+
+
+
+
+
+
+<h3 id="BlockDevices" data-kind="t">
+	type
+	<a title="View Source" href="">BlockDevices</a>
+	<a class="permalink" href="#BlockDevices">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type BlockDevices struct{ BlockDeviceRoot string }</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="BlockDevices.Collect" data-kind="f">
+	func
+	(self BlockDevices)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self BlockDevices) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h4 id="BlockDevices.Collect" data-kind="f">
+	func
+	(self BlockDevices)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self BlockDevices) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="CPU" data-kind="t">
+	type
+	<a title="View Source" href="">CPU</a>
+	<a class="permalink" href="#CPU">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type CPU struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="CPU.Collect" data-kind="f">
+	func
+	(self CPU)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self CPU) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h4 id="CPU.Collect" data-kind="f">
+	func
+	(self CPU)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self CPU) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="Collector" data-kind="t">
+	type
+	<a title="View Source" href="">Collector</a>
+	<a class="permalink" href="#Collector">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Collector interface{ Collect() map[string]interface{} }</pre>
+</div>
+
+
+
+
+
+
+
+<h3 id="IPMI" data-kind="t">
+	type
+	<a title="View Source" href="">IPMI</a>
+	<a class="permalink" href="#IPMI">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type IPMI struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+<h4 id="IPMI.Collect" data-kind="f">
+	func
+	(self IPMI)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self IPMI) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="Kernel" data-kind="t">
+	type
+	<a title="View Source" href="">Kernel</a>
+	<a class="permalink" href="#Kernel">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Kernel struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="Kernel.Collect" data-kind="f">
+	func
+	(self Kernel)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Kernel) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h4 id="Kernel.Collect" data-kind="f">
+	func
+	(self Kernel)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Kernel) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="Memory" data-kind="t">
+	type
+	<a title="View Source" href="">Memory</a>
+	<a class="permalink" href="#Memory">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Memory struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="Memory.Collect" data-kind="f">
+	func
+	(self Memory)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Memory) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h4 id="Memory.Collect" data-kind="f">
+	func
+	(self Memory)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Memory) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="Mounts" data-kind="t">
+	type
+	<a title="View Source" href="">Mounts</a>
+	<a class="permalink" href="#Mounts">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Mounts struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="Mounts.Collect" data-kind="f">
+	func
+	(self Mounts)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Mounts) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h4 id="Mounts.Collect" data-kind="f">
+	func
+	(self Mounts)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Mounts) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="Network" data-kind="t">
+	type
+	<a title="View Source" href="">Network</a>
+	<a class="permalink" href="#Network">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Network struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+<h4 id="Network.Collect" data-kind="f">
+	func
+	(self Network)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Network) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="OS" data-kind="t">
+	type
+	<a title="View Source" href="">OS</a>
+	<a class="permalink" href="#OS">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type OS struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="OS.Collect" data-kind="f">
+	func
+	(self OS)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self OS) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h4 id="OS.Collect" data-kind="f">
+	func
+	(self OS)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self OS) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="System" data-kind="t">
+	type
+	<a title="View Source" href="">System</a>
+	<a class="permalink" href="#System">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type System struct{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+<h4 id="System.Collect" data-kind="f">
+	func
+	(self System)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self System) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+        <div id="x-footer" class="clearfix">
+            <div class="container">
+                
+                Generated by <i><a target="_blank" href="https://github.com/ghetzel/go-owndoc">go-owndoc</a></i> v0.0.3
+                
+
+                <span class="pull-right">
+                    <a href="#">Back to top</a>
+                </span>
+            </div>
+        </div>
+
+        <script src="/sysfact/-/jquery-2.2.4.min.js"></script>
+        <script src="/sysfact/-/bootstrap.min.js"></script>
+        <script src="/sysfact/-/site.js"></script>
+    </body>
+</html>

@@ -7,7 +7,7 @@ BIN         ?= sysfact
 .EXPORT_ALL_VARIABLES:
 GO111MODULE  = on
 
-all: deps fmt build
+all: deps fmt build docs
 
 fmt:
 	gofmt -w $(LOCALS)
@@ -29,6 +29,9 @@ binaries: fmt deps
 	GOOS=linux BIN=sysfact make build
 	GOOS=freebsd BIN=sysfact.freebsd make build
 	GOOS=darwin BIN=sysfact.darwin make build
+
+docs:
+	owndoc render --property rootpath=/sysfact/
 
 copy-to-and-run:
 	scp bin/$(BIN) $(IP):sysfact

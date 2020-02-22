@@ -1,0 +1,774 @@
+{
+    "Name": "data",
+    "CanonicalImportPath": "github.com/ghetzel/sysfact/data",
+    "ImportPath": "data",
+    "ParentPackage": "sysfact",
+    "URL": "https://github.com/ghetzel/sysfact",
+    "Synopsis": "",
+    "MainFunction": false,
+    "CommentWordCount": 0,
+    "LineCount": 1091,
+    "SourceLineCount": 838,
+    "FunctionCount": 16,
+    "TypeCount": 16,
+    "ConstantCount": 0,
+    "VariableCount": 0,
+    "Statistics": {
+        "Mean": 0,
+        "StdDev": 0,
+        "GeometricMean": 0,
+        "HarmonicMean": 0,
+        "Median": 0,
+        "Minimum": 0,
+        "Maximum": 0
+    },
+    "Files": [
+        {
+            "Name": "cpu_freebsd.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                    "Alias": "mathutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 1144,
+            "LineCount": 45,
+            "SourceLineCount": 34,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "cpu_linux.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "io/ioutil",
+                    "Alias": "ioutil"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                    "Alias": "mathutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 1929,
+            "LineCount": 75,
+            "SourceLineCount": 60,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "disk_block_freebsd.go",
+            "Imports": [
+                {
+                    "PackageName": "encoding/xml",
+                    "Alias": "xml"
+                },
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "os/exec",
+                    "Alias": "exec"
+                },
+                {
+                    "PackageName": "sort",
+                    "Alias": "sort"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/log",
+                    "Alias": "log"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 3781,
+            "LineCount": 136,
+            "SourceLineCount": 116,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "disk_block_linux.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "io/ioutil",
+                    "Alias": "ioutil"
+                },
+                {
+                    "PackageName": "path/filepath",
+                    "Alias": "filepath"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                    "Alias": "fileutil"
+                }
+            ],
+            "Size": 1588,
+            "LineCount": 58,
+            "SourceLineCount": 46,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "disk_mounts_freebsd.go",
+            "Size": 1536,
+            "LineCount": 51,
+            "SourceLineCount": 7,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "disk_mounts_linux.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                    "Alias": "fileutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 1556,
+            "LineCount": 59,
+            "SourceLineCount": 46,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "ipmi.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 1225,
+            "LineCount": 54,
+            "SourceLineCount": 40,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "kernel_freebsd.go",
+            "Imports": [
+                {
+                    "PackageName": "time",
+                    "Alias": "time"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                    "Alias": "rxutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 765,
+            "LineCount": 35,
+            "SourceLineCount": 26,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "kernel_linux.go",
+            "Imports": [
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "time",
+                    "Alias": "time"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                    "Alias": "fileutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 850,
+            "LineCount": 35,
+            "SourceLineCount": 25,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "memory_freebsd.go",
+            "Imports": [
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                    "Alias": "mathutil"
+                }
+            ],
+            "Size": 1158,
+            "LineCount": 39,
+            "SourceLineCount": 30,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "memory_linux.go",
+            "Imports": [
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/dustin/go-humanize",
+                    "Alias": "go-humanize"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                    "Alias": "fileutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                    "Alias": "mathutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                }
+            ],
+            "Size": 1523,
+            "LineCount": 68,
+            "SourceLineCount": 54,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "memory_util.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/dustin/go-humanize",
+                    "Alias": "go-humanize"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 3242,
+            "LineCount": 133,
+            "SourceLineCount": 112,
+            "FunctionCount": 0,
+            "TypeCount": 0,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "network.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "net",
+                    "Alias": "net"
+                },
+                {
+                    "PackageName": "os",
+                    "Alias": "os"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/netutil",
+                    "Alias": "netutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                }
+            ],
+            "Size": 2425,
+            "LineCount": 91,
+            "SourceLineCount": 72,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "os_freebsd.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "runtime",
+                    "Alias": "runtime"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                }
+            ],
+            "Size": 496,
+            "LineCount": 28,
+            "SourceLineCount": 22,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "os_linux.go",
+            "Imports": [
+                {
+                    "PackageName": "runtime",
+                    "Alias": "runtime"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                    "Alias": "fileutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/pathutil",
+                    "Alias": "pathutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                    "Alias": "rxutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                }
+            ],
+            "Size": 1263,
+            "LineCount": 41,
+            "SourceLineCount": 32,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "system.go",
+            "Size": 1548,
+            "LineCount": 30,
+            "SourceLineCount": 25,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "util.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "os/exec",
+                    "Alias": "exec"
+                },
+                {
+                    "PackageName": "path/filepath",
+                    "Alias": "filepath"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "sync",
+                    "Alias": "sync"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                    "Alias": "fileutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/sliceutil",
+                    "Alias": "sliceutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                },
+                {
+                    "PackageName": "github.com/mattn/go-shellwords",
+                    "Alias": "go-shellwords"
+                }
+            ],
+            "Size": 2457,
+            "LineCount": 113,
+            "SourceLineCount": 91,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        }
+    ],
+    "Functions": [
+        {
+            "Name": "Collect",
+            "Arguments": [
+                {
+                    "Name": "only",
+                    "Type": "...string"
+                }
+            ],
+            "Returns": [
+                {
+                    "Type": "map[string]interface{}"
+                }
+            ],
+            "Signature": "Collect(only ...string) map[string]interface{}",
+            "Source": "ewoJdmFyIHdnIHN5bmMuV2FpdEdyb3VwCgl2YXIgbWVyZ2Vsb2NrIHN5bmMuTXV0ZXgKCW91dHB1dCA6PSBtYWtlKG1hcFtzdHJpbmddaW50ZXJmYWNle30pCgljb2xsZWN0IDo9IGZ1bmMod2cgKnN5bmMuV2FpdEdyb3VwLCB3YW50IHN0cmluZywgY29sbGVjdG9yIENvbGxlY3RvcikgewoJCXdnLkFkZCgxKQoJCWdvIGZ1bmMoKSB7CgkJCWlmIGxlbihvbmx5KSA9PSAwIHx8IHNsaWNldXRpbC5Db250YWluc1N0cmluZyhvbmx5LCB3YW50KSB7CgkJCQltZXJnZWxvY2suTG9jaygpCgkJCQlmb3IgaywgdiA6PSByYW5nZSBjb2xsZWN0b3IuQ29sbGVjdCgpIHsKCQkJCQlvdXRwdXRba10gPSBub3JtYWxpemUodikKCQkJCX0KCQkJCW1lcmdlbG9jay5VbmxvY2soKQoJCQl9CgkJCXdnLkRvbmUoKQoJCX0oKQoJfQoJY29sbGVjdCgmd2csIGBjcHVgLCBDUFV7fSkKCWNvbGxlY3QoJndnLCBgbWVtb3J5YCwgTWVtb3J5e30pCgljb2xsZWN0KCZ3ZywgYGtlcm5lbGAsIEtlcm5lbHt9KQoJY29sbGVjdCgmd2csIGBuZXR3b3JrYCwgTmV0d29ya3t9KQoJY29sbGVjdCgmd2csIGBvc2AsIE9Te30pCgljb2xsZWN0KCZ3ZywgYHN5c3RlbWAsIFN5c3RlbXt9KQoJY29sbGVjdCgmd2csIGBpcG1pYCwgSVBNSXt9KQoJY29sbGVjdCgmd2csIGBkaXNrLmJsb2NrYCwgQmxvY2tEZXZpY2Vze30pCgljb2xsZWN0KCZ3ZywgYGRpc2subW91bnRzYCwgTW91bnRze30pCgl3Zy5XYWl0KCkKCXJldHVybiBvdXRwdXQKfQ==",
+            "IsPackageLevel": true
+        }
+    ],
+    "Types": {
+        "BlockDevices": {
+            "Name": "BlockDevices",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Fields": [
+                {
+                    "Name": "BlockDeviceRoot",
+                    "Type": "string"
+                }
+            ],
+            "Source": "dHlwZSBCbG9ja0RldmljZXMgc3RydWN0eyBCbG9ja0RldmljZVJvb3Qgc3RyaW5nIH0="
+        },
+        "CPU": {
+            "Name": "CPU",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBDUFUgc3RydWN0e30="
+        },
+        "Collector": {
+            "Name": "Collector",
+            "Source": "dHlwZSBDb2xsZWN0b3IgaW50ZXJmYWNleyBDb2xsZWN0KCkgbWFwW3N0cmluZ11pbnRlcmZhY2V7fSB9"
+        },
+        "IPMI": {
+            "Name": "IPMI",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBJUE1JIHN0cnVjdHt9"
+        },
+        "Kernel": {
+            "Name": "Kernel",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBLZXJuZWwgc3RydWN0e30="
+        },
+        "Memory": {
+            "Name": "Memory",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBNZW1vcnkgc3RydWN0e30="
+        },
+        "Mounts": {
+            "Name": "Mounts",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBNb3VudHMgc3RydWN0e30="
+        },
+        "Network": {
+            "Name": "Network",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBOZXR3b3JrIHN0cnVjdHt9"
+        },
+        "OS": {
+            "Name": "OS",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBPUyBzdHJ1Y3R7fQ=="
+        },
+        "System": {
+            "Name": "System",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBTeXN0ZW0gc3RydWN0e30="
+        }
+    }
+}

@@ -1,0 +1,823 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="/sysfact/-/bootstrap.min.css">
+        <link rel="stylesheet" href="/sysfact/-/site.css">
+
+        <title>sysfact - Golang Package Documentation</title>
+    </head>
+    <body>
+        <nav class="navbar navbar-default" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/sysfact/index.html">
+                        <strong>go-owndoc</strong>
+                    </a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="">
+                            <a href="/sysfact/index.html">Home</a>
+                        </li>
+
+                        <li class="dropdown active">
+                            <a
+                                href="#"
+                                class="dropdown-toggle"
+                                data-toggle="dropdown"
+                                role="button"
+                                aria-haspopup="true"
+                                aria-expanded="false"
+                            >
+                                Packages
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                
+                                <li>
+                                    <a href="/sysfact/pkg/data.html">data</a>
+                                </li>
+                                <li>
+                                    <a href="/sysfact/pkg/plugins.html">plugins</a>
+                                </li>
+                                <li>
+                                    <a href="/sysfact/pkg/sysfact.html">sysfact</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="">
+                            <a href="/sysfact/-/module.html">Manifest</a>
+                        </li>
+
+                        <li class="">
+                            <a href="/sysfact/-/about.html">About</a>
+                        </li>
+                    </ul>
+
+                    
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="navbar-text">
+                            v0.7.0
+                        </li>
+                    </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+        <div class="container">
+            
+<br>
+<div class="clearfix" id="x-projnav">
+	<a href="https://github.com/ghetzel/sysfact"><strong>sysfact:</strong></a>
+	
+	<span class="text-muted">https://github.com/ghetzel/sysfact</span>
+	
+
+	<span class="pull-right">
+		<a href="#pkg-index">Index</a>
+		<span class="text-muted">|</span>
+		<a href="#pkg-files">Files</a>
+	</span>
+</div>
+
+<span class="pull-right">Doc Coverage: 12%</span>
+<h2 id="pkg-overview">package sysfact</h2>
+
+<p>
+	<code>import "github.com/ghetzel/sysfact"</code>
+</p>
+
+
+
+<h3 id="pkg-index" class="section-header">
+	Index <a class="permalink" href="#pkg-index">&#182;</a>
+</h3>
+
+<ul class="list-unstyled">
+	
+	
+    <li><a href="#pkg-constants">Constants</a></li>
+	
+
+	
+	
+    <li><a href="#pkg-variables">Variables</a></li>
+	
+
+	
+	
+    <li><a href="#pkg-packages">Packages</a></li>
+	
+
+	
+	
+    <li>
+		
+		<a href="#Render">func Render(basedir string, options *RenderOptions) error</a>
+		
+	</li>
+	
+    <li>
+		<strong>
+		<a href="#Report">func Report(paths ...string) (map[string]interface{}, error)</a>
+		</strong>
+	</li>
+	
+
+	
+	
+    <li>
+		<a href="#InfluxdbPayload">type InfluxdbPayload </a>
+
+		
+		
+	</li>
+	
+    <li>
+		<a href="#RenderOptions">type RenderOptions</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#RenderOptions.Enforce">
+					func
+					(self *RenderOptions)
+					Enforce(path string) error
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#RenderOptions.ModeFor">
+					func
+					(self *RenderOptions)
+					ModeFor(info os.FileInfo) os.FileMode
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#Reporter">type Reporter</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+			<li>
+				<strong>
+				<a href="#Reporter.NewReporter">
+					func NewReporter(paths ...string) *Reporter
+				</a>
+				</strong>
+			</li>
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				<strong>
+				<a href="#Reporter.GetReportValues">
+					func
+					(self *Reporter)
+					GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error)
+				</a>
+				</strong>
+			</li>
+			
+			
+			
+			
+			
+			<li>
+				<strong>
+				<a href="#Reporter.Report">
+					func
+					(self *Reporter)
+					Report() (map[string]interface{}, error)
+				</a>
+				</strong>
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#ReporterKeyFormat">type ReporterKeyFormat int</a>
+
+		
+		
+	</li>
+	
+    <li>
+		<a href="#Tuple">type Tuple</a>
+
+		
+		
+		<ul>
+			
+
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#TupleSet">type TupleSet </a>
+
+		
+		
+	</li>
+	
+</ul>
+
+
+
+
+<h4 id="pkg-files">
+	<a href="https://github.com/ghetzel/sysfact">Package Files</a>
+	<a class="permalink" href="#pkg-files">&#182;</a>
+</h4>
+
+<table class="table table-compact table-hover">
+<thead>
+	<tr>
+		<th class="text-left">Filename</th>
+		<th class="text-right">Size</th>
+		<th class="text-right"><abbr title="Source Lines Of Code">SLOC</abbr></th>
+		<th class="text-right"><code>func</code></th>
+		<th class="text-right"><code>type</code></th>
+		<th class="text-right"><code>const</code></th>
+		<th class="text-right"><code>var</code></th>
+	</tr>
+</thead>
+<tbody>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="render.go">render.go</a>
+			
+		</td>
+		<td class="text-right">6KB</td>
+		<td class="text-right">209</td>
+		<td class="text-right">3</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right">2</td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="reporter.go">reporter.go</a>
+			
+		</td>
+		<td class="text-right">4KB</td>
+		<td class="text-right">121</td>
+		<td class="text-right">4</td>
+		<td class="text-right">2</td>
+		<td class="text-right">3</td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="tuple.go">tuple.go</a>
+			
+		</td>
+		<td class="text-right">889B</td>
+		<td class="text-right">40</td>
+		<td class="text-right">5</td>
+		<td class="text-right">2</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="version.go">version.go</a>
+			
+		</td>
+		<td class="text-right">41B</td>
+		<td class="text-right">2</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="writer_influxdb.go">writer_influxdb.go</a>
+			
+		</td>
+		<td class="text-right">2KB</td>
+		<td class="text-right">65</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right">2</td>
+	</tr>
+	
+</tbody>
+</table>
+
+
+
+
+<h3 id="pkg-constants">
+	Constants
+	<a class="permalink" href="#pkg-constants">&#182;</a>
+</h3>
+<div class="decl" data-kind="v">
+	<a title="View Source" href="">&#10070;</a>
+
+	<pre>
+const <span id="FormatCamelize">FormatCamelize  </span> = 
+const <span id="FormatPascalize">FormatPascalize </span> = 
+const <span id="FormatUnderscore">FormatUnderscore</span> = iota
+const <span id="Version">Version         </span> = `0.7.0`
+</pre>
+</div>
+
+
+
+
+<h3 id="pkg-variables">
+	Variables
+	<a class="permalink" href="#pkg-variables">&#182;</a>
+</h3>
+<div class="decl" data-kind="v">
+	<a title="View Source" href="">&#10070;</a>
+
+	<pre>
+var <span id="InfluxdbTagValueCharCompress">InfluxdbTagValueCharCompress</span> = regexp.MustCompile(`[\s,]&#43;`)
+var <span id="InfluxdbTagValueCharFilter">InfluxdbTagValueCharFilter  </span> = regexp.MustCompile(`\s{2,}`)
+var <span id="RenderAsTemplatePrefix">RenderAsTemplatePrefix      </span> = `@`
+var <span id="RenderPatterns">RenderPatterns              </span> = 
+</pre>
+</div>
+
+
+
+
+
+<h3 id="Render" data-kind="f">
+	func <a title="View Source" href="">Render</a>
+	<a class="permalink" href="#Render">&#182;</a>
+</h3>
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func Render(basedir string, options *RenderOptions) error</pre>
+</div>
+
+
+
+<h3 id="Report" data-kind="f">
+	func <a title="View Source" href="">Report</a>
+	<a class="permalink" href="#Report">&#182;</a>
+</h3>
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func Report(paths ...string) (map[string]interface{}, error)</pre>
+</div>
+
+
+<p><p>Generate a system report using the default settings.</p>
+</p>
+
+
+
+
+
+<h3 id="InfluxdbPayload" data-kind="t">
+	type
+	<a title="View Source" href="">InfluxdbPayload</a>
+	<a class="permalink" href="#InfluxdbPayload">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type InfluxdbPayload []string</pre>
+</div>
+
+
+
+
+
+
+
+
+
+<h4 id="InfluxdbPayload.Generate" data-kind="f">
+	func
+	(self InfluxdbPayload)
+	<a title="View Source" href="">Generate</a>
+	<a class="permalink" href="#Generate">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self InfluxdbPayload) Generate(series TupleSet, tags map[string]interface{}, now *time.Time) (string, error)</pre>
+</div>
+
+
+
+
+<h3 id="RenderOptions" data-kind="t">
+	type
+	<a title="View Source" href="">RenderOptions</a>
+	<a class="permalink" href="#RenderOptions">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	
+	
+	<pre>type RenderOptions struct {
+	DestDir         string `default:&#34;~&#34;`
+	DefaultDirMode  int    `default:&#34;493&#34;`
+	DefaultFileMode int    `default:&#34;420&#34;`
+	Owner           string
+	Group           string
+	DryRun          bool
+  // contains filtered or unexported fields
+}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="RenderOptions.Enforce" data-kind="f">
+	func
+	(self *RenderOptions)
+	<a title="View Source" href="">Enforce</a>
+	<a class="permalink" href="#Enforce">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self *RenderOptions) Enforce(path string) error</pre>
+</div>
+
+
+
+
+<h4 id="RenderOptions.ModeFor" data-kind="f">
+	func
+	(self *RenderOptions)
+	<a title="View Source" href="">ModeFor</a>
+	<a class="permalink" href="#ModeFor">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self *RenderOptions) ModeFor(info os.FileInfo) os.FileMode</pre>
+</div>
+
+
+
+
+<h3 id="Reporter" data-kind="t">
+	type
+	<a title="View Source" href="">Reporter</a>
+	<a class="permalink" href="#Reporter">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Reporter struct {
+	Plugins     []plugins.Plugin
+	FieldPrefix string
+	KeyFormat   ReporterKeyFormat
+}</pre>
+</div>
+
+
+
+
+
+
+<h4 id="NewReporter" data-kind="f">
+	func <a title="View Source" href="">NewReporter</a>
+	<a class="permalink" href="#NewReporter">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func NewReporter(paths ...string) *Reporter</pre>
+</div>
+
+<p><p>Create a new Reporter instance that can be configured.</p>
+</p>
+
+
+
+
+
+
+
+
+
+<h4 id="Reporter.GetReportValues" data-kind="f">
+	func
+	(self *Reporter)
+	<a title="View Source" href="">GetReportValues</a>
+	<a class="permalink" href="#GetReportValues">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error)</pre>
+</div>
+
+<p><p>Generates a report and retrieves the values of the given fields.</p>
+</p>
+
+
+
+
+
+
+<h4 id="Reporter.Report" data-kind="f">
+	func
+	(self *Reporter)
+	<a title="View Source" href="">Report</a>
+	<a class="permalink" href="#Report">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self *Reporter) Report() (map[string]interface{}, error)</pre>
+</div>
+
+<p><p>Generate and return the full report from all discovered plugins.</p>
+</p>
+
+
+
+
+<h3 id="ReporterKeyFormat" data-kind="t">
+	type
+	<a title="View Source" href="">ReporterKeyFormat</a>
+	<a class="permalink" href="#ReporterKeyFormat">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type ReporterKeyFormat int</pre>
+</div>
+
+
+
+
+
+
+
+<h3 id="Tuple" data-kind="t">
+	type
+	<a title="View Source" href="">Tuple</a>
+	<a class="permalink" href="#Tuple">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Tuple struct {
+	Key           string
+	Value         interface{}
+	NormalizedKey string
+	Tags          map[string]interface{}
+}</pre>
+</div>
+
+
+
+
+
+
+
+<h3 id="TupleSet" data-kind="t">
+	type
+	<a title="View Source" href="">TupleSet</a>
+	<a class="permalink" href="#TupleSet">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type TupleSet []Tuple</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="TupleSet.Len" data-kind="f">
+	func
+	(self TupleSet)
+	<a title="View Source" href="">Len</a>
+	<a class="permalink" href="#Len">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self TupleSet) Len() int</pre>
+</div>
+
+
+
+
+<h4 id="TupleSet.Less" data-kind="f">
+	func
+	(self TupleSet)
+	<a title="View Source" href="">Less</a>
+	<a class="permalink" href="#Less">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self TupleSet) Less(i int) bool</pre>
+</div>
+
+
+
+
+<h4 id="TupleSet.Remove" data-kind="f">
+	func
+	(self TupleSet)
+	<a title="View Source" href="">Remove</a>
+	<a class="permalink" href="#Remove">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self TupleSet) Remove(i int)</pre>
+</div>
+
+
+
+
+<h4 id="TupleSet.Swap" data-kind="f">
+	func
+	(self TupleSet)
+	<a title="View Source" href="">Swap</a>
+	<a class="permalink" href="#Swap">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self TupleSet) Swap(i int)</pre>
+</div>
+
+
+
+
+<h4 id="TupleSet.ToMap" data-kind="f">
+	func
+	(self TupleSet)
+	<a title="View Source" href="">ToMap</a>
+	<a class="permalink" href="#ToMap">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self TupleSet) ToMap(flat bool) map[string]interface{}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+<h3 id="pkg-packages">
+	Packages
+	<a class="permalink" href="#pkg-packages">&#182;</a>
+</h3>
+
+<table class="table table-compact table-hover">
+<thead>
+	<tr>
+		<th class="text-left">Package</th>
+		<th class="text-left">Synopsis</th>
+	</tr>
+</thead>
+<tbody>
+	
+	<tr>
+		<td class="text-left">
+			<a href="/sysfact/pkg/data.html">data</a>
+		</td>
+		<td class="text-left">
+			
+		</td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			<a href="/sysfact/pkg/plugins.html">plugins</a>
+		</td>
+		<td class="text-left">
+			
+		</td>
+	</tr>
+	
+</tbody>
+</table>
+
+        </div>
+        <div id="x-footer" class="clearfix">
+            <div class="container">
+                
+                Generated by <i><a target="_blank" href="https://github.com/ghetzel/go-owndoc">go-owndoc</a></i> v0.0.3
+                
+
+                <span class="pull-right">
+                    <a href="#">Back to top</a>
+                </span>
+            </div>
+        </div>
+
+        <script src="/sysfact/-/jquery-2.2.4.min.js"></script>
+        <script src="/sysfact/-/bootstrap.min.js"></script>
+        <script src="/sysfact/-/site.js"></script>
+    </body>
+</html>

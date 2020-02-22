@@ -1,0 +1,198 @@
+{
+    "Name": "plugins",
+    "CanonicalImportPath": "github.com/ghetzel/sysfact/plugins",
+    "ImportPath": "plugins",
+    "ParentPackage": "sysfact",
+    "URL": "https://github.com/ghetzel/sysfact",
+    "Synopsis": "",
+    "MainFunction": false,
+    "CommentWordCount": 0,
+    "LineCount": 308,
+    "SourceLineCount": 232,
+    "FunctionCount": 2,
+    "TypeCount": 4,
+    "ConstantCount": 0,
+    "VariableCount": 0,
+    "Statistics": {
+        "Mean": 0,
+        "StdDev": 0,
+        "GeometricMean": 0,
+        "HarmonicMean": 0,
+        "Median": 0,
+        "Minimum": 0,
+        "Maximum": 0
+    },
+    "Files": [
+        {
+            "Name": "embedded.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/sysfact/data",
+                    "Alias": "data"
+                }
+            ],
+            "Size": 441,
+            "LineCount": 27,
+            "SourceLineCount": 20,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "plugins.go",
+            "Size": 139,
+            "LineCount": 11,
+            "SourceLineCount": 8,
+            "FunctionCount": 0,
+            "TypeCount": 2,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "shell.go",
+            "Imports": [
+                {
+                    "PackageName": "bufio",
+                    "Alias": "bufio"
+                },
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "io/ioutil",
+                    "Alias": "ioutil"
+                },
+                {
+                    "PackageName": "os/exec",
+                    "Alias": "exec"
+                },
+                {
+                    "PackageName": "os/user",
+                    "Alias": "user"
+                },
+                {
+                    "PackageName": "path",
+                    "Alias": "path"
+                },
+                {
+                    "PackageName": "regexp",
+                    "Alias": "regexp"
+                },
+                {
+                    "PackageName": "runtime",
+                    "Alias": "runtime"
+                },
+                {
+                    "PackageName": "strconv",
+                    "Alias": "strconv"
+                },
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "sync",
+                    "Alias": "sync"
+                },
+                {
+                    "PackageName": "time",
+                    "Alias": "time"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/log",
+                    "Alias": "log"
+                }
+            ],
+            "Size": 7104,
+            "LineCount": 270,
+            "SourceLineCount": 204,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        }
+    ],
+    "Types": {
+        "EmbeddedPlugin": {
+            "Name": "EmbeddedPlugin",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "[]Observation"
+                        },
+                        {
+                            "Type": "error"
+                        }
+                    ],
+                    "Signature": "Collect() ([]Observation, error)",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Source": "dHlwZSBFbWJlZGRlZFBsdWdpbiBzdHJ1Y3R7IFBsdWdpbiB9"
+        },
+        "Observation": {
+            "Name": "Observation",
+            "MetaType": "struct",
+            "Fields": [
+                {
+                    "Name": "Name",
+                    "Type": "string"
+                },
+                {
+                    "Name": "Value",
+                    "Type": "interface{}"
+                }
+            ],
+            "Source": "dHlwZSBPYnNlcnZhdGlvbiBzdHJ1Y3QgewoJTmFtZSAgc3RyaW5nCglWYWx1ZSBpbnRlcmZhY2V7fQp9"
+        },
+        "Plugin": {
+            "Name": "Plugin",
+            "Source": "dHlwZSBQbHVnaW4gaW50ZXJmYWNleyBDb2xsZWN0KCkgKFtdT2JzZXJ2YXRpb24sIGVycm9yKSB9"
+        },
+        "ShellPlugin": {
+            "Name": "ShellPlugin",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "[]Observation"
+                        },
+                        {
+                            "Type": "error"
+                        }
+                    ],
+                    "Signature": "Collect() ([]Observation, error)",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Fields": [
+                {
+                    "Name": "ExecPath",
+                    "Type": "[]string"
+                },
+                {
+                    "Name": "PerPluginTimeout",
+                    "Type": "time.Duration"
+                },
+                {
+                    "Name": "MaxTimeout",
+                    "Type": "time.Duration"
+                }
+            ],
+            "Source": "dHlwZSBTaGVsbFBsdWdpbiBzdHJ1Y3QgewoJUGx1Z2luCglFeGVjUGF0aCAgICAgICAgIFtdc3RyaW5nCglQZXJQbHVnaW5UaW1lb3V0IHRpbWUuRHVyYXRpb24KCU1heFRpbWVvdXQgICAgICAgdGltZS5EdXJhdGlvbgp9"
+        }
+    }
+}
