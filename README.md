@@ -82,16 +82,17 @@ For example, lets take the following directory tree:
 │           └── mpd.conf
 └── ubuntu
     └── x86_64
-│       ├── @.bashrc
-        └── .config
-            └── systemd
-                └── user
-                    ├── default.target.wants
-                    │   └── sysfact-apply.service -> ../sysfact-apply.service
-                    ├── sysfact-apply.service
-                    ├── sysfact-apply.timer
-                    └── timer.target.wants
-                        └── sysfact-apply.timer -> ../sysfact-apply.timer
+        ├── @.bashrc
+        ├── .config
+        │   └── systemd
+        │       └── user
+        │           ├── default.target.wants
+        │           │   └── sysfact-apply.service -> ../sysfact-apply.service
+        │           ├── sysfact-apply.service
+        │           ├── sysfact-apply.timer
+        │           └── timer.target.wants
+        │               └── sysfact-apply.timer -> ../sysfact-apply.timer
+        └── @.sysfact-[[os.distribution]]-[[os.version]].json
 ```
 
 By default, these files and directories represent files that you want to copy to their respective locations relative to your home directory (`~`). When you run `sysfact apply`, each file in this tree will be visited and copied into your home directory. Intermediate directories will be created, and the files will be placed in them.
@@ -118,6 +119,16 @@ Note that there are several roots in play here. The bulk of the files reside in 
     - `<srcdir>/${os.distribution}-${os.version}/${arch}`
 
 It is entirely possible to have the same filenames reside in multiple roots, with more-specific ones overwriting less specific versions. For example, the file `./any/any/.bashrc` would be copied to `~/.bashrc` first. If `sysfact` is being run on a 64-bit Ubuntu installation (any version), the `./ubuntu/x86_64/@.bashrc` file will be read, rendered as a template (because of the leading `@`), and overwrite the `~/.bashrc` file that was copied from before. This simple but powerful mechanism allows for very flexible file structures to be created that adapt to the needs of the system being configured.
+
+## Templated Filenames
+
+File and directory names themselves can also be templated by specifying values surrounded by double square brackets (`[[` and `]]`). The values inside the square brackets work the same way as the patterns mentioned above, including fallback values and `%`-formatting directives.
+
+Take a look at the source file `./ubuntu/x86_64/@.sysfact-[[os.distribution]]-[[os.version]].json`. There's a fair bit going on here:
+
+- This file will only be created on 64-bit Ubuntu hosts
+- It will be treated as a template.
+- The filename itself will _also_ be expanded. If run on a 64-bit Ubuntu 18.04 machine, the resulting file will be placed at `~/.sysfact-ubuntu-18.04.json`.
 
 ## Default Paths
 

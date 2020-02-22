@@ -34,6 +34,7 @@ var RenderPatterns = []string{
 }
 
 type RenderOptions struct {
+	SourceDir          string
 	DestDir            string `default:"~"`
 	DefaultDirMode     int    `default:"493"`
 	DefaultFileMode    int    `default:"420"`
@@ -43,6 +44,20 @@ type RenderOptions struct {
 	FollowSymlinks     bool
 	AdditionalPatterns []string
 	report             map[string]interface{}
+}
+
+func (self *RenderOptions) destPath(srcpath string) string {
+	var relsrc = strings.TrimPrefix(srcpath, self.SourceDir)
+	var dstpath = filepath.Join(self.DestDir, relsrc)
+
+	if len(self.report) > 0 {
+		dstpath = strings.ReplaceAll(dstpath, `[[`, `${`)
+		dstpath = strings.ReplaceAll(dstpath, `]]`, `}`)
+
+		return maputil.M(self.report).Sprintf(dstpath)
+	} else {
+		return dstpath
+	}
 }
 
 func (self *RenderOptions) log(format string, args ...interface{}) {
@@ -144,9 +159,9 @@ func Render(basedir string, options *RenderOptions) error {
 			srcdir = fileutil.MustExpandUser(srcdir)
 
 			if fileutil.DirExists(srcdir) {
-				// options.log("  walk | %s", srcdir)
+				options.SourceDir = srcdir
 
-				if err := renderTree(srcdir, options); err != nil {
+				if err := renderTree(options); err != nil {
 					return err
 				}
 			}
@@ -158,11 +173,10 @@ func Render(basedir string, options *RenderOptions) error {
 	}
 }
 
-func renderTree(srcdir string, options *RenderOptions) error {
+func renderTree(options *RenderOptions) error {
 	options.DestDir = fileutil.MustExpandUser(options.DestDir)
-	// options.DestDir = strings.TrimPrefix(options.DestDir, srcdir)
 
-	if !fileutil.DirExists(srcdir) {
+	if !fileutil.DirExists(options.SourceDir) {
 		return fmt.Errorf("Must specify a source directory tree to render.")
 	} else if !fileutil.DirExists(options.DestDir) {
 		var mode = options.ModeFor(nil)
@@ -178,9 +192,8 @@ func renderTree(srcdir string, options *RenderOptions) error {
 		}
 	}
 
-	if err := filepath.Walk(srcdir, func(srcpath string, info os.FileInfo, err error) error {
-		var relsrc = strings.TrimPrefix(srcpath, srcdir)
-		var dstpath = filepath.Join(options.DestDir, relsrc)
+	if err := filepath.Walk(options.SourceDir, func(srcpath string, info os.FileInfo, err error) error {
+		var dstpath = options.destPath(srcpath)
 		var mode = options.ModeFor(info)
 		var source io.ReadCloser
 		var verb string = `create`
