@@ -7,15 +7,15 @@
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 42,
-    "LineCount": 559,
-    "SourceLineCount": 437,
+    "LineCount": 605,
+    "SourceLineCount": 479,
     "FunctionCount": 13,
     "TypeCount": 6,
     "ConstantCount": 4,
     "VariableCount": 4,
     "Statistics": {
-        "Mean": 0.1182,
-        "StdDev": 0.3186,
+        "Mean": 0.1083,
+        "StdDev": 0.3068,
         "GeometricMean": 0,
         "HarmonicMean": 0,
         "Median": 0,
@@ -87,9 +87,9 @@
                     "Alias": "go-defaults"
                 }
             ],
-            "Size": 5916,
-            "LineCount": 252,
-            "SourceLineCount": 209,
+            "Size": 6969,
+            "LineCount": 298,
+            "SourceLineCount": 251,
             "FunctionCount": 3,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -216,8 +216,8 @@
         {
             "Name": "Version",
             "Immutable": true,
-            "Expression": "`0.7.0`",
-            "Value": "0.7.0"
+            "Expression": "`0.7.1`",
+            "Value": "0.7.1"
         }
     ],
     "Variables": [
@@ -257,7 +257,7 @@
                 }
             ],
             "Signature": "Render(basedir string, options *RenderOptions) error",
-            "Source": "ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciByZXBvcnQgPSBtYXB1dGlsLk0ocikKCQlvcHRpb25zLnJlcG9ydCA9IHIKCQlmb3IgXywgc3JjRGlyUGF0dGVybiA6PSByYW5nZSBSZW5kZXJQYXR0ZXJucyB7CgkJCXZhciBzcmNkaXIgPSByZXBvcnQuU3ByaW50ZihzcmNEaXJQYXR0ZXJuKQoJCQlzcmNkaXIgPSBmaWxlcGF0aC5Kb2luKGJhc2VkaXIsIHNyY2RpcikKCQkJc3JjZGlyID0gZmlsZXV0aWwuTXVzdEV4cGFuZFVzZXIoc3JjZGlyKQoJCQlpZiBmaWxldXRpbC5EaXJFeGlzdHMoc3JjZGlyKSB7CgkJCQlpZiBlcnIgOj0gcmVuZGVyVHJlZShzcmNkaXIsIG9wdGlvbnMpOyBlcnIgIT0gbmlsIHsKCQkJCQlyZXR1cm4gZXJyCgkJCQl9CgkJCX0KCQl9CgkJcmV0dXJuIG5pbAoJfSBlbHNlIHsKCQlyZXR1cm4gZXJyCgl9Cn0=",
+            "Source": "ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciByZXBvcnQgPSBtYXB1dGlsLk0ocikKCQlvcHRpb25zLnJlcG9ydCA9IHIKCQlmb3IgXywgc3JjRGlyUGF0dGVybiA6PSByYW5nZSBhcHBlbmQoUmVuZGVyUGF0dGVybnMsIG9wdGlvbnMuQWRkaXRpb25hbFBhdHRlcm5zLi4uKSB7CgkJCXZhciBzcmNkaXIgPSByZXBvcnQuU3ByaW50ZihzcmNEaXJQYXR0ZXJuKQoJCQlzcmNkaXIgPSBmaWxlcGF0aC5Kb2luKGJhc2VkaXIsIHNyY2RpcikKCQkJc3JjZGlyID0gZmlsZXV0aWwuTXVzdEV4cGFuZFVzZXIoc3JjZGlyKQoJCQlpZiBmaWxldXRpbC5EaXJFeGlzdHMoc3JjZGlyKSB7CgkJCQlvcHRpb25zLlNvdXJjZURpciA9IHNyY2RpcgoJCQkJaWYgZXJyIDo9IHJlbmRlclRyZWUob3B0aW9ucyk7IGVyciAhPSBuaWwgewoJCQkJCXJldHVybiBlcnIKCQkJCX0KCQkJfQoJCX0KCQlyZXR1cm4gbmlsCgl9IGVsc2UgewoJCXJldHVybiBlcnIKCX0KfQ==",
             "IsPackageLevel": true
         },
         {
@@ -360,6 +360,10 @@
             ],
             "Fields": [
                 {
+                    "Name": "SourceDir",
+                    "Type": "string"
+                },
+                {
                     "Name": "DestDir",
                     "Type": "string"
                 },
@@ -382,9 +386,17 @@
                 {
                     "Name": "DryRun",
                     "Type": "bool"
+                },
+                {
+                    "Name": "FollowSymlinks",
+                    "Type": "bool"
+                },
+                {
+                    "Name": "AdditionalPatterns",
+                    "Type": "[]string"
                 }
             ],
-            "Source": "dHlwZSBSZW5kZXJPcHRpb25zIHN0cnVjdCB7CglEZXN0RGlyICAgICAgICAgc3RyaW5nIGBkZWZhdWx0OiJ+ImAKCURlZmF1bHREaXJNb2RlICBpbnQgICAgYGRlZmF1bHQ6IjQ5MyJgCglEZWZhdWx0RmlsZU1vZGUgaW50ICAgIGBkZWZhdWx0OiI0MjAiYAoJT3duZXIgICAgICAgICAgIHN0cmluZwoJR3JvdXAgICAgICAgICAgIHN0cmluZwoJRHJ5UnVuICAgICAgICAgIGJvb2wKCn0K",
+            "Source": "dHlwZSBSZW5kZXJPcHRpb25zIHN0cnVjdCB7CglTb3VyY2VEaXIgICAgICAgICAgc3RyaW5nCglEZXN0RGlyICAgICAgICAgICAgc3RyaW5nIGBkZWZhdWx0OiJ+ImAKCURlZmF1bHREaXJNb2RlICAgICBpbnQgICAgYGRlZmF1bHQ6IjQ5MyJgCglEZWZhdWx0RmlsZU1vZGUgICAgaW50ICAgIGBkZWZhdWx0OiI0MjAiYAoJT3duZXIgICAgICAgICAgICAgIHN0cmluZwoJR3JvdXAgICAgICAgICAgICAgIHN0cmluZwoJRHJ5UnVuICAgICAgICAgICAgIGJvb2wKCUZvbGxvd1N5bWxpbmtzICAgICBib29sCglBZGRpdGlvbmFsUGF0dGVybnMgW11zdHJpbmcKCn0K",
             "HasUnexportedFields": true
         },
         "Reporter": {

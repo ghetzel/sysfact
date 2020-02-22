@@ -1,5 +1,3 @@
-.PHONY: build ui
-
 PKGS        := $(shell go list ./... 2> /dev/null | grep -v '/vendor')
 LOCALS      := $(shell find . -type f -name '*.go' -not -path "./vendor*/*")
 BIN         ?= sysfact
@@ -37,3 +35,5 @@ docs:
 copy-to-and-run:
 	scp bin/$(BIN) $(IP):sysfact
 	ssh $(IP) 'chmod +x sysfact && sysfact -L debug'
+
+.PHONY: deps fmt build docs binaries copy-to-and-run

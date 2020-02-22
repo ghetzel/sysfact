@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.7.0
+                            v0.7.1
                         </li>
                     </ul>
                     
@@ -93,7 +93,7 @@
 	</span>
 </div>
 
-<span class="pull-right">Doc Coverage: 12%</span>
+<span class="pull-right">Doc Coverage: 11%</span>
 <h2 id="pkg-overview">package sysfact</h2>
 
 <p>
@@ -301,8 +301,8 @@
 			<a href="render.go">render.go</a>
 			
 		</td>
-		<td class="text-right">6KB</td>
-		<td class="text-right">209</td>
+		<td class="text-right">7KB</td>
+		<td class="text-right">251</td>
 		<td class="text-right">3</td>
 		<td class="text-right">1</td>
 		<td class="text-right"></td>
@@ -382,7 +382,7 @@
 const <span id="FormatCamelize">FormatCamelize  </span> = 
 const <span id="FormatPascalize">FormatPascalize </span> = 
 const <span id="FormatUnderscore">FormatUnderscore</span> = iota
-const <span id="Version">Version         </span> = `0.7.0`
+const <span id="Version">Version         </span> = `0.7.1`
 </pre>
 </div>
 
@@ -485,12 +485,15 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 	
 	
 	<pre>type RenderOptions struct {
-	DestDir         string `default:&#34;~&#34;`
-	DefaultDirMode  int    `default:&#34;493&#34;`
-	DefaultFileMode int    `default:&#34;420&#34;`
-	Owner           string
-	Group           string
-	DryRun          bool
+	SourceDir          string
+	DestDir            string `default:&#34;~&#34;`
+	DefaultDirMode     int    `default:&#34;493&#34;`
+	DefaultFileMode    int    `default:&#34;420&#34;`
+	Owner              string
+	Group              string
+	DryRun             bool
+	FollowSymlinks     bool
+	AdditionalPatterns []string
   // contains filtered or unexported fields
 }</pre>
 </div>
