@@ -33,6 +33,7 @@ var RenderPatterns = []string{
 	`${os.distribution}-${os.version}/${arch}`,
 	`${domain}`,
 	`${hostname}`,
+	`${hostname}.${domain}`,
 	`${fqdn}`,
 	`${uuid}`,
 }
@@ -153,6 +154,7 @@ func Render(basedir string, options *RenderOptions) error {
 	if r, err := Report(); err == nil {
 		r, _ = maputil.DiffuseMap(r, `.`)
 
+		var visited = make(map[string]bool)
 		var report = maputil.M(r)
 
 		options.report = r
@@ -162,11 +164,16 @@ func Render(basedir string, options *RenderOptions) error {
 			srcdir = filepath.Join(basedir, srcdir)
 			srcdir = fileutil.MustExpandUser(srcdir)
 
+			// make sure the directory exists
 			if fileutil.DirExists(srcdir) {
-				options.SourceDir = srcdir
+				// and that we haven't already been here
+				if _, seen := visited[srcdir]; !seen {
+					visited[srcdir] = true
+					options.SourceDir = srcdir
 
-				if err := renderTree(options); err != nil {
-					return err
+					if err := renderTree(options); err != nil {
+						return err
+					}
 				}
 			}
 		}
@@ -177,9 +184,13 @@ func Render(basedir string, options *RenderOptions) error {
 	}
 }
 
+// Recursively copies all files in RenderOptions.SourceDir into RenderOptions.DestDir, creating any
+// intermediate directories as necessary.  Identifies and renders templates into text files in DestDir,
+// as well as templated filenames.
 func renderTree(options *RenderOptions) error {
 	options.DestDir = fileutil.MustExpandUser(options.DestDir)
 
+	// ensure existence of source and destination directories, and enforces permissions on the destination.
 	if !fileutil.DirExists(options.SourceDir) {
 		return fmt.Errorf("Must specify a source directory tree to render.")
 	} else if !fileutil.DirExists(options.DestDir) {
@@ -196,6 +207,7 @@ func renderTree(options *RenderOptions) error {
 		}
 	}
 
+	// recursively walk all files in SourceDir, copying, rendering, and following as necessary.
 	if err := filepath.Walk(options.SourceDir, func(srcpath string, info os.FileInfo, err error) error {
 		var dstpath = options.destPath(srcpath)
 		var mode = options.ModeFor(info)
@@ -203,6 +215,8 @@ func renderTree(options *RenderOptions) error {
 		var verb string = `create`
 		var linkTarget string
 
+		// if we're not following symlinks, we'll need the actual target said symlink.  linkTarget
+		// will remain empty if this file is not a symlink.
 		if !options.FollowSymlinks {
 			if t, err := os.Readlink(srcpath); err == nil {
 				linkTarget = t
@@ -222,7 +236,7 @@ func renderTree(options *RenderOptions) error {
 			dstpath = filepath.Join(ddir, strings.TrimPrefix(dname, RenderAsTemplatePrefix))
 			verb = `render`
 
-			// we got a template.  Rendering it using Diecast and set the source to a buffer containing the rendered output
+			// we got a template.  Render it using Diecast and set the source to a buffer containing the rendered output
 			if src, err := fileutil.ReadAllString(srcpath); err == nil {
 				if rendered, err := diecast.EvalInline(
 					src,
@@ -242,6 +256,7 @@ func renderTree(options *RenderOptions) error {
 			return err
 		}
 
+		// create a symlink with the same target as the source one we've got
 		if linkTarget != `` {
 			if fileutil.Exists(dstpath) {
 				if err := os.Remove(dstpath); err != nil {
@@ -271,9 +286,11 @@ func renderTree(options *RenderOptions) error {
 					}
 				}
 
+				// create destination file
 				if dest, err := os.Create(dstpath); err == nil {
 					defer dest.Close()
 
+					// copy source buffer
 					if n, err := io.Copy(dest, source); err == nil {
 						options.log("%s | %v | %v (%v)", verb, mode, dstpath, convutil.Bytes(n))
 						dest.Close()
@@ -288,6 +305,7 @@ func renderTree(options *RenderOptions) error {
 					return err
 				}
 
+				// enforce permissions
 				return options.Enforce(dstpath)
 			}
 		}

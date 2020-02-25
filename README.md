@@ -119,6 +119,7 @@ Note that there are several roots in play here. The bulk of the files reside in 
     - `<srcdir>/${os.distribution}-${os.version}/${arch}/`
     - `<srcdir>/${domain}/`
     - `<srcdir>/${hostname}/`
+    - `<srcdir>/${hostname}.${domain}/`
     - `<srcdir>/${fqdn}/`
     - `<srcdir>/${uuid}/`
 

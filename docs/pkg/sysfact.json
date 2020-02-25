@@ -7,8 +7,8 @@
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 42,
-    "LineCount": 609,
-    "SourceLineCount": 483,
+    "LineCount": 627,
+    "SourceLineCount": 488,
     "FunctionCount": 13,
     "TypeCount": 6,
     "ConstantCount": 4,
@@ -87,9 +87,9 @@
                     "Alias": "go-defaults"
                 }
             ],
-            "Size": 7023,
-            "LineCount": 302,
-            "SourceLineCount": 255,
+            "Size": 7987,
+            "LineCount": 320,
+            "SourceLineCount": 260,
             "FunctionCount": 3,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -257,7 +257,7 @@
                 }
             ],
             "Signature": "Render(basedir string, options *RenderOptions) error",
-            "Source": "ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciByZXBvcnQgPSBtYXB1dGlsLk0ocikKCQlvcHRpb25zLnJlcG9ydCA9IHIKCQlmb3IgXywgc3JjRGlyUGF0dGVybiA6PSByYW5nZSBhcHBlbmQoUmVuZGVyUGF0dGVybnMsIG9wdGlvbnMuQWRkaXRpb25hbFBhdHRlcm5zLi4uKSB7CgkJCXZhciBzcmNkaXIgPSByZXBvcnQuU3ByaW50ZihzcmNEaXJQYXR0ZXJuKQoJCQlzcmNkaXIgPSBmaWxlcGF0aC5Kb2luKGJhc2VkaXIsIHNyY2RpcikKCQkJc3JjZGlyID0gZmlsZXV0aWwuTXVzdEV4cGFuZFVzZXIoc3JjZGlyKQoJCQlpZiBmaWxldXRpbC5EaXJFeGlzdHMoc3JjZGlyKSB7CgkJCQlvcHRpb25zLlNvdXJjZURpciA9IHNyY2RpcgoJCQkJaWYgZXJyIDo9IHJlbmRlclRyZWUob3B0aW9ucyk7IGVyciAhPSBuaWwgewoJCQkJCXJldHVybiBlcnIKCQkJCX0KCQkJfQoJCX0KCQlyZXR1cm4gbmlsCgl9IGVsc2UgewoJCXJldHVybiBlcnIKCX0KfQ==",
+            "Source": "ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciB2aXNpdGVkID0gbWFrZShtYXBbc3RyaW5nXWJvb2wpCgkJdmFyIHJlcG9ydCA9IG1hcHV0aWwuTShyKQoJCW9wdGlvbnMucmVwb3J0ID0gcgoJCWZvciBfLCBzcmNEaXJQYXR0ZXJuIDo9IHJhbmdlIGFwcGVuZChSZW5kZXJQYXR0ZXJucywgb3B0aW9ucy5BZGRpdGlvbmFsUGF0dGVybnMuLi4pIHsKCQkJdmFyIHNyY2RpciA9IHJlcG9ydC5TcHJpbnRmKHNyY0RpclBhdHRlcm4pCgkJCXNyY2RpciA9IGZpbGVwYXRoLkpvaW4oYmFzZWRpciwgc3JjZGlyKQoJCQlzcmNkaXIgPSBmaWxldXRpbC5NdXN0RXhwYW5kVXNlcihzcmNkaXIpCgkJCWlmIGZpbGV1dGlsLkRpckV4aXN0cyhzcmNkaXIpIHsKCQkJCWlmIF8sIHNlZW4gOj0gdmlzaXRlZFtzcmNkaXJdOyAhc2VlbiB7CgkJCQkJdmlzaXRlZFtzcmNkaXJdID0gdHJ1ZQoJCQkJCW9wdGlvbnMuU291cmNlRGlyID0gc3JjZGlyCgkJCQkJaWYgZXJyIDo9IHJlbmRlclRyZWUob3B0aW9ucyk7IGVyciAhPSBuaWwgewoJCQkJCQlyZXR1cm4gZXJyCgkJCQkJfQoJCQkJfQoJCQl9CgkJfQoJCXJldHVybiBuaWwKCX0gZWxzZSB7CgkJcmV0dXJuIGVycgoJfQp9",
             "IsPackageLevel": true
         },
         {
