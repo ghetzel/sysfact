@@ -4,7 +4,9 @@ import (
 	"fmt"
 	"net"
 	"os"
+	"strings"
 
+	"github.com/ghetzel/go-stockutil/fileutil"
 	"github.com/ghetzel/go-stockutil/netutil"
 	"github.com/ghetzel/go-stockutil/stringutil"
 )
@@ -21,6 +23,20 @@ func (self Network) Collect() map[string]interface{} {
 
 	if fqdn := shell(`hostname -f`).String(); fqdn != `` {
 		_, domain := stringutil.SplitPair(fqdn, `.`)
+
+		if domain == `` {
+			if lines, err := fileutil.ReadAllLines(`/etc/resolv.conf`); err == nil {
+				for _, line := range lines {
+					line = strings.TrimSpace(line)
+					line = stringutil.SqueezeSpace(line)
+
+					if strings.HasPrefix(line, `search `) {
+						_, domain, _ = stringutil.SplitTriple(line, ` `)
+						domain = strings.TrimSpace(domain)
+					}
+				}
+			}
+		}
 
 		out[`fqdn`] = fqdn
 		out[`domain`] = domain

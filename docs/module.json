@@ -15,8 +15,8 @@
             "Synopsis": "",
             "MainFunction": false,
             "CommentWordCount": 0,
-            "LineCount": 1091,
-            "SourceLineCount": 838,
+            "LineCount": 1107,
+            "SourceLineCount": 852,
             "FunctionCount": 16,
             "TypeCount": 16,
             "ConstantCount": 0,
@@ -678,8 +678,8 @@
                 "Synopsis": "",
                 "MainFunction": false,
                 "CommentWordCount": 0,
-                "LineCount": 1091,
-                "SourceLineCount": 838,
+                "LineCount": 1107,
+                "SourceLineCount": 852,
                 "FunctionCount": 16,
                 "TypeCount": 16,
                 "ConstantCount": 0,
@@ -1048,6 +1048,14 @@
                                 "Alias": "os"
                             },
                             {
+                                "PackageName": "strings",
+                                "Alias": "strings"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                                "Alias": "fileutil"
+                            },
+                            {
                                 "PackageName": "github.com/ghetzel/go-stockutil/netutil",
                                 "Alias": "netutil"
                             },
@@ -1056,9 +1064,9 @@
                                 "Alias": "stringutil"
                             }
                         ],
-                        "Size": 2425,
-                        "LineCount": 91,
-                        "SourceLineCount": 72,
+                        "Size": 2852,
+                        "LineCount": 107,
+                        "SourceLineCount": 86,
                         "FunctionCount": 1,
                         "TypeCount": 1,
                         "ConstantCount": 0,
