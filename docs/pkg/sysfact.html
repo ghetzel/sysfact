@@ -93,7 +93,7 @@
 	</span>
 </div>
 
-<span class="pull-right">Doc Coverage: 11%</span>
+<span class="pull-right">Doc Coverage: 13%</span>
 <h2 id="pkg-overview">package sysfact</h2>
 
 <p>
@@ -128,6 +128,12 @@
 		
 		<a href="#Render">func Render(basedir string, options *RenderOptions) error</a>
 		
+	</li>
+	
+    <li>
+		<strong>
+		<a href="#RenderString">func RenderString(data map[string]interface{}, template string) (string, error)</a>
+		</strong>
 	</li>
 	
     <li>
@@ -302,8 +308,8 @@
 			
 		</td>
 		<td class="text-right">8KB</td>
-		<td class="text-right">260</td>
-		<td class="text-right">3</td>
+		<td class="text-right">263</td>
+		<td class="text-right">4</td>
 		<td class="text-right">1</td>
 		<td class="text-right"></td>
 		<td class="text-right">2</td>
@@ -417,6 +423,20 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 	<pre>func Render(basedir string, options *RenderOptions) error</pre>
 </div>
 
+
+
+<h3 id="RenderString" data-kind="f">
+	func <a title="View Source" href="">RenderString</a>
+	<a class="permalink" href="#RenderString">&#182;</a>
+</h3>
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func RenderString(data map[string]interface{}, template string) (string, error)</pre>
+</div>
+
+
+<p><p>Render the given template string using the given data.</p>
+</p>
 
 
 <h3 id="Report" data-kind="f">

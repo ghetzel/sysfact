@@ -144,6 +144,16 @@ func (self *RenderOptions) Enforce(path string) error {
 	}
 }
 
+// Render the given template string using the given data.
+func RenderString(data map[string]interface{}, template string) (string, error) {
+	// Render template using diecast and return the output
+	if rendered, err := diecast.EvalInline(template, data, nil); err == nil {
+		return rendered, nil
+	} else {
+		return ``, fmt.Errorf("render template: %v", err)
+	}
+}
+
 func Render(basedir string, options *RenderOptions) error {
 	if options == nil {
 		options = new(RenderOptions)
@@ -236,13 +246,8 @@ func renderTree(options *RenderOptions) error {
 			dstpath = filepath.Join(ddir, strings.TrimPrefix(dname, RenderAsTemplatePrefix))
 			verb = `render`
 
-			// we got a template.  Render it using Diecast and set the source to a buffer containing the rendered output
 			if src, err := fileutil.ReadAllString(srcpath); err == nil {
-				if rendered, err := diecast.EvalInline(
-					src,
-					options.report,
-					diecast.GetStandardFunctions(nil),
-				); err == nil {
+				if rendered, err := RenderString(options.report, src); err == nil {
 					source = ioutil.NopCloser(bytes.NewBufferString(rendered))
 				} else {
 					return fmt.Errorf("render template: %v", err)

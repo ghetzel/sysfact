@@ -104,7 +104,7 @@
   },
   &#34;Package&#34;: {
     &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact&#34;,
-    &#34;CommentWordCount&#34;: 42,
+    &#34;CommentWordCount&#34;: 52,
     &#34;ConstantCount&#34;: 4,
     &#34;Constants&#34;: [
       {
@@ -131,7 +131,7 @@
     &#34;Files&#34;: [
       {
         &#34;ConstantCount&#34;: 0,
-        &#34;FunctionCount&#34;: 3,
+        &#34;FunctionCount&#34;: 4,
         &#34;Imports&#34;: [
           {
             &#34;Alias&#34;: &#34;bytes&#34;,
@@ -194,10 +194,10 @@
             &#34;PackageName&#34;: &#34;github.com/mcuadros/go-defaults&#34;
           }
         ],
-        &#34;LineCount&#34;: 320,
+        &#34;LineCount&#34;: 325,
         &#34;Name&#34;: &#34;render.go&#34;,
-        &#34;Size&#34;: 7987,
-        &#34;SourceLineCount&#34;: 260,
+        &#34;Size&#34;: 8174,
+        &#34;SourceLineCount&#34;: 263,
         &#34;TypeCount&#34;: 1,
         &#34;VariableCount&#34;: 2
       },
@@ -304,7 +304,7 @@
         &#34;VariableCount&#34;: 2
       }
     ],
-    &#34;FunctionCount&#34;: 13,
+    &#34;FunctionCount&#34;: 14,
     &#34;Functions&#34;: [
       {
         &#34;Arguments&#34;: [
@@ -330,6 +330,31 @@
       {
         &#34;Arguments&#34;: [
           {
+            &#34;Name&#34;: &#34;data&#34;,
+            &#34;Type&#34;: &#34;map[string]interface{}&#34;
+          },
+          {
+            &#34;Name&#34;: &#34;template&#34;,
+            &#34;Type&#34;: &#34;string&#34;
+          }
+        ],
+        &#34;Comment&#34;: &#34;Render the given template string using the given data.&#34;,
+        &#34;IsPackageLevel&#34;: true,
+        &#34;Name&#34;: &#34;RenderString&#34;,
+        &#34;Returns&#34;: [
+          {
+            &#34;Type&#34;: &#34;string&#34;
+          },
+          {
+            &#34;Type&#34;: &#34;error&#34;
+          }
+        ],
+        &#34;Signature&#34;: &#34;RenderString(data map[string]interface{}, template string) (string, error)&#34;,
+        &#34;Source&#34;: &#34;ewoJaWYgcmVuZGVyZWQsIGVyciA6PSBkaWVjYXN0LkV2YWxJbmxpbmUodGVtcGxhdGUsIGRhdGEsIG5pbCk7IGVyciA9PSBuaWwgewoJCXJldHVybiByZW5kZXJlZCwgbmlsCgl9IGVsc2UgewoJCXJldHVybiBgYCwgZm10LkVycm9yZigicmVuZGVyIHRlbXBsYXRlOiAldiIsIGVycikKCX0KfQ==&#34;
+      },
+      {
+        &#34;Arguments&#34;: [
+          {
             &#34;Name&#34;: &#34;paths&#34;,
             &#34;Type&#34;: &#34;...string&#34;
           }
@@ -350,7 +375,7 @@
       }
     ],
     &#34;ImportPath&#34;: &#34;sysfact&#34;,
-    &#34;LineCount&#34;: 627,
+    &#34;LineCount&#34;: 632,
     &#34;MainFunction&#34;: false,
     &#34;Name&#34;: &#34;sysfact&#34;,
     &#34;Packages&#34;: [
@@ -1336,15 +1361,15 @@
       }
     ],
     &#34;ParentPackage&#34;: &#34;&#34;,
-    &#34;SourceLineCount&#34;: 488,
+    &#34;SourceLineCount&#34;: 491,
     &#34;Statistics&#34;: {
       &#34;GeometricMean&#34;: 0,
       &#34;HarmonicMean&#34;: 0,
       &#34;Maximum&#34;: 1,
-      &#34;Mean&#34;: 0.1083,
+      &#34;Mean&#34;: 0.1324,
       &#34;Median&#34;: 0,
       &#34;Minimum&#34;: 0,
-      &#34;StdDev&#34;: 0.3068
+      &#34;StdDev&#34;: 0.3354
     },
     &#34;Synopsis&#34;: &#34;&#34;,
     &#34;TypeCount&#34;: 6,
@@ -1724,23 +1749,23 @@
     },
     {
       &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact&#34;,
-      &#34;CommentWordCount&#34;: 42,
+      &#34;CommentWordCount&#34;: 52,
       &#34;ConstantCount&#34;: 4,
-      &#34;FunctionCount&#34;: 13,
+      &#34;FunctionCount&#34;: 14,
       &#34;ImportPath&#34;: &#34;sysfact&#34;,
-      &#34;LineCount&#34;: 627,
+      &#34;LineCount&#34;: 632,
       &#34;MainFunction&#34;: false,
       &#34;Name&#34;: &#34;sysfact&#34;,
       &#34;ParentPackage&#34;: &#34;&#34;,
-      &#34;SourceLineCount&#34;: 488,
+      &#34;SourceLineCount&#34;: 491,
       &#34;Statistics&#34;: {
         &#34;GeometricMean&#34;: 0,
         &#34;HarmonicMean&#34;: 0,
         &#34;Maximum&#34;: 1,
-        &#34;Mean&#34;: 0.1083,
+        &#34;Mean&#34;: 0.1324,
         &#34;Median&#34;: 0,
         &#34;Minimum&#34;: 0,
-        &#34;StdDev&#34;: 0.3068
+        &#34;StdDev&#34;: 0.3354
       },
       &#34;Synopsis&#34;: &#34;&#34;,
       &#34;TypeCount&#34;: 6,

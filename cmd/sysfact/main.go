@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"reflect"
@@ -14,6 +15,7 @@ import (
 
 	"github.com/ghetzel/cli"
 	"github.com/ghetzel/go-stockutil/executil"
+	"github.com/ghetzel/go-stockutil/fileutil"
 	"github.com/ghetzel/go-stockutil/log"
 	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/go-stockutil/stringutil"
@@ -277,6 +279,61 @@ func main() {
 
 	app.Commands = []cli.Command{
 		{
+			Name:  `interpolate`,
+			Usage: `Interpolate the string the given arguments or standard input using the system report.`,
+			Action: func(c *cli.Context) {
+				var input string
+
+				if fileutil.IsTerminal() {
+					input = strings.Join(c.Args(), ` `)
+				} else if in, err := ioutil.ReadAll(os.Stdin); err == nil {
+					input = string(in)
+				} else {
+					log.Fatal(err)
+				}
+
+				if input == `` {
+					return
+				}
+
+				if report, err := reporter.Report(); err == nil {
+					fmt.Println(maputil.Sprintf(input, report))
+				} else {
+					log.Fatal(err)
+				}
+			},
+		}, {
+			Name:      `render`,
+			Usage:     `Render the file or standard input as a template.`,
+			ArgsUsage: `[FILENAME]`,
+			Action: func(c *cli.Context) {
+				var template string
+
+				if filename := c.Args().First(); filename != `` {
+					template = fileutil.MustReadAllString(filename)
+				} else if in, err := ioutil.ReadAll(os.Stdin); err == nil {
+					template = string(in)
+				} else {
+					log.Fatal(err)
+				}
+
+				if template == `` {
+					return
+				}
+
+				if report, err := reporter.Report(); err == nil {
+					report, _ = maputil.DiffuseMap(report, `.`)
+
+					if rendered, err := sysfact.RenderString(report, template); err == nil {
+						fmt.Print(rendered)
+					} else {
+						log.Fatal(err)
+					}
+				} else {
+					log.Fatal(err)
+				}
+			},
+		}, {
 			Name:  `apply`,
 			Usage: `Recursively copy a given source directory over top of a destination directory, selectively treating filenames starting with "@" as text templates that are given a Sysfact report as input.`,
 			Flags: []cli.Flag{

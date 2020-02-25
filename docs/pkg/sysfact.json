@@ -6,16 +6,16 @@
     "URL": "https://github.com/ghetzel/sysfact",
     "Synopsis": "",
     "MainFunction": false,
-    "CommentWordCount": 42,
-    "LineCount": 627,
-    "SourceLineCount": 488,
-    "FunctionCount": 13,
+    "CommentWordCount": 52,
+    "LineCount": 632,
+    "SourceLineCount": 491,
+    "FunctionCount": 14,
     "TypeCount": 6,
     "ConstantCount": 4,
     "VariableCount": 4,
     "Statistics": {
-        "Mean": 0.1083,
-        "StdDev": 0.3068,
+        "Mean": 0.1324,
+        "StdDev": 0.3354,
         "GeometricMean": 0,
         "HarmonicMean": 0,
         "Median": 0,
@@ -87,10 +87,10 @@
                     "Alias": "go-defaults"
                 }
             ],
-            "Size": 7987,
-            "LineCount": 320,
-            "SourceLineCount": 260,
-            "FunctionCount": 3,
+            "Size": 8174,
+            "LineCount": 325,
+            "SourceLineCount": 263,
+            "FunctionCount": 4,
             "TypeCount": 1,
             "ConstantCount": 0,
             "VariableCount": 2
@@ -258,6 +258,31 @@
             ],
             "Signature": "Render(basedir string, options *RenderOptions) error",
             "Source": "ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciB2aXNpdGVkID0gbWFrZShtYXBbc3RyaW5nXWJvb2wpCgkJdmFyIHJlcG9ydCA9IG1hcHV0aWwuTShyKQoJCW9wdGlvbnMucmVwb3J0ID0gcgoJCWZvciBfLCBzcmNEaXJQYXR0ZXJuIDo9IHJhbmdlIGFwcGVuZChSZW5kZXJQYXR0ZXJucywgb3B0aW9ucy5BZGRpdGlvbmFsUGF0dGVybnMuLi4pIHsKCQkJdmFyIHNyY2RpciA9IHJlcG9ydC5TcHJpbnRmKHNyY0RpclBhdHRlcm4pCgkJCXNyY2RpciA9IGZpbGVwYXRoLkpvaW4oYmFzZWRpciwgc3JjZGlyKQoJCQlzcmNkaXIgPSBmaWxldXRpbC5NdXN0RXhwYW5kVXNlcihzcmNkaXIpCgkJCWlmIGZpbGV1dGlsLkRpckV4aXN0cyhzcmNkaXIpIHsKCQkJCWlmIF8sIHNlZW4gOj0gdmlzaXRlZFtzcmNkaXJdOyAhc2VlbiB7CgkJCQkJdmlzaXRlZFtzcmNkaXJdID0gdHJ1ZQoJCQkJCW9wdGlvbnMuU291cmNlRGlyID0gc3JjZGlyCgkJCQkJaWYgZXJyIDo9IHJlbmRlclRyZWUob3B0aW9ucyk7IGVyciAhPSBuaWwgewoJCQkJCQlyZXR1cm4gZXJyCgkJCQkJfQoJCQkJfQoJCQl9CgkJfQoJCXJldHVybiBuaWwKCX0gZWxzZSB7CgkJcmV0dXJuIGVycgoJfQp9",
+            "IsPackageLevel": true
+        },
+        {
+            "Name": "RenderString",
+            "Comment": "Render the given template string using the given data.",
+            "Arguments": [
+                {
+                    "Name": "data",
+                    "Type": "map[string]interface{}"
+                },
+                {
+                    "Name": "template",
+                    "Type": "string"
+                }
+            ],
+            "Returns": [
+                {
+                    "Type": "string"
+                },
+                {
+                    "Type": "error"
+                }
+            ],
+            "Signature": "RenderString(data map[string]interface{}, template string) (string, error)",
+            "Source": "ewoJaWYgcmVuZGVyZWQsIGVyciA6PSBkaWVjYXN0LkV2YWxJbmxpbmUodGVtcGxhdGUsIGRhdGEsIG5pbCk7IGVyciA9PSBuaWwgewoJCXJldHVybiByZW5kZXJlZCwgbmlsCgl9IGVsc2UgewoJCXJldHVybiBgYCwgZm10LkVycm9yZigicmVuZGVyIHRlbXBsYXRlOiAldiIsIGVycikKCX0KfQ==",
             "IsPackageLevel": true
         },
         {
