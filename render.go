@@ -31,6 +31,10 @@ var RenderPatterns = []string{
 	`${os.distribution}/${arch}`,
 	`${os.distribution}-${os.version}/any`,
 	`${os.distribution}-${os.version}/${arch}`,
+	`${domain}`,
+	`${hostname}`,
+	`${fqdn}`,
+	`${uuid}`,
 }
 
 type RenderOptions struct {

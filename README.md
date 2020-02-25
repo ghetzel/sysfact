@@ -107,16 +107,20 @@ Templates are standard [Golang text/template](https://golang.org/pkg/text/templa
 
 Note that there are several roots in play here. The bulk of the files reside in `./any/any/`, but some of them are in the `./ubuntu/x86_64/` directory. Sysfact allows you to specify files and directories that should only be copied to the destination directory under specific OS, Distribution, Archicture, or OS Family combinations. Below is a list of the default order used to determine which files are copied over. You may also provide additional search patterns that will be appended to this default list. Patterns may use any value that appears in the `sysfact` report.
 
-    - `<srcdir>/any/any`
-    - `<srcdir>/any/${arch}`
-    - `<srcdir>/${os.platform}/any`
-    - `<srcdir>/${os.platform}/${arch}`
-    - `<srcdir>/${os.family}/any`
-    - `<srcdir>/${os.family}/${arch}`
-    - `<srcdir>/${os.distribution}/any`
-    - `<srcdir>/${os.distribution}/${arch}`
-    - `<srcdir>/${os.distribution}-${os.version}/any`
-    - `<srcdir>/${os.distribution}-${os.version}/${arch}`
+    - `<srcdir>/any/any/`
+    - `<srcdir>/any/${arch}/`
+    - `<srcdir>/${os.platform}/any/`
+    - `<srcdir>/${os.platform}/${arch}/`
+    - `<srcdir>/${os.family}/any/`
+    - `<srcdir>/${os.family}/${arch}/`
+    - `<srcdir>/${os.distribution}/any/`
+    - `<srcdir>/${os.distribution}/${arch}/`
+    - `<srcdir>/${os.distribution}-${os.version}/any/`
+    - `<srcdir>/${os.distribution}-${os.version}/${arch}/`
+    - `<srcdir>/${domain}/`
+    - `<srcdir>/${hostname}/`
+    - `<srcdir>/${fqdn}/`
+    - `<srcdir>/${uuid}/`
 
 It is entirely possible to have the same filenames reside in multiple roots, with more-specific ones overwriting less specific versions. For example, the file `./any/any/.bashrc` would be copied to `~/.bashrc` first. If `sysfact` is being run on a 64-bit Ubuntu installation (any version), the `./ubuntu/x86_64/@.bashrc` file will be read, rendered as a template (because of the leading `@`), and overwrite the `~/.bashrc` file that was copied from before. This simple but powerful mechanism allows for very flexible file structures to be created that adapt to the needs of the system being configured.
 
