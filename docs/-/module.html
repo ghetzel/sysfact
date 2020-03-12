@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.7.1
+                            v0.7.2
                         </li>
                     </ul>
                     
@@ -100,7 +100,7 @@
     &#34;GeneratorVersion&#34;: &#34;0.0.3&#34;,
     &#34;Title&#34;: &#34;sysfact&#34;,
     &#34;URL&#34;: &#34;https://github.com/ghetzel/sysfact&#34;,
-    &#34;Version&#34;: &#34;0.7.1&#34;
+    &#34;Version&#34;: &#34;0.7.2&#34;
   },
   &#34;Package&#34;: {
     &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact&#34;,
@@ -122,16 +122,16 @@
         &#34;Type&#34;: &#34;ReporterKeyFormat&#34;
       },
       {
-        &#34;Expression&#34;: &#34;`0.7.1`&#34;,
+        &#34;Expression&#34;: &#34;`0.7.2`&#34;,
         &#34;Immutable&#34;: true,
         &#34;Name&#34;: &#34;Version&#34;,
-        &#34;Value&#34;: &#34;0.7.1&#34;
+        &#34;Value&#34;: &#34;0.7.2&#34;
       }
     ],
     &#34;Files&#34;: [
       {
         &#34;ConstantCount&#34;: 0,
-        &#34;FunctionCount&#34;: 4,
+        &#34;FunctionCount&#34;: 6,
         &#34;Imports&#34;: [
           {
             &#34;Alias&#34;: &#34;bytes&#34;,
@@ -174,6 +174,10 @@
             &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/convutil&#34;
           },
           {
+            &#34;Alias&#34;: &#34;executil&#34;,
+            &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/executil&#34;
+          },
+          {
             &#34;Alias&#34;: &#34;fileutil&#34;,
             &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/fileutil&#34;
           },
@@ -192,14 +196,18 @@
           {
             &#34;Alias&#34;: &#34;go-defaults&#34;,
             &#34;PackageName&#34;: &#34;github.com/mcuadros/go-defaults&#34;
+          },
+          {
+            &#34;Alias&#34;: &#34;yaml.v2&#34;,
+            &#34;PackageName&#34;: &#34;gopkg.in/yaml.v2&#34;
           }
         ],
-        &#34;LineCount&#34;: 325,
+        &#34;LineCount&#34;: 473,
         &#34;Name&#34;: &#34;render.go&#34;,
-        &#34;Size&#34;: 8174,
-        &#34;SourceLineCount&#34;: 263,
-        &#34;TypeCount&#34;: 1,
-        &#34;VariableCount&#34;: 2
+        &#34;Size&#34;: 11949,
+        &#34;SourceLineCount&#34;: 377,
+        &#34;TypeCount&#34;: 2,
+        &#34;VariableCount&#34;: 3
       },
       {
         &#34;ConstantCount&#34;: 3,
@@ -304,7 +312,7 @@
         &#34;VariableCount&#34;: 2
       }
     ],
-    &#34;FunctionCount&#34;: 14,
+    &#34;FunctionCount&#34;: 16,
     &#34;Functions&#34;: [
       {
         &#34;Arguments&#34;: [
@@ -325,7 +333,7 @@
           }
         ],
         &#34;Signature&#34;: &#34;Render(basedir string, options *RenderOptions) error&#34;,
-        &#34;Source&#34;: &#34;ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciB2aXNpdGVkID0gbWFrZShtYXBbc3RyaW5nXWJvb2wpCgkJdmFyIHJlcG9ydCA9IG1hcHV0aWwuTShyKQoJCW9wdGlvbnMucmVwb3J0ID0gcgoJCWZvciBfLCBzcmNEaXJQYXR0ZXJuIDo9IHJhbmdlIGFwcGVuZChSZW5kZXJQYXR0ZXJucywgb3B0aW9ucy5BZGRpdGlvbmFsUGF0dGVybnMuLi4pIHsKCQkJdmFyIHNyY2RpciA9IHJlcG9ydC5TcHJpbnRmKHNyY0RpclBhdHRlcm4pCgkJCXNyY2RpciA9IGZpbGVwYXRoLkpvaW4oYmFzZWRpciwgc3JjZGlyKQoJCQlzcmNkaXIgPSBmaWxldXRpbC5NdXN0RXhwYW5kVXNlcihzcmNkaXIpCgkJCWlmIGZpbGV1dGlsLkRpckV4aXN0cyhzcmNkaXIpIHsKCQkJCWlmIF8sIHNlZW4gOj0gdmlzaXRlZFtzcmNkaXJdOyAhc2VlbiB7CgkJCQkJdmlzaXRlZFtzcmNkaXJdID0gdHJ1ZQoJCQkJCW9wdGlvbnMuU291cmNlRGlyID0gc3JjZGlyCgkJCQkJaWYgZXJyIDo9IHJlbmRlclRyZWUob3B0aW9ucyk7IGVyciAhPSBuaWwgewoJCQkJCQlyZXR1cm4gZXJyCgkJCQkJfQoJCQkJfQoJCQl9CgkJfQoJCXJldHVybiBuaWwKCX0gZWxzZSB7CgkJcmV0dXJuIGVycgoJfQp9&#34;
+        &#34;Source&#34;: &#34;ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciB2aXNpdGVkID0gbWFrZShtYXBbc3RyaW5nXWJvb2wpCgkJdmFyIHJlcG9ydCA9IG1hcHV0aWwuTShyKQoJCW9wdGlvbnMucmVwb3J0ID0gcgoJCWlmIGVyciA6PSBvcHRpb25zLmxvYWRGcm9tUm9vdERpcihiYXNlZGlyKTsgZXJyICE9IG5pbCB7CgkJCXJldHVybiBlcnIKCQl9CgkJZm9yIF8sIHNyY0RpclBhdHRlcm4gOj0gcmFuZ2UgYXBwZW5kKFJlbmRlclBhdHRlcm5zLCBvcHRpb25zLkFkZGl0aW9uYWxQYXR0ZXJucy4uLikgewoJCQl2YXIgc3JjZGlyID0gcmVwb3J0LlNwcmludGYoc3JjRGlyUGF0dGVybikKCQkJc3JjZGlyID0gZmlsZXBhdGguSm9pbihiYXNlZGlyLCBzcmNkaXIpCgkJCXNyY2RpciA9IGZpbGV1dGlsLk11c3RFeHBhbmRVc2VyKHNyY2RpcikKCQkJaWYgZmlsZXV0aWwuRGlyRXhpc3RzKHNyY2RpcikgewoJCQkJaWYgXywgc2VlbiA6PSB2aXNpdGVkW3NyY2Rpcl07ICFzZWVuIHsKCQkJCQl2aXNpdGVkW3NyY2Rpcl0gPSB0cnVlCgkJCQkJb3B0aW9ucy5Tb3VyY2VEaXIgPSBzcmNkaXIKCQkJCQlpZiBlcnIgOj0gcmVuZGVyVHJlZShvcHRpb25zKTsgZXJyICE9IG5pbCB7CgkJCQkJCXJldHVybiBlcnIKCQkJCQl9CgkJCQl9CgkJCX0KCQl9CgkJcmV0dXJuIG5pbAoJfSBlbHNlIHsKCQlyZXR1cm4gZXJyCgl9Cn0=&#34;
       },
       {
         &#34;Arguments&#34;: [
@@ -375,7 +383,7 @@
       }
     ],
     &#34;ImportPath&#34;: &#34;sysfact&#34;,
-    &#34;LineCount&#34;: 632,
+    &#34;LineCount&#34;: 780,
     &#34;MainFunction&#34;: false,
     &#34;Name&#34;: &#34;sysfact&#34;,
     &#34;Packages&#34;: [
@@ -1361,18 +1369,18 @@
       }
     ],
     &#34;ParentPackage&#34;: &#34;&#34;,
-    &#34;SourceLineCount&#34;: 491,
+    &#34;SourceLineCount&#34;: 605,
     &#34;Statistics&#34;: {
       &#34;GeometricMean&#34;: 0,
       &#34;HarmonicMean&#34;: 0,
       &#34;Maximum&#34;: 1,
-      &#34;Mean&#34;: 0.1324,
+      &#34;Mean&#34;: 0.1114,
       &#34;Median&#34;: 0,
       &#34;Minimum&#34;: 0,
-      &#34;StdDev&#34;: 0.3354
+      &#34;StdDev&#34;: 0.3113
     },
     &#34;Synopsis&#34;: &#34;&#34;,
-    &#34;TypeCount&#34;: 6,
+    &#34;TypeCount&#34;: 7,
     &#34;Types&#34;: {
       &#34;InfluxdbPayload&#34;: {
         &#34;Methods&#34;: [
@@ -1445,6 +1453,10 @@
           {
             &#34;Name&#34;: &#34;AdditionalPatterns&#34;,
             &#34;Type&#34;: &#34;[]string&#34;
+          },
+          {
+            &#34;Name&#34;: &#34;Triggers&#34;,
+            &#34;Type&#34;: &#34;[]Trigger&#34;
           }
         ],
         &#34;HasUnexportedFields&#34;: true,
@@ -1488,7 +1500,7 @@
           }
         ],
         &#34;Name&#34;: &#34;RenderOptions&#34;,
-        &#34;Source&#34;: &#34;dHlwZSBSZW5kZXJPcHRpb25zIHN0cnVjdCB7CglTb3VyY2VEaXIgICAgICAgICAgc3RyaW5nCglEZXN0RGlyICAgICAgICAgICAgc3RyaW5nIGBkZWZhdWx0OiJ&#43;ImAKCURlZmF1bHREaXJNb2RlICAgICBpbnQgICAgYGRlZmF1bHQ6IjQ5MyJgCglEZWZhdWx0RmlsZU1vZGUgICAgaW50ICAgIGBkZWZhdWx0OiI0MjAiYAoJT3duZXIgICAgICAgICAgICAgIHN0cmluZwoJR3JvdXAgICAgICAgICAgICAgIHN0cmluZwoJRHJ5UnVuICAgICAgICAgICAgIGJvb2wKCUZvbGxvd1N5bWxpbmtzICAgICBib29sCglBZGRpdGlvbmFsUGF0dGVybnMgW11zdHJpbmcKCn0K&#34;
+        &#34;Source&#34;: &#34;dHlwZSBSZW5kZXJPcHRpb25zIHN0cnVjdCB7CglTb3VyY2VEaXIgICAgICAgICAgc3RyaW5nICAgIGB5YW1sOiJzcmNkaXIiYAoJRGVzdERpciAgICAgICAgICAgIHN0cmluZyAgICBgeWFtbDoiZGVzdGRpciIgIGRlZmF1bHQ6In4iYAoJRGVmYXVsdERpck1vZGUgICAgIGludCAgICAgICBgeWFtbDoiZGlybW9kZSIgIGRlZmF1bHQ6IjQ5MyJgCglEZWZhdWx0RmlsZU1vZGUgICAgaW50ICAgICAgIGB5YW1sOiJmaWxlbW9kZSIgZGVmYXVsdDoiNDIwImAKCU93bmVyICAgICAgICAgICAgICBzdHJpbmcgICAgYHlhbWw6Im93bmVyImAKCUdyb3VwICAgICAgICAgICAgICBzdHJpbmcgICAgYHlhbWw6Imdyb3VwImAKCURyeVJ1biAgICAgICAgICAgICBib29sICAgICAgYHlhbWw6ImRyeXJ1biJgCglGb2xsb3dTeW1saW5rcyAgICAgYm9vbCAgICAgIGB5YW1sOiJmb2xsb3dfc3ltbGlua3MiYAoJQWRkaXRpb25hbFBhdHRlcm5zIFtdc3RyaW5nICBgeWFtbDoicGF0dGVybnMiYAoJVHJpZ2dlcnMgICAgICAgICAgIFtdVHJpZ2dlciBgeWFtbDoidHJpZ2dlcnMiYAoKfQo=&#34;
       },
       &#34;Reporter&#34;: {
         &#34;Fields&#34;: [
@@ -1575,6 +1587,73 @@
         &#34;MetaType&#34;: &#34;int&#34;,
         &#34;Name&#34;: &#34;ReporterKeyFormat&#34;,
         &#34;Source&#34;: &#34;dHlwZSBSZXBvcnRlcktleUZvcm1hdCBpbnQ=&#34;
+      },
+      &#34;Trigger&#34;: {
+        &#34;Fields&#34;: [
+          {
+            &#34;Name&#34;: &#34;On&#34;,
+            &#34;Type&#34;: &#34;string&#34;
+          },
+          {
+            &#34;Name&#34;: &#34;Command&#34;,
+            &#34;Type&#34;: &#34;string&#34;
+          }
+        ],
+        &#34;MetaType&#34;: &#34;struct&#34;,
+        &#34;Methods&#34;: [
+          {
+            &#34;Arguments&#34;: [
+              {
+                &#34;Name&#34;: &#34;action&#34;,
+                &#34;Type&#34;: &#34;string&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;path&#34;,
+                &#34;Type&#34;: &#34;string&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;data&#34;,
+                &#34;Type&#34;: &#34;map[string]interface{}&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;logger&#34;,
+                &#34;Type&#34;: &#34;logFunc&#34;
+              }
+            ],
+            &#34;IsPackageLevel&#34;: false,
+            &#34;Name&#34;: &#34;Do&#34;,
+            &#34;ReceiverName&#34;: &#34;self&#34;,
+            &#34;Returns&#34;: [
+              {
+                &#34;Type&#34;: &#34;error&#34;
+              }
+            ],
+            &#34;Signature&#34;: &#34;Do(action string, path string, data map[string]interface{}, logger logFunc) error&#34;
+          },
+          {
+            &#34;Arguments&#34;: [
+              {
+                &#34;Name&#34;: &#34;action&#34;,
+                &#34;Type&#34;: &#34;string&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;path&#34;,
+                &#34;Type&#34;: &#34;string&#34;
+              }
+            ],
+            &#34;IsPackageLevel&#34;: false,
+            &#34;Name&#34;: &#34;Should&#34;,
+            &#34;ReceiverName&#34;: &#34;self&#34;,
+            &#34;Returns&#34;: [
+              {
+                &#34;Type&#34;: &#34;bool&#34;
+              }
+            ],
+            &#34;Signature&#34;: &#34;Should(action string, path string) bool&#34;
+          }
+        ],
+        &#34;Name&#34;: &#34;Trigger&#34;,
+        &#34;Source&#34;: &#34;dHlwZSBUcmlnZ2VyIHN0cnVjdCB7CglPbiAgICAgIHN0cmluZyBgeWFtbDoib24iYAoJQ29tbWFuZCBzdHJpbmcgYHlhbWw6ImNvbW1hbmQiYAp9&#34;
       },
       &#34;Tuple&#34;: {
         &#34;Fields&#34;: [
@@ -1676,7 +1755,7 @@
       }
     },
     &#34;URL&#34;: &#34;https://github.com/ghetzel/sysfact&#34;,
-    &#34;VariableCount&#34;: 4,
+    &#34;VariableCount&#34;: 5,
     &#34;Variables&#34;: [
       {
         &#34;Expression&#34;: &#34;regexp.MustCompile(`[\\s,]&#43;`)&#34;,
@@ -1685,6 +1764,11 @@
       {
         &#34;Expression&#34;: &#34;regexp.MustCompile(`\\s{2,}`)&#34;,
         &#34;Name&#34;: &#34;InfluxdbTagValueCharFilter&#34;
+      },
+      {
+        &#34;Expression&#34;: &#34;`sysfact.yaml`&#34;,
+        &#34;Name&#34;: &#34;OptionsFile&#34;,
+        &#34;Value&#34;: &#34;sysfact.yaml&#34;
       },
       {
         &#34;Expression&#34;: &#34;`@`&#34;,
@@ -1751,26 +1835,26 @@
       &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact&#34;,
       &#34;CommentWordCount&#34;: 52,
       &#34;ConstantCount&#34;: 4,
-      &#34;FunctionCount&#34;: 14,
+      &#34;FunctionCount&#34;: 16,
       &#34;ImportPath&#34;: &#34;sysfact&#34;,
-      &#34;LineCount&#34;: 632,
+      &#34;LineCount&#34;: 780,
       &#34;MainFunction&#34;: false,
       &#34;Name&#34;: &#34;sysfact&#34;,
       &#34;ParentPackage&#34;: &#34;&#34;,
-      &#34;SourceLineCount&#34;: 491,
+      &#34;SourceLineCount&#34;: 605,
       &#34;Statistics&#34;: {
         &#34;GeometricMean&#34;: 0,
         &#34;HarmonicMean&#34;: 0,
         &#34;Maximum&#34;: 1,
-        &#34;Mean&#34;: 0.1324,
+        &#34;Mean&#34;: 0.1114,
         &#34;Median&#34;: 0,
         &#34;Minimum&#34;: 0,
-        &#34;StdDev&#34;: 0.3354
+        &#34;StdDev&#34;: 0.3113
       },
       &#34;Synopsis&#34;: &#34;&#34;,
-      &#34;TypeCount&#34;: 6,
+      &#34;TypeCount&#34;: 7,
       &#34;URL&#34;: &#34;https://github.com/ghetzel/sysfact&#34;,
-      &#34;VariableCount&#34;: 4
+      &#34;VariableCount&#34;: 5
     }
   ]
 }</pre>

@@ -7,15 +7,15 @@
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 52,
-    "LineCount": 632,
-    "SourceLineCount": 491,
-    "FunctionCount": 14,
-    "TypeCount": 6,
+    "LineCount": 780,
+    "SourceLineCount": 605,
+    "FunctionCount": 16,
+    "TypeCount": 7,
     "ConstantCount": 4,
-    "VariableCount": 4,
+    "VariableCount": 5,
     "Statistics": {
-        "Mean": 0.1324,
-        "StdDev": 0.3354,
+        "Mean": 0.1114,
+        "StdDev": 0.3113,
         "GeometricMean": 0,
         "HarmonicMean": 0,
         "Median": 0,
@@ -67,6 +67,10 @@
                     "Alias": "convutil"
                 },
                 {
+                    "PackageName": "github.com/ghetzel/go-stockutil/executil",
+                    "Alias": "executil"
+                },
+                {
                     "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
                     "Alias": "fileutil"
                 },
@@ -85,15 +89,19 @@
                 {
                     "PackageName": "github.com/mcuadros/go-defaults",
                     "Alias": "go-defaults"
+                },
+                {
+                    "PackageName": "gopkg.in/yaml.v2",
+                    "Alias": "yaml.v2"
                 }
             ],
-            "Size": 8174,
-            "LineCount": 325,
-            "SourceLineCount": 263,
-            "FunctionCount": 4,
-            "TypeCount": 1,
+            "Size": 11949,
+            "LineCount": 473,
+            "SourceLineCount": 377,
+            "FunctionCount": 6,
+            "TypeCount": 2,
             "ConstantCount": 0,
-            "VariableCount": 2
+            "VariableCount": 3
         },
         {
             "Name": "reporter.go",
@@ -216,8 +224,8 @@
         {
             "Name": "Version",
             "Immutable": true,
-            "Expression": "`0.7.1`",
-            "Value": "0.7.1"
+            "Expression": "`0.7.2`",
+            "Value": "0.7.2"
         }
     ],
     "Variables": [
@@ -228,6 +236,11 @@
         {
             "Name": "InfluxdbTagValueCharFilter",
             "Expression": "regexp.MustCompile(`\\s{2,}`)"
+        },
+        {
+            "Name": "OptionsFile",
+            "Expression": "`sysfact.yaml`",
+            "Value": "sysfact.yaml"
         },
         {
             "Name": "RenderAsTemplatePrefix",
@@ -257,7 +270,7 @@
                 }
             ],
             "Signature": "Render(basedir string, options *RenderOptions) error",
-            "Source": "ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciB2aXNpdGVkID0gbWFrZShtYXBbc3RyaW5nXWJvb2wpCgkJdmFyIHJlcG9ydCA9IG1hcHV0aWwuTShyKQoJCW9wdGlvbnMucmVwb3J0ID0gcgoJCWZvciBfLCBzcmNEaXJQYXR0ZXJuIDo9IHJhbmdlIGFwcGVuZChSZW5kZXJQYXR0ZXJucywgb3B0aW9ucy5BZGRpdGlvbmFsUGF0dGVybnMuLi4pIHsKCQkJdmFyIHNyY2RpciA9IHJlcG9ydC5TcHJpbnRmKHNyY0RpclBhdHRlcm4pCgkJCXNyY2RpciA9IGZpbGVwYXRoLkpvaW4oYmFzZWRpciwgc3JjZGlyKQoJCQlzcmNkaXIgPSBmaWxldXRpbC5NdXN0RXhwYW5kVXNlcihzcmNkaXIpCgkJCWlmIGZpbGV1dGlsLkRpckV4aXN0cyhzcmNkaXIpIHsKCQkJCWlmIF8sIHNlZW4gOj0gdmlzaXRlZFtzcmNkaXJdOyAhc2VlbiB7CgkJCQkJdmlzaXRlZFtzcmNkaXJdID0gdHJ1ZQoJCQkJCW9wdGlvbnMuU291cmNlRGlyID0gc3JjZGlyCgkJCQkJaWYgZXJyIDo9IHJlbmRlclRyZWUob3B0aW9ucyk7IGVyciAhPSBuaWwgewoJCQkJCQlyZXR1cm4gZXJyCgkJCQkJfQoJCQkJfQoJCQl9CgkJfQoJCXJldHVybiBuaWwKCX0gZWxzZSB7CgkJcmV0dXJuIGVycgoJfQp9",
+            "Source": "ewoJaWYgb3B0aW9ucyA9PSBuaWwgewoJCW9wdGlvbnMgPSBuZXcoUmVuZGVyT3B0aW9ucykKCX0KCWRlZmF1bHRzLlNldERlZmF1bHRzKG9wdGlvbnMpCglpZiByLCBlcnIgOj0gUmVwb3J0KCk7IGVyciA9PSBuaWwgewoJCXIsIF8gPSBtYXB1dGlsLkRpZmZ1c2VNYXAociwgYC5gKQoJCXZhciB2aXNpdGVkID0gbWFrZShtYXBbc3RyaW5nXWJvb2wpCgkJdmFyIHJlcG9ydCA9IG1hcHV0aWwuTShyKQoJCW9wdGlvbnMucmVwb3J0ID0gcgoJCWlmIGVyciA6PSBvcHRpb25zLmxvYWRGcm9tUm9vdERpcihiYXNlZGlyKTsgZXJyICE9IG5pbCB7CgkJCXJldHVybiBlcnIKCQl9CgkJZm9yIF8sIHNyY0RpclBhdHRlcm4gOj0gcmFuZ2UgYXBwZW5kKFJlbmRlclBhdHRlcm5zLCBvcHRpb25zLkFkZGl0aW9uYWxQYXR0ZXJucy4uLikgewoJCQl2YXIgc3JjZGlyID0gcmVwb3J0LlNwcmludGYoc3JjRGlyUGF0dGVybikKCQkJc3JjZGlyID0gZmlsZXBhdGguSm9pbihiYXNlZGlyLCBzcmNkaXIpCgkJCXNyY2RpciA9IGZpbGV1dGlsLk11c3RFeHBhbmRVc2VyKHNyY2RpcikKCQkJaWYgZmlsZXV0aWwuRGlyRXhpc3RzKHNyY2RpcikgewoJCQkJaWYgXywgc2VlbiA6PSB2aXNpdGVkW3NyY2Rpcl07ICFzZWVuIHsKCQkJCQl2aXNpdGVkW3NyY2Rpcl0gPSB0cnVlCgkJCQkJb3B0aW9ucy5Tb3VyY2VEaXIgPSBzcmNkaXIKCQkJCQlpZiBlcnIgOj0gcmVuZGVyVHJlZShvcHRpb25zKTsgZXJyICE9IG5pbCB7CgkJCQkJCXJldHVybiBlcnIKCQkJCQl9CgkJCQl9CgkJCX0KCQl9CgkJcmV0dXJuIG5pbAoJfSBlbHNlIHsKCQlyZXR1cm4gZXJyCgl9Cn0=",
             "IsPackageLevel": true
         },
         {
@@ -419,9 +432,13 @@
                 {
                     "Name": "AdditionalPatterns",
                     "Type": "[]string"
+                },
+                {
+                    "Name": "Triggers",
+                    "Type": "[]Trigger"
                 }
             ],
-            "Source": "dHlwZSBSZW5kZXJPcHRpb25zIHN0cnVjdCB7CglTb3VyY2VEaXIgICAgICAgICAgc3RyaW5nCglEZXN0RGlyICAgICAgICAgICAgc3RyaW5nIGBkZWZhdWx0OiJ+ImAKCURlZmF1bHREaXJNb2RlICAgICBpbnQgICAgYGRlZmF1bHQ6IjQ5MyJgCglEZWZhdWx0RmlsZU1vZGUgICAgaW50ICAgIGBkZWZhdWx0OiI0MjAiYAoJT3duZXIgICAgICAgICAgICAgIHN0cmluZwoJR3JvdXAgICAgICAgICAgICAgIHN0cmluZwoJRHJ5UnVuICAgICAgICAgICAgIGJvb2wKCUZvbGxvd1N5bWxpbmtzICAgICBib29sCglBZGRpdGlvbmFsUGF0dGVybnMgW11zdHJpbmcKCn0K",
+            "Source": "dHlwZSBSZW5kZXJPcHRpb25zIHN0cnVjdCB7CglTb3VyY2VEaXIgICAgICAgICAgc3RyaW5nICAgIGB5YW1sOiJzcmNkaXIiYAoJRGVzdERpciAgICAgICAgICAgIHN0cmluZyAgICBgeWFtbDoiZGVzdGRpciIgIGRlZmF1bHQ6In4iYAoJRGVmYXVsdERpck1vZGUgICAgIGludCAgICAgICBgeWFtbDoiZGlybW9kZSIgIGRlZmF1bHQ6IjQ5MyJgCglEZWZhdWx0RmlsZU1vZGUgICAgaW50ICAgICAgIGB5YW1sOiJmaWxlbW9kZSIgZGVmYXVsdDoiNDIwImAKCU93bmVyICAgICAgICAgICAgICBzdHJpbmcgICAgYHlhbWw6Im93bmVyImAKCUdyb3VwICAgICAgICAgICAgICBzdHJpbmcgICAgYHlhbWw6Imdyb3VwImAKCURyeVJ1biAgICAgICAgICAgICBib29sICAgICAgYHlhbWw6ImRyeXJ1biJgCglGb2xsb3dTeW1saW5rcyAgICAgYm9vbCAgICAgIGB5YW1sOiJmb2xsb3dfc3ltbGlua3MiYAoJQWRkaXRpb25hbFBhdHRlcm5zIFtdc3RyaW5nICBgeWFtbDoicGF0dGVybnMiYAoJVHJpZ2dlcnMgICAgICAgICAgIFtdVHJpZ2dlciBgeWFtbDoidHJpZ2dlcnMiYAoKfQo=",
             "HasUnexportedFields": true
         },
         "Reporter": {
@@ -509,6 +526,73 @@
             "Name": "ReporterKeyFormat",
             "MetaType": "int",
             "Source": "dHlwZSBSZXBvcnRlcktleUZvcm1hdCBpbnQ="
+        },
+        "Trigger": {
+            "Name": "Trigger",
+            "MetaType": "struct",
+            "Methods": [
+                {
+                    "Name": "Do",
+                    "ReceiverName": "self",
+                    "Arguments": [
+                        {
+                            "Name": "action",
+                            "Type": "string"
+                        },
+                        {
+                            "Name": "path",
+                            "Type": "string"
+                        },
+                        {
+                            "Name": "data",
+                            "Type": "map[string]interface{}"
+                        },
+                        {
+                            "Name": "logger",
+                            "Type": "logFunc"
+                        }
+                    ],
+                    "Returns": [
+                        {
+                            "Type": "error"
+                        }
+                    ],
+                    "Signature": "Do(action string, path string, data map[string]interface{}, logger logFunc) error",
+                    "IsPackageLevel": false
+                },
+                {
+                    "Name": "Should",
+                    "ReceiverName": "self",
+                    "Arguments": [
+                        {
+                            "Name": "action",
+                            "Type": "string"
+                        },
+                        {
+                            "Name": "path",
+                            "Type": "string"
+                        }
+                    ],
+                    "Returns": [
+                        {
+                            "Type": "bool"
+                        }
+                    ],
+                    "Signature": "Should(action string, path string) bool",
+                    "IsPackageLevel": false
+                }
+            ],
+            "Fields": [
+                {
+                    "Name": "On",
+                    "Type": "string"
+                },
+                {
+                    "Name": "Command",
+                    "Type": "string"
+                }
+            ],
+            "Source": "dHlwZSBUcmlnZ2VyIHN0cnVjdCB7CglPbiAgICAgIHN0cmluZyBgeWFtbDoib24iYAoJQ29tbWFuZCBzdHJpbmcgYHlhbWw6ImNvbW1hbmQiYAp9"
         },
         "Tuple": {
             "Name": "Tuple",

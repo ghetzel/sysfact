@@ -8,6 +8,7 @@ require (
 	github.com/ghodss/yaml v1.0.0
 	github.com/mattn/go-shellwords v1.0.9
 	github.com/mcuadros/go-defaults v1.1.0
+	gopkg.in/yaml.v2 v2.2.2
 )
 
 go 1.13

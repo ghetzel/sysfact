@@ -12,13 +12,16 @@ import (
 
 	"github.com/ghetzel/diecast"
 	"github.com/ghetzel/go-stockutil/convutil"
+	"github.com/ghetzel/go-stockutil/executil"
 	"github.com/ghetzel/go-stockutil/fileutil"
 	"github.com/ghetzel/go-stockutil/log"
 	"github.com/ghetzel/go-stockutil/maputil"
 	"github.com/ghetzel/go-stockutil/typeutil"
 	"github.com/mcuadros/go-defaults"
+	"gopkg.in/yaml.v2"
 )
 
+var OptionsFile = `sysfact.yaml`
 var RenderAsTemplatePrefix = `@`
 var RenderPatterns = []string{
 	`any/any`,
@@ -38,17 +41,148 @@ var RenderPatterns = []string{
 	`${uuid}`,
 }
 
+type logFunc func(format string, args ...interface{})
+
+type Trigger struct {
+	On      string `yaml:"on"`
+	Command string `yaml:"command"`
+}
+
+func (self Trigger) Should(action string, path string) bool {
+	switch self.On {
+	case `create`, `link`, `render`, `chmod`, `chown`:
+		if action == self.On {
+			return true
+		}
+	default:
+		if match, err := filepath.Match(self.On, path); err == nil && match {
+			return true
+		}
+	}
+
+	return false
+}
+
+func (self Trigger) Do(action string, path string, data map[string]interface{}, logger logFunc) error {
+	var report = maputil.M(data)
+	report.Set(`action`, action)
+	report.Set(`path`, path)
+
+	var cmd = self.Command
+	cmd = report.Sprintf(cmd)
+
+	var x = executil.ShellCommand(cmd)
+
+	x.OnStdout = func(line string, err bool) {
+		if logger != nil {
+			if err {
+				logger("  trig |            |          |   ${red}%s${reset}", line)
+			} else {
+				logger("  trig |            |          |   %s", line)
+			}
+		}
+	}
+
+	x.OnStderr = x.OnStdout
+
+	return x.Run()
+}
+
 type RenderOptions struct {
-	SourceDir          string
-	DestDir            string `default:"~"`
-	DefaultDirMode     int    `default:"493"`
-	DefaultFileMode    int    `default:"420"`
-	Owner              string
-	Group              string
-	DryRun             bool
-	FollowSymlinks     bool
-	AdditionalPatterns []string
+	SourceDir          string    `yaml:"srcdir"`
+	DestDir            string    `yaml:"destdir"  default:"~"`
+	DefaultDirMode     int       `yaml:"dirmode"  default:"493"`
+	DefaultFileMode    int       `yaml:"filemode" default:"420"`
+	Owner              string    `yaml:"owner"`
+	Group              string    `yaml:"group"`
+	DryRun             bool      `yaml:"dryrun"`
+	FollowSymlinks     bool      `yaml:"follow_symlinks"`
+	AdditionalPatterns []string  `yaml:"patterns"`
+	Triggers           []Trigger `yaml:"triggers"`
 	report             map[string]interface{}
+}
+
+func (self *RenderOptions) runTriggers(action string, pathVisited string) error {
+	for _, trigger := range self.Triggers {
+		if trigger.Should(action, pathVisited) {
+			self.log("  trig |            |          | %s -> %v", trigger.On, trigger.Command)
+
+			if err := trigger.Do(action, pathVisited, self.report, self.log); err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func (self *RenderOptions) loadFromRootDir(basedir string) error {
+	if err := self.loadOptionsFile(filepath.Join(basedir, OptionsFile)); err != nil {
+		return err
+	}
+
+	if len(self.report) > 0 {
+		var report = maputil.M(self.report)
+
+		for _, srcDirPattern := range append(RenderPatterns, self.AdditionalPatterns...) {
+			var optfile = report.Sprintf(srcDirPattern)
+			optfile = filepath.Join(basedir, optfile)
+			optfile = fileutil.MustExpandUser(optfile)
+			optfile = filepath.Join(optfile, OptionsFile)
+
+			if err := self.loadOptionsFile(optfile); err != nil {
+				return err
+			}
+		}
+	}
+
+	return nil
+}
+
+func (self *RenderOptions) loadOptionsFile(filename string) error {
+	if fileutil.FileExists(filename) {
+		if data, err := fileutil.ReadAll(filename); err == nil {
+			var loaded RenderOptions
+
+			if err := yaml.Unmarshal(data, &loaded); err == nil {
+				if loaded.DefaultDirMode > 0 {
+					self.DefaultDirMode = loaded.DefaultDirMode
+				}
+
+				if loaded.DefaultFileMode > 0 {
+					self.DefaultFileMode = loaded.DefaultFileMode
+				}
+
+				if loaded.Owner != `` {
+					self.Owner = loaded.Owner
+				}
+
+				if loaded.Group != `` {
+					self.Group = loaded.Group
+				}
+
+				if loaded.DryRun {
+					self.DryRun = loaded.DryRun
+				}
+
+				if loaded.FollowSymlinks {
+					self.FollowSymlinks = loaded.FollowSymlinks
+				}
+
+				self.AdditionalPatterns = append(self.AdditionalPatterns, loaded.AdditionalPatterns...)
+				self.Triggers = append(self.Triggers, loaded.Triggers...)
+
+				self.log("opts   |            |          | %v", filename)
+				return nil
+			} else {
+				return err
+			}
+		} else {
+			return err
+		}
+	} else {
+		return nil
+	}
 }
 
 func (self *RenderOptions) destPath(srcpath string) string {
@@ -169,6 +303,10 @@ func Render(basedir string, options *RenderOptions) error {
 
 		options.report = r
 
+		if err := options.loadFromRootDir(basedir); err != nil {
+			return err
+		}
+
 		for _, srcDirPattern := range append(RenderPatterns, options.AdditionalPatterns...) {
 			var srcdir = report.Sprintf(srcDirPattern)
 			srcdir = filepath.Join(basedir, srcdir)
@@ -179,6 +317,9 @@ func Render(basedir string, options *RenderOptions) error {
 				// and that we haven't already been here
 				if _, seen := visited[srcdir]; !seen {
 					visited[srcdir] = true
+
+					// if fileutil.FileExists(filepath.Join(srcdir, `sysfact.yaml`))
+
 					options.SourceDir = srcdir
 
 					if err := renderTree(options); err != nil {
@@ -216,6 +357,8 @@ func renderTree(options *RenderOptions) error {
 			return err
 		}
 	}
+
+	log.Infof("source |            |          | ${blue}%s/${reset}", strings.TrimSuffix(options.SourceDir, `/`))
 
 	// recursively walk all files in SourceDir, copying, rendering, and following as necessary.
 	if err := filepath.Walk(options.SourceDir, func(srcpath string, info os.FileInfo, err error) error {
@@ -271,8 +414,9 @@ func renderTree(options *RenderOptions) error {
 
 			if target, err := os.Readlink(srcpath); err == nil {
 				if err := os.Symlink(target, dstpath); err == nil {
-					options.log("%s | %v | %v -> %v", verb, mode, dstpath, target)
-					return nil
+					options.log("%s | %v |          | %v -> %v", verb, mode, dstpath, target)
+
+					return options.runTriggers(`link`, dstpath)
 				} else {
 					return err
 				}
@@ -283,7 +427,7 @@ func renderTree(options *RenderOptions) error {
 			defer source.Close()
 
 			if options.DryRun {
-				options.log("%s | %v | %v", verb, mode, dstpath)
+				options.log("%s | %v |          | %v", verb, mode, dstpath)
 			} else {
 				if fileutil.Exists(dstpath) {
 					if err := os.Remove(dstpath); err != nil {
@@ -297,9 +441,13 @@ func renderTree(options *RenderOptions) error {
 
 					// copy source buffer
 					if n, err := io.Copy(dest, source); err == nil {
-						options.log("%s | %v | %v (%v)", verb, mode, dstpath, convutil.Bytes(n))
+						options.log("%s | %v | % 8v | %v", verb, mode, convutil.Bytes(n), dstpath)
 						dest.Close()
 						source.Close()
+
+						if err := options.runTriggers(strings.TrimSpace(verb), dstpath); err != nil {
+							return err
+						}
 					} else {
 						return err
 					}

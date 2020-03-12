@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.7.1
+                            v0.7.2
                         </li>
                     </ul>
                     
@@ -93,7 +93,7 @@
 	</span>
 </div>
 
-<span class="pull-right">Doc Coverage: 13%</span>
+<span class="pull-right">Doc Coverage: 11%</span>
 <h2 id="pkg-overview">package sysfact</h2>
 
 <p>
@@ -257,6 +257,48 @@
 	</li>
 	
     <li>
+		<a href="#Trigger">type Trigger</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#Trigger.Do">
+					func
+					(self Trigger)
+					Do(action string, path string, data map[string]interface{}, logger logFunc) error
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#Trigger.Should">
+					func
+					(self Trigger)
+					Should(action string, path string) bool
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
 		<a href="#Tuple">type Tuple</a>
 
 		
@@ -307,12 +349,12 @@
 			<a href="render.go">render.go</a>
 			
 		</td>
-		<td class="text-right">8KB</td>
-		<td class="text-right">263</td>
-		<td class="text-right">4</td>
-		<td class="text-right">1</td>
-		<td class="text-right"></td>
+		<td class="text-right">12KB</td>
+		<td class="text-right">377</td>
+		<td class="text-right">6</td>
 		<td class="text-right">2</td>
+		<td class="text-right"></td>
+		<td class="text-right">3</td>
 	</tr>
 	
 	<tr>
@@ -388,7 +430,7 @@
 const <span id="FormatCamelize">FormatCamelize  </span> = 
 const <span id="FormatPascalize">FormatPascalize </span> = 
 const <span id="FormatUnderscore">FormatUnderscore</span> = iota
-const <span id="Version">Version         </span> = `0.7.1`
+const <span id="Version">Version         </span> = `0.7.2`
 </pre>
 </div>
 
@@ -405,6 +447,7 @@ const <span id="Version">Version         </span> = `0.7.1`
 	<pre>
 var <span id="InfluxdbTagValueCharCompress">InfluxdbTagValueCharCompress</span> = regexp.MustCompile(`[\s,]&#43;`)
 var <span id="InfluxdbTagValueCharFilter">InfluxdbTagValueCharFilter  </span> = regexp.MustCompile(`\s{2,}`)
+var <span id="OptionsFile">OptionsFile                 </span> = `sysfact.yaml`
 var <span id="RenderAsTemplatePrefix">RenderAsTemplatePrefix      </span> = `@`
 var <span id="RenderPatterns">RenderPatterns              </span> = 
 </pre>
@@ -505,15 +548,16 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 	
 	
 	<pre>type RenderOptions struct {
-	SourceDir          string
-	DestDir            string `default:&#34;~&#34;`
-	DefaultDirMode     int    `default:&#34;493&#34;`
-	DefaultFileMode    int    `default:&#34;420&#34;`
-	Owner              string
-	Group              string
-	DryRun             bool
-	FollowSymlinks     bool
-	AdditionalPatterns []string
+	SourceDir          string    `yaml:&#34;srcdir&#34;`
+	DestDir            string    `yaml:&#34;destdir&#34;  default:&#34;~&#34;`
+	DefaultDirMode     int       `yaml:&#34;dirmode&#34;  default:&#34;493&#34;`
+	DefaultFileMode    int       `yaml:&#34;filemode&#34; default:&#34;420&#34;`
+	Owner              string    `yaml:&#34;owner&#34;`
+	Group              string    `yaml:&#34;group&#34;`
+	DryRun             bool      `yaml:&#34;dryrun&#34;`
+	FollowSymlinks     bool      `yaml:&#34;follow_symlinks&#34;`
+	AdditionalPatterns []string  `yaml:&#34;patterns&#34;`
+	Triggers           []Trigger `yaml:&#34;triggers&#34;`
   // contains filtered or unexported fields
 }</pre>
 </div>
@@ -654,6 +698,62 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 
 
 
+
+
+
+
+<h3 id="Trigger" data-kind="t">
+	type
+	<a title="View Source" href="">Trigger</a>
+	<a class="permalink" href="#Trigger">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type Trigger struct {
+	On      string `yaml:&#34;on&#34;`
+	Command string `yaml:&#34;command&#34;`
+}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="Trigger.Do" data-kind="f">
+	func
+	(self Trigger)
+	<a title="View Source" href="">Do</a>
+	<a class="permalink" href="#Do">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Trigger) Do(action string, path string, data map[string]interface{}, logger logFunc) error</pre>
+</div>
+
+
+
+
+<h4 id="Trigger.Should" data-kind="f">
+	func
+	(self Trigger)
+	<a title="View Source" href="">Should</a>
+	<a class="permalink" href="#Should">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Trigger) Should(action string, path string) bool</pre>
+</div>
 
 
 
