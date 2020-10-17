@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.7.2
+                            v0.7.3
                         </li>
                     </ul>
                     
@@ -202,6 +202,62 @@
 					func
 					(self CPU)
 					Collect() map[string]interface{}
+				</a>
+				
+			</li>
+			
+			
+		</ul>
+		
+	</li>
+	
+    <li>
+		<a href="#CPUStats">type CPUStats</a>
+
+		
+		
+		<ul>
+			
+			
+			
+			
+			
+			
+			
+
+			
+			
+			
+			<li>
+				
+				<a href="#CPUStats.Active">
+					func
+					(self *CPUStats)
+					Active(core int) int64
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#CPUStats.MaxCore">
+					func
+					(self *CPUStats)
+					MaxCore() int
+				</a>
+				
+			</li>
+			
+			
+			
+			<li>
+				
+				<a href="#CPUStats.Total">
+					func
+					(self *CPUStats)
+					Total(core int) sum int64
 				</a>
 				
 			</li>
@@ -514,10 +570,10 @@
 			<a href="cpu_linux.go">cpu_linux.go</a>
 			
 		</td>
-		<td class="text-right">2KB</td>
-		<td class="text-right">60</td>
-		<td class="text-right">1</td>
-		<td class="text-right">1</td>
+		<td class="text-right">6KB</td>
+		<td class="text-right">190</td>
+		<td class="text-right">4</td>
+		<td class="text-right">2</td>
 		<td class="text-right"></td>
 		<td class="text-right"></td>
 	</tr>
@@ -820,6 +876,8 @@
 	<a title="View Source" href="">&#182;</a>
 	
 	
+	
+	
 	<pre>type CPU struct{}</pre>
 </div>
 
@@ -858,6 +916,88 @@
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
 	<pre>func (self CPU) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
+<h3 id="CPUStats" data-kind="t">
+	type
+	<a title="View Source" href="">CPUStats</a>
+	<a class="permalink" href="#CPUStats">&#182;</a>
+</h3>
+
+<div class="decl" data-kind="d">
+	<a title="View Source" href="">&#182;</a>
+	
+	
+	<pre>type CPUStats struct {
+	User        map[int]int64
+	Nice        map[int]int64
+	System      map[int]int64
+	Idle        map[int]int64
+	IOWait      map[int]int64
+	IRQ         map[int]int64
+	SoftIRQ     map[int]int64
+	Steal       map[int]int64
+	Guest       map[int]int64
+	GuestNice   map[int]int64
+	CollectedAt time.Time
+}</pre>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h4 id="CPUStats.Active" data-kind="f">
+	func
+	(self *CPUStats)
+	<a title="View Source" href="">Active</a>
+	<a class="permalink" href="#Active">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self *CPUStats) Active(core int) int64</pre>
+</div>
+
+
+
+
+<h4 id="CPUStats.MaxCore" data-kind="f">
+	func
+	(self *CPUStats)
+	<a title="View Source" href="">MaxCore</a>
+	<a class="permalink" href="#MaxCore">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self *CPUStats) MaxCore() int</pre>
+</div>
+
+
+
+
+<h4 id="CPUStats.Total" data-kind="f">
+	func
+	(self *CPUStats)
+	<a title="View Source" href="">Total</a>
+	<a class="permalink" href="#Total">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self *CPUStats) Total(core int) sum int64</pre>
 </div>
 
 

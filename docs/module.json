@@ -1,7 +1,7 @@
 {
     "Metadata": {
         "Title": "sysfact",
-        "Version": "0.7.2",
+        "Version": "0.7.3",
         "GeneratorVersion": "0.0.3",
         "URL": "https://github.com/ghetzel/sysfact"
     },
@@ -15,10 +15,10 @@
             "Synopsis": "",
             "MainFunction": false,
             "CommentWordCount": 0,
-            "LineCount": 1107,
-            "SourceLineCount": 852,
-            "FunctionCount": 16,
-            "TypeCount": 16,
+            "LineCount": 1260,
+            "SourceLineCount": 982,
+            "FunctionCount": 19,
+            "TypeCount": 17,
             "ConstantCount": 0,
             "VariableCount": 0,
             "Statistics": {
@@ -308,8 +308,8 @@
             {
                 "Name": "Version",
                 "Immutable": true,
-                "Expression": "`0.7.2`",
-                "Value": "0.7.2"
+                "Expression": "`0.7.3`",
+                "Value": "0.7.3"
             }
         ],
         "Variables": [
@@ -787,10 +787,10 @@
                 "Synopsis": "",
                 "MainFunction": false,
                 "CommentWordCount": 0,
-                "LineCount": 1107,
-                "SourceLineCount": 852,
-                "FunctionCount": 16,
-                "TypeCount": 16,
+                "LineCount": 1260,
+                "SourceLineCount": 982,
+                "FunctionCount": 19,
+                "TypeCount": 17,
                 "ConstantCount": 0,
                 "VariableCount": 0,
                 "Statistics": {
@@ -851,8 +851,20 @@
                                 "Alias": "strings"
                             },
                             {
+                                "PackageName": "time",
+                                "Alias": "time"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                                "Alias": "fileutil"
+                            },
+                            {
                                 "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
                                 "Alias": "mathutil"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                                "Alias": "rxutil"
                             },
                             {
                                 "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
@@ -863,11 +875,11 @@
                                 "Alias": "typeutil"
                             }
                         ],
-                        "Size": 1929,
-                        "LineCount": 75,
-                        "SourceLineCount": 60,
-                        "FunctionCount": 1,
-                        "TypeCount": 1,
+                        "Size": 6272,
+                        "LineCount": 228,
+                        "SourceLineCount": 190,
+                        "FunctionCount": 4,
+                        "TypeCount": 2,
                         "ConstantCount": 0,
                         "VariableCount": 0
                     },
@@ -1382,7 +1394,110 @@
                                 "IsPackageLevel": false
                             }
                         ],
-                        "Source": "dHlwZSBDUFUgc3RydWN0e30="
+                        "Source": "dHlwZSBDUFUgc3RydWN0e30=",
+                        "HasUnexportedFields": true
+                    },
+                    "CPUStats": {
+                        "Name": "CPUStats",
+                        "MetaType": "struct",
+                        "Methods": [
+                            {
+                                "Name": "Active",
+                                "PointerReceiver": true,
+                                "ReceiverName": "self",
+                                "Arguments": [
+                                    {
+                                        "Name": "core",
+                                        "Type": "int"
+                                    }
+                                ],
+                                "Returns": [
+                                    {
+                                        "Type": "int64"
+                                    }
+                                ],
+                                "Signature": "Active(core int) int64",
+                                "IsPackageLevel": false
+                            },
+                            {
+                                "Name": "MaxCore",
+                                "PointerReceiver": true,
+                                "ReceiverName": "self",
+                                "Returns": [
+                                    {
+                                        "Type": "int"
+                                    }
+                                ],
+                                "Signature": "MaxCore() int",
+                                "IsPackageLevel": false
+                            },
+                            {
+                                "Name": "Total",
+                                "PointerReceiver": true,
+                                "ReceiverName": "self",
+                                "Arguments": [
+                                    {
+                                        "Name": "core",
+                                        "Type": "int"
+                                    }
+                                ],
+                                "Returns": [
+                                    {
+                                        "Name": "sum",
+                                        "Type": "int64"
+                                    }
+                                ],
+                                "Signature": "Total(core int) sum int64",
+                                "IsPackageLevel": false
+                            }
+                        ],
+                        "Fields": [
+                            {
+                                "Name": "User",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "Nice",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "System",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "Idle",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "IOWait",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "IRQ",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "SoftIRQ",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "Steal",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "Guest",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "GuestNice",
+                                "Type": "map[int]int64"
+                            },
+                            {
+                                "Name": "CollectedAt",
+                                "Type": "time.Time"
+                            }
+                        ],
+                        "Source": "dHlwZSBDUFVTdGF0cyBzdHJ1Y3QgewoJVXNlciAgICAgICAgbWFwW2ludF1pbnQ2NAoJTmljZSAgICAgICAgbWFwW2ludF1pbnQ2NAoJU3lzdGVtICAgICAgbWFwW2ludF1pbnQ2NAoJSWRsZSAgICAgICAgbWFwW2ludF1pbnQ2NAoJSU9XYWl0ICAgICAgbWFwW2ludF1pbnQ2NAoJSVJRICAgICAgICAgbWFwW2ludF1pbnQ2NAoJU29mdElSUSAgICAgbWFwW2ludF1pbnQ2NAoJU3RlYWwgICAgICAgbWFwW2ludF1pbnQ2NAoJR3Vlc3QgICAgICAgbWFwW2ludF1pbnQ2NAoJR3Vlc3ROaWNlICAgbWFwW2ludF1pbnQ2NAoJQ29sbGVjdGVkQXQgdGltZS5UaW1lCn0="
                     },
                     "Collector": {
                         "Name": "Collector",

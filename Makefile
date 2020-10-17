@@ -4,6 +4,7 @@ BIN         ?= sysfact
 
 .EXPORT_ALL_VARIABLES:
 GO111MODULE  = on
+CGO_ENABLED ?= 0
 
 all: deps fmt build docs
 

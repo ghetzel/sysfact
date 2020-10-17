@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.7.2
+                            v0.7.3
                         </li>
                     </ul>
                     
@@ -100,7 +100,7 @@
     &#34;GeneratorVersion&#34;: &#34;0.0.3&#34;,
     &#34;Title&#34;: &#34;sysfact&#34;,
     &#34;URL&#34;: &#34;https://github.com/ghetzel/sysfact&#34;,
-    &#34;Version&#34;: &#34;0.7.2&#34;
+    &#34;Version&#34;: &#34;0.7.3&#34;
   },
   &#34;Package&#34;: {
     &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact&#34;,
@@ -122,10 +122,10 @@
         &#34;Type&#34;: &#34;ReporterKeyFormat&#34;
       },
       {
-        &#34;Expression&#34;: &#34;`0.7.2`&#34;,
+        &#34;Expression&#34;: &#34;`0.7.3`&#34;,
         &#34;Immutable&#34;: true,
         &#34;Name&#34;: &#34;Version&#34;,
-        &#34;Value&#34;: &#34;0.7.2&#34;
+        &#34;Value&#34;: &#34;0.7.3&#34;
       }
     ],
     &#34;Files&#34;: [
@@ -426,7 +426,7 @@
           },
           {
             &#34;ConstantCount&#34;: 0,
-            &#34;FunctionCount&#34;: 1,
+            &#34;FunctionCount&#34;: 4,
             &#34;Imports&#34;: [
               {
                 &#34;Alias&#34;: &#34;fmt&#34;,
@@ -441,8 +441,20 @@
                 &#34;PackageName&#34;: &#34;strings&#34;
               },
               {
+                &#34;Alias&#34;: &#34;time&#34;,
+                &#34;PackageName&#34;: &#34;time&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;fileutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/fileutil&#34;
+              },
+              {
                 &#34;Alias&#34;: &#34;mathutil&#34;,
                 &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/mathutil&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;rxutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/rxutil&#34;
               },
               {
                 &#34;Alias&#34;: &#34;stringutil&#34;,
@@ -453,11 +465,11 @@
                 &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/typeutil&#34;
               }
             ],
-            &#34;LineCount&#34;: 75,
+            &#34;LineCount&#34;: 228,
             &#34;Name&#34;: &#34;cpu_linux.go&#34;,
-            &#34;Size&#34;: 1929,
-            &#34;SourceLineCount&#34;: 60,
-            &#34;TypeCount&#34;: 1,
+            &#34;Size&#34;: 6272,
+            &#34;SourceLineCount&#34;: 190,
+            &#34;TypeCount&#34;: 2,
             &#34;VariableCount&#34;: 0
           },
           {
@@ -889,7 +901,7 @@
             &#34;VariableCount&#34;: 0
           }
         ],
-        &#34;FunctionCount&#34;: 16,
+        &#34;FunctionCount&#34;: 19,
         &#34;Functions&#34;: [
           {
             &#34;Arguments&#34;: [
@@ -910,11 +922,11 @@
           }
         ],
         &#34;ImportPath&#34;: &#34;data&#34;,
-        &#34;LineCount&#34;: 1107,
+        &#34;LineCount&#34;: 1260,
         &#34;MainFunction&#34;: false,
         &#34;Name&#34;: &#34;data&#34;,
         &#34;ParentPackage&#34;: &#34;sysfact&#34;,
-        &#34;SourceLineCount&#34;: 852,
+        &#34;SourceLineCount&#34;: 982,
         &#34;Statistics&#34;: {
           &#34;GeometricMean&#34;: 0,
           &#34;HarmonicMean&#34;: 0,
@@ -925,7 +937,7 @@
           &#34;StdDev&#34;: 0
         },
         &#34;Synopsis&#34;: &#34;&#34;,
-        &#34;TypeCount&#34;: 16,
+        &#34;TypeCount&#34;: 17,
         &#34;Types&#34;: {
           &#34;BlockDevices&#34;: {
             &#34;Fields&#34;: [
@@ -963,6 +975,7 @@
             &#34;Source&#34;: &#34;dHlwZSBCbG9ja0RldmljZXMgc3RydWN0eyBCbG9ja0RldmljZVJvb3Qgc3RyaW5nIH0=&#34;
           },
           &#34;CPU&#34;: {
+            &#34;HasUnexportedFields&#34;: true,
             &#34;MetaType&#34;: &#34;struct&#34;,
             &#34;Methods&#34;: [
               {
@@ -990,6 +1003,108 @@
             ],
             &#34;Name&#34;: &#34;CPU&#34;,
             &#34;Source&#34;: &#34;dHlwZSBDUFUgc3RydWN0e30=&#34;
+          },
+          &#34;CPUStats&#34;: {
+            &#34;Fields&#34;: [
+              {
+                &#34;Name&#34;: &#34;User&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;Nice&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;System&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;Idle&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;IOWait&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;IRQ&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;SoftIRQ&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;Steal&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;Guest&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;GuestNice&#34;,
+                &#34;Type&#34;: &#34;map[int]int64&#34;
+              },
+              {
+                &#34;Name&#34;: &#34;CollectedAt&#34;,
+                &#34;Type&#34;: &#34;time.Time&#34;
+              }
+            ],
+            &#34;MetaType&#34;: &#34;struct&#34;,
+            &#34;Methods&#34;: [
+              {
+                &#34;Arguments&#34;: [
+                  {
+                    &#34;Name&#34;: &#34;core&#34;,
+                    &#34;Type&#34;: &#34;int&#34;
+                  }
+                ],
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Active&#34;,
+                &#34;PointerReceiver&#34;: true,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;int64&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Active(core int) int64&#34;
+              },
+              {
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;MaxCore&#34;,
+                &#34;PointerReceiver&#34;: true,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;int&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;MaxCore() int&#34;
+              },
+              {
+                &#34;Arguments&#34;: [
+                  {
+                    &#34;Name&#34;: &#34;core&#34;,
+                    &#34;Type&#34;: &#34;int&#34;
+                  }
+                ],
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Total&#34;,
+                &#34;PointerReceiver&#34;: true,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Name&#34;: &#34;sum&#34;,
+                    &#34;Type&#34;: &#34;int64&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Total(core int) sum int64&#34;
+              }
+            ],
+            &#34;Name&#34;: &#34;CPUStats&#34;,
+            &#34;Source&#34;: &#34;dHlwZSBDUFVTdGF0cyBzdHJ1Y3QgewoJVXNlciAgICAgICAgbWFwW2ludF1pbnQ2NAoJTmljZSAgICAgICAgbWFwW2ludF1pbnQ2NAoJU3lzdGVtICAgICAgbWFwW2ludF1pbnQ2NAoJSWRsZSAgICAgICAgbWFwW2ludF1pbnQ2NAoJSU9XYWl0ICAgICAgbWFwW2ludF1pbnQ2NAoJSVJRICAgICAgICAgbWFwW2ludF1pbnQ2NAoJU29mdElSUSAgICAgbWFwW2ludF1pbnQ2NAoJU3RlYWwgICAgICAgbWFwW2ludF1pbnQ2NAoJR3Vlc3QgICAgICAgbWFwW2ludF1pbnQ2NAoJR3Vlc3ROaWNlICAgbWFwW2ludF1pbnQ2NAoJQ29sbGVjdGVkQXQgdGltZS5UaW1lCn0=&#34;
           },
           &#34;Collector&#34;: {
             &#34;Name&#34;: &#34;Collector&#34;,
@@ -1785,13 +1900,13 @@
       &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact/data&#34;,
       &#34;CommentWordCount&#34;: 0,
       &#34;ConstantCount&#34;: 0,
-      &#34;FunctionCount&#34;: 16,
+      &#34;FunctionCount&#34;: 19,
       &#34;ImportPath&#34;: &#34;data&#34;,
-      &#34;LineCount&#34;: 1107,
+      &#34;LineCount&#34;: 1260,
       &#34;MainFunction&#34;: false,
       &#34;Name&#34;: &#34;data&#34;,
       &#34;ParentPackage&#34;: &#34;sysfact&#34;,
-      &#34;SourceLineCount&#34;: 852,
+      &#34;SourceLineCount&#34;: 982,
       &#34;Statistics&#34;: {
         &#34;GeometricMean&#34;: 0,
         &#34;HarmonicMean&#34;: 0,
@@ -1802,7 +1917,7 @@
         &#34;StdDev&#34;: 0
       },
       &#34;Synopsis&#34;: &#34;&#34;,
-      &#34;TypeCount&#34;: 16,
+      &#34;TypeCount&#34;: 17,
       &#34;URL&#34;: &#34;https://github.com/ghetzel/sysfact&#34;,
       &#34;VariableCount&#34;: 0
     },
