@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.7.3
+                            v0.7.4
                         </li>
                     </ul>
                     
@@ -97,10 +97,10 @@
 
 <pre>{
   &#34;Metadata&#34;: {
-    &#34;GeneratorVersion&#34;: &#34;0.0.3&#34;,
+    &#34;GeneratorVersion&#34;: &#34;0.0.7&#34;,
     &#34;Title&#34;: &#34;sysfact&#34;,
     &#34;URL&#34;: &#34;https://github.com/ghetzel/sysfact&#34;,
-    &#34;Version&#34;: &#34;0.7.3&#34;
+    &#34;Version&#34;: &#34;0.7.4&#34;
   },
   &#34;Package&#34;: {
     &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact&#34;,
@@ -122,10 +122,10 @@
         &#34;Type&#34;: &#34;ReporterKeyFormat&#34;
       },
       {
-        &#34;Expression&#34;: &#34;`0.7.3`&#34;,
+        &#34;Expression&#34;: &#34;`0.7.4`&#34;,
         &#34;Immutable&#34;: true,
         &#34;Name&#34;: &#34;Version&#34;,
-        &#34;Value&#34;: &#34;0.7.3&#34;
+        &#34;Value&#34;: &#34;0.7.4&#34;
       }
     ],
     &#34;Files&#34;: [
@@ -394,6 +394,46 @@
         &#34;Files&#34;: [
           {
             &#34;ConstantCount&#34;: 0,
+            &#34;FunctionCount&#34;: 3,
+            &#34;Imports&#34;: [
+              {
+                &#34;Alias&#34;: &#34;time&#34;,
+                &#34;PackageName&#34;: &#34;time&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;mathutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/mathutil&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;typeutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/typeutil&#34;
+              }
+            ],
+            &#34;LineCount&#34;: 98,
+            &#34;Name&#34;: &#34;cpu.go&#34;,
+            &#34;Size&#34;: 2664,
+            &#34;SourceLineCount&#34;: 82,
+            &#34;TypeCount&#34;: 1,
+            &#34;VariableCount&#34;: 0
+          },
+          {
+            &#34;ConstantCount&#34;: 0,
+            &#34;FunctionCount&#34;: 1,
+            &#34;Imports&#34;: [
+              {
+                &#34;Alias&#34;: &#34;strings&#34;,
+                &#34;PackageName&#34;: &#34;strings&#34;
+              }
+            ],
+            &#34;LineCount&#34;: 30,
+            &#34;Name&#34;: &#34;cpu_darwin.go&#34;,
+            &#34;Size&#34;: 629,
+            &#34;SourceLineCount&#34;: 18,
+            &#34;TypeCount&#34;: 1,
+            &#34;VariableCount&#34;: 0
+          },
+          {
+            &#34;ConstantCount&#34;: 0,
             &#34;FunctionCount&#34;: 1,
             &#34;Imports&#34;: [
               {
@@ -426,7 +466,7 @@
           },
           {
             &#34;ConstantCount&#34;: 0,
-            &#34;FunctionCount&#34;: 4,
+            &#34;FunctionCount&#34;: 1,
             &#34;Imports&#34;: [
               {
                 &#34;Alias&#34;: &#34;fmt&#34;,
@@ -465,11 +505,21 @@
                 &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/typeutil&#34;
               }
             ],
-            &#34;LineCount&#34;: 228,
+            &#34;LineCount&#34;: 140,
             &#34;Name&#34;: &#34;cpu_linux.go&#34;,
-            &#34;Size&#34;: 6272,
-            &#34;SourceLineCount&#34;: 190,
-            &#34;TypeCount&#34;: 2,
+            &#34;Size&#34;: 3769,
+            &#34;SourceLineCount&#34;: 115,
+            &#34;TypeCount&#34;: 1,
+            &#34;VariableCount&#34;: 0
+          },
+          {
+            &#34;ConstantCount&#34;: 0,
+            &#34;FunctionCount&#34;: 1,
+            &#34;LineCount&#34;: 30,
+            &#34;Name&#34;: &#34;disk_block_darwin.go&#34;,
+            &#34;Size&#34;: 1120,
+            &#34;SourceLineCount&#34;: 8,
+            &#34;TypeCount&#34;: 1,
             &#34;VariableCount&#34;: 0
           },
           {
@@ -537,6 +587,16 @@
             &#34;Name&#34;: &#34;disk_block_linux.go&#34;,
             &#34;Size&#34;: 1588,
             &#34;SourceLineCount&#34;: 46,
+            &#34;TypeCount&#34;: 1,
+            &#34;VariableCount&#34;: 0
+          },
+          {
+            &#34;ConstantCount&#34;: 0,
+            &#34;FunctionCount&#34;: 1,
+            &#34;LineCount&#34;: 11,
+            &#34;Name&#34;: &#34;disk_mounts_darwin.go&#34;,
+            &#34;Size&#34;: 147,
+            &#34;SourceLineCount&#34;: 7,
             &#34;TypeCount&#34;: 1,
             &#34;VariableCount&#34;: 0
           },
@@ -615,6 +675,34 @@
                 &#34;PackageName&#34;: &#34;time&#34;
               },
               {
+                &#34;Alias&#34;: &#34;log&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/log&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;rxutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/rxutil&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;typeutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/typeutil&#34;
+              }
+            ],
+            &#34;LineCount&#34;: 37,
+            &#34;Name&#34;: &#34;kernel_darwin.go&#34;,
+            &#34;Size&#34;: 870,
+            &#34;SourceLineCount&#34;: 28,
+            &#34;TypeCount&#34;: 1,
+            &#34;VariableCount&#34;: 0
+          },
+          {
+            &#34;ConstantCount&#34;: 0,
+            &#34;FunctionCount&#34;: 1,
+            &#34;Imports&#34;: [
+              {
+                &#34;Alias&#34;: &#34;time&#34;,
+                &#34;PackageName&#34;: &#34;time&#34;
+              },
+              {
                 &#34;Alias&#34;: &#34;rxutil&#34;,
                 &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/rxutil&#34;
               },
@@ -659,6 +747,34 @@
             &#34;Name&#34;: &#34;kernel_linux.go&#34;,
             &#34;Size&#34;: 850,
             &#34;SourceLineCount&#34;: 25,
+            &#34;TypeCount&#34;: 1,
+            &#34;VariableCount&#34;: 0
+          },
+          {
+            &#34;ConstantCount&#34;: 0,
+            &#34;FunctionCount&#34;: 1,
+            &#34;Imports&#34;: [
+              {
+                &#34;Alias&#34;: &#34;strings&#34;,
+                &#34;PackageName&#34;: &#34;strings&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;mathutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/mathutil&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;stringutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/stringutil&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;typeutil&#34;,
+                &#34;PackageName&#34;: &#34;github.com/ghetzel/go-stockutil/typeutil&#34;
+              }
+            ],
+            &#34;LineCount&#34;: 89,
+            &#34;Name&#34;: &#34;memory_darwin.go&#34;,
+            &#34;Size&#34;: 2602,
+            &#34;SourceLineCount&#34;: 48,
             &#34;TypeCount&#34;: 1,
             &#34;VariableCount&#34;: 0
           },
@@ -795,6 +911,30 @@
                 &#34;PackageName&#34;: &#34;runtime&#34;
               },
               {
+                &#34;Alias&#34;: &#34;whatmac&#34;,
+                &#34;PackageName&#34;: &#34;github.com/diegomagdaleno/whatmac&#34;
+              }
+            ],
+            &#34;LineCount&#34;: 29,
+            &#34;Name&#34;: &#34;os_darwin.go&#34;,
+            &#34;Size&#34;: 516,
+            &#34;SourceLineCount&#34;: 22,
+            &#34;TypeCount&#34;: 1,
+            &#34;VariableCount&#34;: 0
+          },
+          {
+            &#34;ConstantCount&#34;: 0,
+            &#34;FunctionCount&#34;: 1,
+            &#34;Imports&#34;: [
+              {
+                &#34;Alias&#34;: &#34;fmt&#34;,
+                &#34;PackageName&#34;: &#34;fmt&#34;
+              },
+              {
+                &#34;Alias&#34;: &#34;runtime&#34;,
+                &#34;PackageName&#34;: &#34;runtime&#34;
+              },
+              {
                 &#34;Alias&#34;: &#34;strings&#34;,
                 &#34;PackageName&#34;: &#34;strings&#34;
               }
@@ -901,7 +1041,7 @@
             &#34;VariableCount&#34;: 0
           }
         ],
-        &#34;FunctionCount&#34;: 19,
+        &#34;FunctionCount&#34;: 25,
         &#34;Functions&#34;: [
           {
             &#34;Arguments&#34;: [
@@ -922,11 +1062,11 @@
           }
         ],
         &#34;ImportPath&#34;: &#34;data&#34;,
-        &#34;LineCount&#34;: 1260,
+        &#34;LineCount&#34;: 1496,
         &#34;MainFunction&#34;: false,
         &#34;Name&#34;: &#34;data&#34;,
         &#34;ParentPackage&#34;: &#34;sysfact&#34;,
-        &#34;SourceLineCount&#34;: 982,
+        &#34;SourceLineCount&#34;: 1120,
         &#34;Statistics&#34;: {
           &#34;GeometricMean&#34;: 0,
           &#34;HarmonicMean&#34;: 0,
@@ -937,7 +1077,7 @@
           &#34;StdDev&#34;: 0
         },
         &#34;Synopsis&#34;: &#34;&#34;,
-        &#34;TypeCount&#34;: 17,
+        &#34;TypeCount&#34;: 23,
         &#34;Types&#34;: {
           &#34;BlockDevices&#34;: {
             &#34;Fields&#34;: [
@@ -969,6 +1109,17 @@
                   }
                 ],
                 &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
+              },
+              {
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Collect&#34;,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;map[string]interface{}&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
               }
             ],
             &#34;Name&#34;: &#34;BlockDevices&#34;,
@@ -978,6 +1129,17 @@
             &#34;HasUnexportedFields&#34;: true,
             &#34;MetaType&#34;: &#34;struct&#34;,
             &#34;Methods&#34;: [
+              {
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Collect&#34;,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;map[string]interface{}&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
+              },
               {
                 &#34;IsPackageLevel&#34;: false,
                 &#34;Name&#34;: &#34;Collect&#34;,
@@ -1152,6 +1314,17 @@
                   }
                 ],
                 &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
+              },
+              {
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Collect&#34;,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;map[string]interface{}&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
               }
             ],
             &#34;Name&#34;: &#34;Kernel&#34;,
@@ -1160,6 +1333,17 @@
           &#34;Memory&#34;: {
             &#34;MetaType&#34;: &#34;struct&#34;,
             &#34;Methods&#34;: [
+              {
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Collect&#34;,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;map[string]interface{}&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
+              },
               {
                 &#34;IsPackageLevel&#34;: false,
                 &#34;Name&#34;: &#34;Collect&#34;,
@@ -1210,6 +1394,17 @@
                   }
                 ],
                 &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
+              },
+              {
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Collect&#34;,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;map[string]interface{}&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
               }
             ],
             &#34;Name&#34;: &#34;Mounts&#34;,
@@ -1236,6 +1431,17 @@
           &#34;OS&#34;: {
             &#34;MetaType&#34;: &#34;struct&#34;,
             &#34;Methods&#34;: [
+              {
+                &#34;IsPackageLevel&#34;: false,
+                &#34;Name&#34;: &#34;Collect&#34;,
+                &#34;ReceiverName&#34;: &#34;self&#34;,
+                &#34;Returns&#34;: [
+                  {
+                    &#34;Type&#34;: &#34;map[string]interface{}&#34;
+                  }
+                ],
+                &#34;Signature&#34;: &#34;Collect() map[string]interface{}&#34;
+              },
               {
                 &#34;IsPackageLevel&#34;: false,
                 &#34;Name&#34;: &#34;Collect&#34;,
@@ -1900,13 +2106,13 @@
       &#34;CanonicalImportPath&#34;: &#34;github.com/ghetzel/sysfact/data&#34;,
       &#34;CommentWordCount&#34;: 0,
       &#34;ConstantCount&#34;: 0,
-      &#34;FunctionCount&#34;: 19,
+      &#34;FunctionCount&#34;: 25,
       &#34;ImportPath&#34;: &#34;data&#34;,
-      &#34;LineCount&#34;: 1260,
+      &#34;LineCount&#34;: 1496,
       &#34;MainFunction&#34;: false,
       &#34;Name&#34;: &#34;data&#34;,
       &#34;ParentPackage&#34;: &#34;sysfact&#34;,
-      &#34;SourceLineCount&#34;: 982,
+      &#34;SourceLineCount&#34;: 1120,
       &#34;Statistics&#34;: {
         &#34;GeometricMean&#34;: 0,
         &#34;HarmonicMean&#34;: 0,
@@ -1917,7 +2123,7 @@
         &#34;StdDev&#34;: 0
       },
       &#34;Synopsis&#34;: &#34;&#34;,
-      &#34;TypeCount&#34;: 17,
+      &#34;TypeCount&#34;: 23,
       &#34;URL&#34;: &#34;https://github.com/ghetzel/sysfact&#34;,
       &#34;VariableCount&#34;: 0
     },
@@ -1977,7 +2183,7 @@
         <div id="x-footer" class="clearfix">
             <div class="container">
                 
-                Generated by <i><a target="_blank" href="https://github.com/ghetzel/go-owndoc">go-owndoc</a></i> v0.0.3
+                Generated by <i><a target="_blank" href="https://github.com/ghetzel/go-owndoc">go-owndoc</a></i> v0.0.7
                 
 
                 <span class="pull-right">

@@ -7,10 +7,10 @@
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 0,
-    "LineCount": 1260,
-    "SourceLineCount": 982,
-    "FunctionCount": 19,
-    "TypeCount": 17,
+    "LineCount": 1496,
+    "SourceLineCount": 1120,
+    "FunctionCount": 25,
+    "TypeCount": 23,
     "ConstantCount": 0,
     "VariableCount": 0,
     "Statistics": {
@@ -23,6 +23,46 @@
         "Maximum": 0
     },
     "Files": [
+        {
+            "Name": "cpu.go",
+            "Imports": [
+                {
+                    "PackageName": "time",
+                    "Alias": "time"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                    "Alias": "mathutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 2664,
+            "LineCount": 98,
+            "SourceLineCount": 82,
+            "FunctionCount": 3,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "cpu_darwin.go",
+            "Imports": [
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                }
+            ],
+            "Size": 629,
+            "LineCount": 30,
+            "SourceLineCount": 18,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
         {
             "Name": "cpu_freebsd.go",
             "Imports": [
@@ -95,11 +135,21 @@
                     "Alias": "typeutil"
                 }
             ],
-            "Size": 6272,
-            "LineCount": 228,
-            "SourceLineCount": 190,
-            "FunctionCount": 4,
-            "TypeCount": 2,
+            "Size": 3769,
+            "LineCount": 140,
+            "SourceLineCount": 115,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "disk_block_darwin.go",
+            "Size": 1120,
+            "LineCount": 30,
+            "SourceLineCount": 8,
+            "FunctionCount": 1,
+            "TypeCount": 1,
             "ConstantCount": 0,
             "VariableCount": 0
         },
@@ -172,6 +222,16 @@
             "VariableCount": 0
         },
         {
+            "Name": "disk_mounts_darwin.go",
+            "Size": 147,
+            "LineCount": 11,
+            "SourceLineCount": 7,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
             "Name": "disk_mounts_freebsd.go",
             "Size": 1536,
             "LineCount": 51,
@@ -238,6 +298,34 @@
             "VariableCount": 0
         },
         {
+            "Name": "kernel_darwin.go",
+            "Imports": [
+                {
+                    "PackageName": "time",
+                    "Alias": "time"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/log",
+                    "Alias": "log"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                    "Alias": "rxutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 870,
+            "LineCount": 37,
+            "SourceLineCount": 28,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
             "Name": "kernel_freebsd.go",
             "Imports": [
                 {
@@ -288,6 +376,34 @@
             "Size": 850,
             "LineCount": 35,
             "SourceLineCount": 25,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "memory_darwin.go",
+            "Imports": [
+                {
+                    "PackageName": "strings",
+                    "Alias": "strings"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                    "Alias": "mathutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                },
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "Alias": "typeutil"
+                }
+            ],
+            "Size": 2602,
+            "LineCount": 89,
+            "SourceLineCount": 48,
             "FunctionCount": 1,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -408,6 +524,30 @@
             "Size": 2852,
             "LineCount": 107,
             "SourceLineCount": 86,
+            "FunctionCount": 1,
+            "TypeCount": 1,
+            "ConstantCount": 0,
+            "VariableCount": 0
+        },
+        {
+            "Name": "os_darwin.go",
+            "Imports": [
+                {
+                    "PackageName": "fmt",
+                    "Alias": "fmt"
+                },
+                {
+                    "PackageName": "runtime",
+                    "Alias": "runtime"
+                },
+                {
+                    "PackageName": "github.com/diegomagdaleno/whatmac",
+                    "Alias": "whatmac"
+                }
+            ],
+            "Size": 516,
+            "LineCount": 29,
+            "SourceLineCount": 22,
             "FunctionCount": 1,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -577,6 +717,17 @@
                     ],
                     "Signature": "Collect() map[string]interface{}",
                     "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
                 }
             ],
             "Fields": [
@@ -591,6 +742,17 @@
             "Name": "CPU",
             "MetaType": "struct",
             "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
                 {
                     "Name": "Collect",
                     "ReceiverName": "self",
@@ -766,6 +928,17 @@
                     ],
                     "Signature": "Collect() map[string]interface{}",
                     "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
                 }
             ],
             "Source": "dHlwZSBLZXJuZWwgc3RydWN0e30="
@@ -774,6 +947,17 @@
             "Name": "Memory",
             "MetaType": "struct",
             "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
                 {
                     "Name": "Collect",
                     "ReceiverName": "self",
@@ -824,6 +1008,17 @@
                     ],
                     "Signature": "Collect() map[string]interface{}",
                     "IsPackageLevel": false
+                },
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
                 }
             ],
             "Source": "dHlwZSBNb3VudHMgc3RydWN0e30="
@@ -850,6 +1045,17 @@
             "Name": "OS",
             "MetaType": "struct",
             "Methods": [
+                {
+                    "Name": "Collect",
+                    "ReceiverName": "self",
+                    "Returns": [
+                        {
+                            "Type": "map[string]interface{}"
+                        }
+                    ],
+                    "Signature": "Collect() map[string]interface{}",
+                    "IsPackageLevel": false
+                },
                 {
                     "Name": "Collect",
                     "ReceiverName": "self",

@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.7.3
+                            v0.7.4
                         </li>
                     </ul>
                     
@@ -138,7 +138,21 @@
 			
 			
 			
+			
+			
 
+			
+			
+			
+			<li>
+				
+				<a href="#BlockDevices.Collect">
+					func
+					(self BlockDevices)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
 			
 			
 			
@@ -180,7 +194,21 @@
 			
 			
 			
+			
+			
 
+			
+			
+			
+			<li>
+				
+				<a href="#CPU.Collect">
+					func
+					(self CPU)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
 			
 			
 			
@@ -313,7 +341,21 @@
 			
 			
 			
+			
+			
 
+			
+			
+			
+			<li>
+				
+				<a href="#Kernel.Collect">
+					func
+					(self Kernel)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
 			
 			
 			
@@ -355,7 +397,21 @@
 			
 			
 			
+			
+			
 
+			
+			
+			
+			<li>
+				
+				<a href="#Memory.Collect">
+					func
+					(self Memory)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
 			
 			
 			
@@ -397,7 +453,21 @@
 			
 			
 			
+			
+			
 
+			
+			
+			
+			<li>
+				
+				<a href="#Mounts.Collect">
+					func
+					(self Mounts)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
 			
 			
 			
@@ -467,7 +537,21 @@
 			
 			
 			
+			
+			
 
+			
+			
+			
+			<li>
+				
+				<a href="#OS.Collect">
+					func
+					(self OS)
+					Collect() map[string]interface{}
+				</a>
+				
+			</li>
 			
 			
 			
@@ -553,6 +637,34 @@
 	<tr>
 		<td class="text-left">
 			
+			<a href="cpu.go">cpu.go</a>
+			
+		</td>
+		<td class="text-right">3KB</td>
+		<td class="text-right">82</td>
+		<td class="text-right">3</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="cpu_darwin.go">cpu_darwin.go</a>
+			
+		</td>
+		<td class="text-right">629B</td>
+		<td class="text-right">18</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
 			<a href="cpu_freebsd.go">cpu_freebsd.go</a>
 			
 		</td>
@@ -570,10 +682,24 @@
 			<a href="cpu_linux.go">cpu_linux.go</a>
 			
 		</td>
-		<td class="text-right">6KB</td>
-		<td class="text-right">190</td>
-		<td class="text-right">4</td>
-		<td class="text-right">2</td>
+		<td class="text-right">4KB</td>
+		<td class="text-right">115</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="disk_block_darwin.go">disk_block_darwin.go</a>
+			
+		</td>
+		<td class="text-right">1KB</td>
+		<td class="text-right">8</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
 		<td class="text-right"></td>
 		<td class="text-right"></td>
 	</tr>
@@ -600,6 +726,20 @@
 		</td>
 		<td class="text-right">2KB</td>
 		<td class="text-right">46</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="disk_mounts_darwin.go">disk_mounts_darwin.go</a>
+			
+		</td>
+		<td class="text-right">147B</td>
+		<td class="text-right">7</td>
 		<td class="text-right">1</td>
 		<td class="text-right">1</td>
 		<td class="text-right"></td>
@@ -651,6 +791,20 @@
 	<tr>
 		<td class="text-left">
 			
+			<a href="kernel_darwin.go">kernel_darwin.go</a>
+			
+		</td>
+		<td class="text-right">870B</td>
+		<td class="text-right">28</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
 			<a href="kernel_freebsd.go">kernel_freebsd.go</a>
 			
 		</td>
@@ -670,6 +824,20 @@
 		</td>
 		<td class="text-right">850B</td>
 		<td class="text-right">25</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="memory_darwin.go">memory_darwin.go</a>
+			
+		</td>
+		<td class="text-right">3KB</td>
+		<td class="text-right">48</td>
 		<td class="text-right">1</td>
 		<td class="text-right">1</td>
 		<td class="text-right"></td>
@@ -726,6 +894,20 @@
 		</td>
 		<td class="text-right">3KB</td>
 		<td class="text-right">86</td>
+		<td class="text-right">1</td>
+		<td class="text-right">1</td>
+		<td class="text-right"></td>
+		<td class="text-right"></td>
+	</tr>
+	
+	<tr>
+		<td class="text-left">
+			
+			<a href="os_darwin.go">os_darwin.go</a>
+			
+		</td>
+		<td class="text-right">516B</td>
+		<td class="text-right">22</td>
 		<td class="text-right">1</td>
 		<td class="text-right">1</td>
 		<td class="text-right"></td>
@@ -836,6 +1018,23 @@
 
 
 
+
+
+<h4 id="BlockDevices.Collect" data-kind="f">
+	func
+	(self BlockDevices)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self BlockDevices) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
 <h4 id="BlockDevices.Collect" data-kind="f">
 	func
 	(self BlockDevices)
@@ -887,6 +1086,23 @@
 
 
 
+
+
+
+
+
+
+<h4 id="CPU.Collect" data-kind="f">
+	func
+	(self CPU)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self CPU) Collect() map[string]interface{}</pre>
+</div>
 
 
 
@@ -1081,6 +1297,23 @@
 
 
 
+
+
+<h4 id="Kernel.Collect" data-kind="f">
+	func
+	(self Kernel)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Kernel) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
 <h4 id="Kernel.Collect" data-kind="f">
 	func
 	(self Kernel)
@@ -1134,6 +1367,23 @@
 
 
 
+
+
+<h4 id="Memory.Collect" data-kind="f">
+	func
+	(self Memory)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Memory) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
 <h4 id="Memory.Collect" data-kind="f">
 	func
 	(self Memory)
@@ -1183,6 +1433,23 @@
 
 
 
+
+
+
+
+
+
+<h4 id="Mounts.Collect" data-kind="f">
+	func
+	(self Mounts)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self Mounts) Collect() map[string]interface{}</pre>
+</div>
 
 
 
@@ -1276,6 +1543,23 @@
 
 
 
+
+
+<h4 id="OS.Collect" data-kind="f">
+	func
+	(self OS)
+	<a title="View Source" href="">Collect</a>
+	<a class="permalink" href="#Collect">&#182;</a>
+</h4>
+
+<div class="funcdecl decl">
+	<a title="View Source" href="">&#10070;</a>
+	<pre>func (self OS) Collect() map[string]interface{}</pre>
+</div>
+
+
+
+
 <h4 id="OS.Collect" data-kind="f">
 	func
 	(self OS)
@@ -1350,7 +1634,7 @@
         <div id="x-footer" class="clearfix">
             <div class="container">
                 
-                Generated by <i><a target="_blank" href="https://github.com/ghetzel/go-owndoc">go-owndoc</a></i> v0.0.3
+                Generated by <i><a target="_blank" href="https://github.com/ghetzel/go-owndoc">go-owndoc</a></i> v0.0.7
                 
 
                 <span class="pull-right">

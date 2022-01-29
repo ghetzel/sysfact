@@ -23,7 +23,7 @@ test: fmt deps
 
 build: fmt
 	go build -o bin/$(BIN) ./cmd/sysfact
-	which sysfact && cp -v bin/sysfact `which sysfact` || true
+	which sysfact 2> /dev/null && cp -v bin/sysfact `which sysfact` || true
 
 binaries: fmt deps
 	GOOS=linux BIN=sysfact make build

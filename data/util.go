@@ -38,6 +38,17 @@ func normalize(in interface{}) interface{} {
 	}
 }
 
+// shell first non-empty
+func shellfne(cmdlines ...string) typeutil.Variant {
+	for _, cmdline := range cmdlines {
+		if v := shell(cmdline); strings.TrimSpace(v.String()) != `` {
+			return v
+		}
+	}
+
+	return typeutil.Nil()
+}
+
 func shell(cmdline string, values ...interface{}) typeutil.Variant {
 	if words, err := shellwords.Parse(fmt.Sprintf(cmdline, values...)); err == nil {
 		cmd := exec.Command(words[0], words[1:]...)
@@ -46,7 +57,7 @@ func shell(cmdline string, values ...interface{}) typeutil.Variant {
 			return typeutil.V(strings.TrimSpace(string(data)))
 		}
 	}
-	return typeutil.V(nil)
+	return typeutil.Nil()
 }
 
 func lines(cmdline string) []string {
@@ -57,7 +68,7 @@ func shellfl(cmdline string) typeutil.Variant {
 	if value := strings.TrimSpace(lines(cmdline)[0]); value != `` {
 		return typeutil.V(value)
 	} else {
-		return typeutil.V(nil)
+		return typeutil.Nil()
 	}
 }
 
@@ -66,7 +77,7 @@ func readvalue(path ...string) typeutil.Variant {
 		return typeutil.V(normalize(line))
 	}
 
-	return typeutil.V(nil)
+	return typeutil.Nil()
 }
 
 type Collector interface {
