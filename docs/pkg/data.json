@@ -7,8 +7,8 @@
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 0,
-    "LineCount": 1496,
-    "SourceLineCount": 1120,
+    "LineCount": 1544,
+    "SourceLineCount": 1159,
     "FunctionCount": 25,
     "TypeCount": 23,
     "ConstantCount": 0,
@@ -545,9 +545,9 @@
                     "Alias": "whatmac"
                 }
             ],
-            "Size": 516,
-            "LineCount": 29,
-            "SourceLineCount": 22,
+            "Size": 611,
+            "LineCount": 30,
+            "SourceLineCount": 23,
             "FunctionCount": 1,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -611,9 +611,15 @@
         },
         {
             "Name": "system.go",
-            "Size": 1548,
-            "LineCount": 30,
-            "SourceLineCount": 25,
+            "Imports": [
+                {
+                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "Alias": "stringutil"
+                }
+            ],
+            "Size": 2332,
+            "LineCount": 66,
+            "SourceLineCount": 55,
             "FunctionCount": 1,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -663,9 +669,9 @@
                     "Alias": "go-shellwords"
                 }
             ],
-            "Size": 2457,
-            "LineCount": 113,
-            "SourceLineCount": 91,
+            "Size": 2678,
+            "LineCount": 124,
+            "SourceLineCount": 99,
             "FunctionCount": 1,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -776,7 +782,7 @@
                     "IsPackageLevel": false
                 }
             ],
-            "Source": "dHlwZSBDUFUgc3RydWN0e30=",
+            "Source": "dHlwZSBDUFUgc3RydWN0IHsKCn0K",
             "HasUnexportedFields": true
         },
         "CPUStats": {
