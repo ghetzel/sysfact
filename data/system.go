@@ -1,7 +1,11 @@
 package data
 
 import (
+	"fmt"
+	"strings"
+
 	"github.com/ghetzel/go-stockutil/stringutil"
+	"github.com/ghetzel/go-stockutil/typeutil"
 )
 
 type System struct {
@@ -57,6 +61,34 @@ func (self System) Collect() map[string]interface{} {
 				out[`system.darwin.os_loader_version`] = v
 			case `Provisioning UDID`:
 				out[`system.darwin.provisioning_udid`] = v
+			}
+		}
+	}
+
+	if _, triplet := stringutil.SplitPairTrimSpace(
+		shellfl(`uptime`).String(),
+		`load average: `,
+	); triplet != `` {
+		triplet = strings.ReplaceAll(triplet, `,`, ``)
+		triplet = stringutil.SqueezeSpace(triplet)
+
+		var s1, s5, s15 string = stringutil.SplitTripleTrimSpace(triplet, ` `)
+
+		if typeutil.IsNumeric(s1) {
+			if typeutil.IsNumeric(s5) {
+				if typeutil.IsNumeric(s15) {
+					var f1 float64 = typeutil.Float(s1)
+					var f5 float64 = typeutil.Float(s5)
+					var f15 float64 = typeutil.Float(s15)
+
+					out[`system.load.last_1m`] = f1
+					out[`system.load.values.0`] = f1
+					out[`system.load.last_5m`] = f5
+					out[`system.load.values.1`] = f5
+					out[`system.load.last_15m`] = f15
+					out[`system.load.values.2`] = f15
+					out[`system.load.print`] = fmt.Sprintf("%.2f %.2f %.2f", f1, f5, f15)
+				}
 			}
 		}
 	}

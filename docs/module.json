@@ -15,8 +15,8 @@
             "Synopsis": "",
             "MainFunction": false,
             "CommentWordCount": 0,
-            "LineCount": 1544,
-            "SourceLineCount": 1159,
+            "LineCount": 1624,
+            "SourceLineCount": 1225,
             "FunctionCount": 25,
             "TypeCount": 23,
             "ConstantCount": 0,
@@ -787,8 +787,8 @@
                 "Synopsis": "",
                 "MainFunction": false,
                 "CommentWordCount": 0,
-                "LineCount": 1544,
-                "SourceLineCount": 1159,
+                "LineCount": 1624,
+                "SourceLineCount": 1225,
                 "FunctionCount": 25,
                 "TypeCount": 23,
                 "ConstantCount": 0,
@@ -833,11 +833,27 @@
                             {
                                 "PackageName": "strings",
                                 "Alias": "strings"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                                "Alias": "mathutil"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                                "Alias": "rxutil"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                                "Alias": "stringutil"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                                "Alias": "typeutil"
                             }
                         ],
-                        "Size": 629,
-                        "LineCount": 30,
-                        "SourceLineCount": 18,
+                        "Size": 1961,
+                        "LineCount": 78,
+                        "SourceLineCount": 57,
                         "FunctionCount": 1,
                         "TypeCount": 1,
                         "ConstantCount": 0,
@@ -1393,13 +1409,25 @@
                         "Name": "system.go",
                         "Imports": [
                             {
+                                "PackageName": "fmt",
+                                "Alias": "fmt"
+                            },
+                            {
+                                "PackageName": "strings",
+                                "Alias": "strings"
+                            },
+                            {
                                 "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
                                 "Alias": "stringutil"
+                            },
+                            {
+                                "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                                "Alias": "typeutil"
                             }
                         ],
-                        "Size": 2332,
-                        "LineCount": 66,
-                        "SourceLineCount": 55,
+                        "Size": 3225,
+                        "LineCount": 98,
+                        "SourceLineCount": 82,
                         "FunctionCount": 1,
                         "TypeCount": 1,
                         "ConstantCount": 0,
@@ -1562,7 +1590,7 @@
                                 "IsPackageLevel": false
                             }
                         ],
-                        "Source": "dHlwZSBDUFUgc3RydWN0IHsKCn0K",
+                        "Source": "dHlwZSBDUFUgc3RydWN0e30=",
                         "HasUnexportedFields": true
                     },
                     "CPUStats": {
