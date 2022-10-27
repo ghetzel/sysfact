@@ -1,14 +1,14 @@
 {
     "Name": "data",
-    "CanonicalImportPath": "github.com/ghetzel/sysfact/data",
+    "CanonicalImportPath": "gorthub.com/ghetzel/sysfact/data",
     "ImportPath": "data",
     "ParentPackage": "sysfact",
-    "URL": "https://github.com/ghetzel/sysfact",
+    "URL": "https://gorthub.com/ghetzel/sysfact.git",
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 0,
-    "LineCount": 1624,
-    "SourceLineCount": 1225,
+    "LineCount": 1613,
+    "SourceLineCount": 1216,
     "FunctionCount": 25,
     "TypeCount": 23,
     "ConstantCount": 0,
@@ -71,9 +71,9 @@
                     "Alias": "typeutil"
                 }
             ],
-            "Size": 1961,
-            "LineCount": 78,
-            "SourceLineCount": 57,
+            "Size": 1627,
+            "LineCount": 69,
+            "SourceLineCount": 50,
             "FunctionCount": 1,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -321,10 +321,6 @@
                     "Alias": "time"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/log",
-                    "Alias": "log"
-                },
-                {
                     "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
                     "Alias": "rxutil"
                 },
@@ -333,9 +329,9 @@
                     "Alias": "typeutil"
                 }
             ],
-            "Size": 870,
-            "LineCount": 37,
-            "SourceLineCount": 28,
+            "Size": 771,
+            "LineCount": 35,
+            "SourceLineCount": 26,
             "FunctionCount": 1,
             "TypeCount": 1,
             "ConstantCount": 0,
@@ -810,7 +806,7 @@
                     "IsPackageLevel": false
                 }
             ],
-            "Source": "dHlwZSBDUFUgc3RydWN0e30=",
+            "Source": "dHlwZSBDUFUgc3RydWN0IHsKCn0K",
             "HasUnexportedFields": true
         },
         "CPUStats": {

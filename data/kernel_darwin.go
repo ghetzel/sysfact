@@ -3,7 +3,6 @@ package data
 import (
 	"time"
 
-	"github.com/ghetzel/go-stockutil/log"
 	"github.com/ghetzel/go-stockutil/rxutil"
 	"github.com/ghetzel/go-stockutil/typeutil"
 )
@@ -18,7 +17,6 @@ func (self Kernel) Collect() map[string]interface{} {
 		`sec\s*=\s*(?P<epoch>\d+)`,
 		shell(`sysctl -n kern.boottime`).String(),
 	); m != nil {
-		log.Noticef("darwin: kern.boottime=%v", m.Group(`epoch`))
 		var uptime = time.Since(
 			time.Unix(typeutil.Int(m.Group(`epoch`)), 0),
 		).Round(time.Second)

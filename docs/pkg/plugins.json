@@ -1,9 +1,9 @@
 {
     "Name": "plugins",
-    "CanonicalImportPath": "github.com/ghetzel/sysfact/plugins",
+    "CanonicalImportPath": "gorthub.com/ghetzel/sysfact/plugins",
     "ImportPath": "plugins",
     "ParentPackage": "sysfact",
-    "URL": "https://github.com/ghetzel/sysfact",
+    "URL": "https://gorthub.com/ghetzel/sysfact.git",
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 0,
