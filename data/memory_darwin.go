@@ -3,16 +3,16 @@ package data
 import (
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/mathutil"
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
+	"go.gary.cool/go-stockutil/mathutil"
+	"go.gary.cool/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
 type Memory struct {
 }
 
-func (self Memory) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self Memory) Collect() map[string]any {
+	out := make(map[string]any)
 
 	var pgsz, total, swap, wired, active, inactive, free int64
 

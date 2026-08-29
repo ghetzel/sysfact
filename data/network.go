@@ -6,16 +6,16 @@ import (
 	"os"
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/fileutil"
-	"github.com/ghetzel/go-stockutil/netutil"
-	"github.com/ghetzel/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/netutil"
+	"go.gary.cool/go-stockutil/stringutil"
 )
 
 type Network struct {
 }
 
-func (self Network) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self Network) Collect() map[string]any {
+	out := make(map[string]any)
 
 	if hostname, err := os.Hostname(); err == nil {
 		out[`hostname`] = hostname

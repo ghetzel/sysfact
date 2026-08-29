@@ -5,15 +5,15 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
-	"github.com/ghetzel/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/fileutil"
 )
 
 type BlockDevices struct {
 	BlockDeviceRoot string
 }
 
-func (self BlockDevices) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self BlockDevices) Collect() map[string]any {
+	out := make(map[string]any)
 	devid := 0
 	root := `/sys/block`
 
@@ -38,11 +38,11 @@ func (self BlockDevices) Collect() map[string]interface{} {
 	return out
 }
 
-func (self BlockDevices) collectDevice(blockpath string) map[string]interface{} {
+func (self BlockDevices) collectDevice(blockpath string) map[string]any {
 	physical := readvalue(blockpath, `queue`, `physical_block_size`).Int()
 	logical := readvalue(blockpath, `queue`, `logical_block_size`).Int()
 
-	return map[string]interface{}{
+	return map[string]any{
 		`name`:               filepath.Base(blockpath),
 		`device`:             fmt.Sprintf("/dev/%s", filepath.Base(blockpath)),
 		`size`:               readvalue(blockpath, `size`).Int() * physical,

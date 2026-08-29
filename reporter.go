@@ -6,8 +6,8 @@ import (
 	"time"
 	"unicode"
 
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghetzel/sysfact/plugins"
+	"go.gary.cool/go-stockutil/stringutil"
+	"go.gary.cool/sysfact/plugins"
 )
 
 type ReporterKeyFormat int
@@ -48,8 +48,8 @@ func NewReporter(paths ...string) *Reporter {
 }
 
 // Generate and return the full report from all discovered plugins.
-func (self *Reporter) Report() (map[string]interface{}, error) {
-	outputData := make(map[string]interface{})
+func (self *Reporter) Report() (map[string]any, error) {
+	outputData := make(map[string]any)
 
 	//  collected_at is ALWAYS set
 	outputData[self.keyformat("collected_at")] = time.Now()
@@ -72,8 +72,8 @@ func (self *Reporter) Report() (map[string]interface{}, error) {
 }
 
 // Generates a report and retrieves the values of the given fields.
-func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error) {
-	filteredValues := make(map[string]interface{})
+func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map[string]any, error) {
+	filteredValues := make(map[string]any)
 	patterns := make([]*regexp.Regexp, 0)
 	antipatterns := make([]*regexp.Regexp, 0)
 
@@ -159,6 +159,6 @@ func (self *Reporter) keyformat(key string) string {
 }
 
 // Generate a system report using the default settings.
-func Report(paths ...string) (map[string]interface{}, error) {
+func Report(paths ...string) (map[string]any, error) {
 	return NewReporter(paths...).Report()
 }

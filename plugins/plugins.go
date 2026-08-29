@@ -2,7 +2,7 @@ package plugins
 
 type Observation struct {
 	Name  string
-	Value interface{}
+	Value any
 }
 
 type Plugin interface {

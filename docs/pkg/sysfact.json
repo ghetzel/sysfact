@@ -1,14 +1,14 @@
 {
     "Name": "sysfact",
-    "CanonicalImportPath": "gorthub.com/ghetzel/sysfact",
+    "CanonicalImportPath": "github.com/ghetzel/sysfact",
     "ImportPath": "sysfact",
     "ParentPackage": "",
-    "URL": "https://gorthub.com/ghetzel/sysfact.git",
+    "URL": "https://github.com/ghetzel/sysfact",
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 52,
     "LineCount": 780,
-    "SourceLineCount": 605,
+    "SourceLineCount": 604,
     "FunctionCount": 16,
     "TypeCount": 7,
     "ConstantCount": 4,
@@ -39,10 +39,6 @@
                     "Alias": "io"
                 },
                 {
-                    "PackageName": "io/ioutil",
-                    "Alias": "ioutil"
-                },
-                {
                     "PackageName": "os",
                     "Alias": "os"
                 },
@@ -59,45 +55,45 @@
                     "Alias": "strings"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/diecast",
+                    "PackageName": "github.com/mcuadros/go-defaults",
+                    "Alias": "go-defaults"
+                },
+                {
+                    "PackageName": "go.gary.cool/diecast",
                     "Alias": "diecast"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/convutil",
+                    "PackageName": "go.gary.cool/go-stockutil/convutil",
                     "Alias": "convutil"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/executil",
+                    "PackageName": "go.gary.cool/go-stockutil/executil",
                     "Alias": "executil"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                    "PackageName": "go.gary.cool/go-stockutil/fileutil",
                     "Alias": "fileutil"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/log",
+                    "PackageName": "go.gary.cool/go-stockutil/log",
                     "Alias": "log"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/maputil",
+                    "PackageName": "go.gary.cool/go-stockutil/maputil",
                     "Alias": "maputil"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                    "PackageName": "go.gary.cool/go-stockutil/typeutil",
                     "Alias": "typeutil"
-                },
-                {
-                    "PackageName": "github.com/mcuadros/go-defaults",
-                    "Alias": "go-defaults"
                 },
                 {
                     "PackageName": "gopkg.in/yaml.v2",
                     "Alias": "yaml.v2"
                 }
             ],
-            "Size": 11949,
+            "Size": 11843,
             "LineCount": 473,
-            "SourceLineCount": 377,
+            "SourceLineCount": 376,
             "FunctionCount": 6,
             "TypeCount": 2,
             "ConstantCount": 0,
@@ -123,15 +119,15 @@
                     "Alias": "unicode"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "PackageName": "go.gary.cool/go-stockutil/stringutil",
                     "Alias": "stringutil"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/sysfact/plugins",
+                    "PackageName": "go.gary.cool/sysfact/plugins",
                     "Alias": "plugins"
                 }
             ],
-            "Size": 3820,
+            "Size": 3768,
             "LineCount": 165,
             "SourceLineCount": 121,
             "FunctionCount": 4,
@@ -147,11 +143,11 @@
                     "Alias": "strings"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/maputil",
+                    "PackageName": "go.gary.cool/go-stockutil/maputil",
                     "Alias": "maputil"
                 }
             ],
-            "Size": 889,
+            "Size": 851,
             "LineCount": 54,
             "SourceLineCount": 40,
             "FunctionCount": 5,
@@ -189,15 +185,15 @@
                     "Alias": "time"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/maputil",
+                    "PackageName": "go.gary.cool/go-stockutil/maputil",
                     "Alias": "maputil"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                    "PackageName": "go.gary.cool/go-stockutil/stringutil",
                     "Alias": "stringutil"
                 }
             ],
-            "Size": 1894,
+            "Size": 1874,
             "LineCount": 84,
             "SourceLineCount": 65,
             "FunctionCount": 1,
@@ -224,8 +220,8 @@
         {
             "Name": "Version",
             "Immutable": true,
-            "Expression": "`0.8.2`",
-            "Value": "0.8.2"
+            "Expression": "`0.9.0`",
+            "Value": "0.9.0"
         }
     ],
     "Variables": [
@@ -279,7 +275,7 @@
             "Arguments": [
                 {
                     "Name": "data",
-                    "Type": "map[string]interface{}"
+                    "Type": "map[string]any"
                 },
                 {
                     "Name": "template",
@@ -294,7 +290,7 @@
                     "Type": "error"
                 }
             ],
-            "Signature": "RenderString(data map[string]interface{}, template string) (string, error)",
+            "Signature": "RenderString(data map[string]any, template string) (string, error)",
             "Source": "ewoJaWYgcmVuZGVyZWQsIGVyciA6PSBkaWVjYXN0LkV2YWxJbmxpbmUodGVtcGxhdGUsIGRhdGEsIG5pbCk7IGVyciA9PSBuaWwgewoJCXJldHVybiByZW5kZXJlZCwgbmlsCgl9IGVsc2UgewoJCXJldHVybiBgYCwgZm10LkVycm9yZigicmVuZGVyIHRlbXBsYXRlOiAldiIsIGVycikKCX0KfQ==",
             "IsPackageLevel": true
         },
@@ -309,13 +305,13 @@
             ],
             "Returns": [
                 {
-                    "Type": "map[string]interface{}"
+                    "Type": "map[string]any"
                 },
                 {
                     "Type": "error"
                 }
             ],
-            "Signature": "Report(paths ...string) (map[string]interface{}, error)",
+            "Signature": "Report(paths ...string) (map[string]any, error)",
             "Source": "ewoJcmV0dXJuIE5ld1JlcG9ydGVyKHBhdGhzLi4uKS5SZXBvcnQoKQp9",
             "IsPackageLevel": true
         }
@@ -334,7 +330,7 @@
                         },
                         {
                             "Name": "tags",
-                            "Type": "map[string]interface{}"
+                            "Type": "map[string]any"
                         },
                         {
                             "Name": "now",
@@ -349,7 +345,7 @@
                             "Type": "error"
                         }
                     ],
-                    "Signature": "Generate(series TupleSet, tags map[string]interface{}, now *time.Time) (string, error)",
+                    "Signature": "Generate(series TupleSet, tags map[string]any, now *time.Time) (string, error)",
                     "IsPackageLevel": false
                 }
             ],
@@ -462,13 +458,13 @@
                     ],
                     "Returns": [
                         {
-                            "Type": "map[string]interface{}"
+                            "Type": "map[string]any"
                         },
                         {
                             "Type": "error"
                         }
                     ],
-                    "Signature": "GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error)",
+                    "Signature": "GetReportValues(fields []string, skipFields []string) (map[string]any, error)",
                     "IsPackageLevel": false
                 },
                 {
@@ -496,13 +492,13 @@
                     "ReceiverName": "self",
                     "Returns": [
                         {
-                            "Type": "map[string]interface{}"
+                            "Type": "map[string]any"
                         },
                         {
                             "Type": "error"
                         }
                     ],
-                    "Signature": "Report() (map[string]interface{}, error)",
+                    "Signature": "Report() (map[string]any, error)",
                     "IsPackageLevel": false
                 }
             ],
@@ -545,7 +541,7 @@
                         },
                         {
                             "Name": "data",
-                            "Type": "map[string]interface{}"
+                            "Type": "map[string]any"
                         },
                         {
                             "Name": "logger",
@@ -557,7 +553,7 @@
                             "Type": "error"
                         }
                     ],
-                    "Signature": "Do(action string, path string, data map[string]interface{}, logger logFunc) error",
+                    "Signature": "Do(action string, path string, data map[string]any, logger logFunc) error",
                     "IsPackageLevel": false
                 },
                 {
@@ -604,7 +600,7 @@
                 },
                 {
                     "Name": "Value",
-                    "Type": "interface{}"
+                    "Type": "any"
                 },
                 {
                     "Name": "NormalizedKey",
@@ -612,10 +608,10 @@
                 },
                 {
                     "Name": "Tags",
-                    "Type": "map[string]interface{}"
+                    "Type": "map[string]any"
                 }
             ],
-            "Source": "dHlwZSBUdXBsZSBzdHJ1Y3QgewoJS2V5ICAgICAgICAgICBzdHJpbmcKCVZhbHVlICAgICAgICAgaW50ZXJmYWNle30KCU5vcm1hbGl6ZWRLZXkgc3RyaW5nCglUYWdzICAgICAgICAgIG1hcFtzdHJpbmddaW50ZXJmYWNle30KfQ=="
+            "Source": "dHlwZSBUdXBsZSBzdHJ1Y3QgewoJS2V5ICAgICAgICAgICBzdHJpbmcKCVZhbHVlICAgICAgICAgYW55CglOb3JtYWxpemVkS2V5IHN0cmluZwoJVGFncyAgICAgICAgICBtYXBbc3RyaW5nXWFueQp9"
         },
         "TupleSet": {
             "Name": "TupleSet",
@@ -683,10 +679,10 @@
                     ],
                     "Returns": [
                         {
-                            "Type": "map[string]interface{}"
+                            "Type": "map[string]any"
                         }
                     ],
-                    "Signature": "ToMap(flat bool) map[string]interface{}",
+                    "Signature": "ToMap(flat bool) map[string]any",
                     "IsPackageLevel": false
                 }
             ],
@@ -696,15 +692,15 @@
     "Packages": [
         {
             "Name": "data",
-            "CanonicalImportPath": "gorthub.com/ghetzel/sysfact/data",
+            "CanonicalImportPath": "github.com/ghetzel/sysfact/data",
             "ImportPath": "data",
             "ParentPackage": "sysfact",
-            "URL": "https://gorthub.com/ghetzel/sysfact.git",
+            "URL": "https://github.com/ghetzel/sysfact",
             "Synopsis": "",
             "MainFunction": false,
             "CommentWordCount": 0,
-            "LineCount": 1613,
-            "SourceLineCount": 1216,
+            "LineCount": 1601,
+            "SourceLineCount": 1206,
             "FunctionCount": 25,
             "TypeCount": 23,
             "ConstantCount": 0,
@@ -727,15 +723,15 @@
                             "Alias": "time"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/mathutil",
                             "Alias": "mathutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 2664,
+                    "Size": 2636,
                     "LineCount": 98,
                     "SourceLineCount": 82,
                     "FunctionCount": 3,
@@ -751,23 +747,23 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/mathutil",
                             "Alias": "mathutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                            "PackageName": "go.gary.cool/go-stockutil/rxutil",
                             "Alias": "rxutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 1627,
+                    "Size": 1587,
                     "LineCount": 69,
                     "SourceLineCount": 50,
                     "FunctionCount": 1,
@@ -787,19 +783,19 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/mathutil",
                             "Alias": "mathutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 1144,
+                    "Size": 1110,
                     "LineCount": 45,
                     "SourceLineCount": 34,
                     "FunctionCount": 1,
@@ -827,27 +823,27 @@
                             "Alias": "time"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                            "PackageName": "go.gary.cool/go-stockutil/fileutil",
                             "Alias": "fileutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/mathutil",
                             "Alias": "mathutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                            "PackageName": "go.gary.cool/go-stockutil/rxutil",
                             "Alias": "rxutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 3769,
+                    "Size": 3723,
                     "LineCount": 140,
                     "SourceLineCount": 115,
                     "FunctionCount": 1,
@@ -857,7 +853,7 @@
                 },
                 {
                     "Name": "disk_block_darwin.go",
-                    "Size": 1120,
+                    "Size": 1088,
                     "LineCount": 30,
                     "SourceLineCount": 8,
                     "FunctionCount": 1,
@@ -889,15 +885,15 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/log",
+                            "PackageName": "go.gary.cool/go-stockutil/log",
                             "Alias": "log"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 3781,
+                    "Size": 3737,
                     "LineCount": 136,
                     "SourceLineCount": 116,
                     "FunctionCount": 1,
@@ -921,11 +917,11 @@
                             "Alias": "filepath"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                            "PackageName": "go.gary.cool/go-stockutil/fileutil",
                             "Alias": "fileutil"
                         }
                     ],
-                    "Size": 1588,
+                    "Size": 1550,
                     "LineCount": 58,
                     "SourceLineCount": 46,
                     "FunctionCount": 1,
@@ -935,7 +931,7 @@
                 },
                 {
                     "Name": "disk_mounts_darwin.go",
-                    "Size": 147,
+                    "Size": 131,
                     "LineCount": 11,
                     "SourceLineCount": 7,
                     "FunctionCount": 1,
@@ -945,7 +941,7 @@
                 },
                 {
                     "Name": "disk_mounts_freebsd.go",
-                    "Size": 1536,
+                    "Size": 1520,
                     "LineCount": 51,
                     "SourceLineCount": 7,
                     "FunctionCount": 1,
@@ -965,15 +961,15 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                            "PackageName": "go.gary.cool/go-stockutil/fileutil",
                             "Alias": "fileutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 1556,
+                    "Size": 1528,
                     "LineCount": 59,
                     "SourceLineCount": 46,
                     "FunctionCount": 1,
@@ -993,15 +989,15 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 1225,
+                    "Size": 1197,
                     "LineCount": 54,
                     "SourceLineCount": 40,
                     "FunctionCount": 1,
@@ -1017,15 +1013,15 @@
                             "Alias": "time"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                            "PackageName": "go.gary.cool/go-stockutil/rxutil",
                             "Alias": "rxutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 771,
+                    "Size": 743,
                     "LineCount": 35,
                     "SourceLineCount": 26,
                     "FunctionCount": 1,
@@ -1041,15 +1037,15 @@
                             "Alias": "time"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                            "PackageName": "go.gary.cool/go-stockutil/rxutil",
                             "Alias": "rxutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 765,
+                    "Size": 737,
                     "LineCount": 35,
                     "SourceLineCount": 26,
                     "FunctionCount": 1,
@@ -1069,19 +1065,19 @@
                             "Alias": "time"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                            "PackageName": "go.gary.cool/go-stockutil/fileutil",
                             "Alias": "fileutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 850,
+                    "Size": 816,
                     "LineCount": 35,
                     "SourceLineCount": 25,
                     "FunctionCount": 1,
@@ -1097,19 +1093,19 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/mathutil",
                             "Alias": "mathutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 2602,
+                    "Size": 2568,
                     "LineCount": 89,
                     "SourceLineCount": 48,
                     "FunctionCount": 1,
@@ -1121,11 +1117,11 @@
                     "Name": "memory_freebsd.go",
                     "Imports": [
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/mathutil",
                             "Alias": "mathutil"
                         }
                     ],
-                    "Size": 1158,
+                    "Size": 1136,
                     "LineCount": 39,
                     "SourceLineCount": 30,
                     "FunctionCount": 1,
@@ -1145,19 +1141,19 @@
                             "Alias": "go-humanize"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                            "PackageName": "go.gary.cool/go-stockutil/fileutil",
                             "Alias": "fileutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/mathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/mathutil",
                             "Alias": "mathutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         }
                     ],
-                    "Size": 1523,
+                    "Size": 1489,
                     "LineCount": 68,
                     "SourceLineCount": 54,
                     "FunctionCount": 1,
@@ -1181,15 +1177,15 @@
                             "Alias": "go-humanize"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 3242,
+                    "Size": 3222,
                     "LineCount": 133,
                     "SourceLineCount": 112,
                     "FunctionCount": 0,
@@ -1217,19 +1213,19 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                            "PackageName": "go.gary.cool/go-stockutil/fileutil",
                             "Alias": "fileutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/netutil",
+                            "PackageName": "go.gary.cool/go-stockutil/netutil",
                             "Alias": "netutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         }
                     ],
-                    "Size": 2852,
+                    "Size": 2818,
                     "LineCount": 107,
                     "SourceLineCount": 86,
                     "FunctionCount": 1,
@@ -1253,7 +1249,7 @@
                             "Alias": "whatmac"
                         }
                     ],
-                    "Size": 611,
+                    "Size": 595,
                     "LineCount": 30,
                     "SourceLineCount": 23,
                     "FunctionCount": 1,
@@ -1277,7 +1273,7 @@
                             "Alias": "strings"
                         }
                     ],
-                    "Size": 496,
+                    "Size": 480,
                     "LineCount": 28,
                     "SourceLineCount": 22,
                     "FunctionCount": 1,
@@ -1293,23 +1289,23 @@
                             "Alias": "runtime"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
+                            "PackageName": "go.gary.cool/go-stockutil/fileutil",
                             "Alias": "fileutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/pathutil",
+                            "PackageName": "go.gary.cool/go-stockutil/pathutil",
                             "Alias": "pathutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/rxutil",
+                            "PackageName": "go.gary.cool/go-stockutil/rxutil",
                             "Alias": "rxutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         }
                     ],
-                    "Size": 1263,
+                    "Size": 1223,
                     "LineCount": 41,
                     "SourceLineCount": 32,
                     "FunctionCount": 1,
@@ -1329,15 +1325,15 @@
                             "Alias": "strings"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
                         }
                     ],
-                    "Size": 3225,
+                    "Size": 3197,
                     "LineCount": 98,
                     "SourceLineCount": 82,
                     "FunctionCount": 1,
@@ -1357,10 +1353,6 @@
                             "Alias": "exec"
                         },
                         {
-                            "PackageName": "path/filepath",
-                            "Alias": "filepath"
-                        },
-                        {
                             "PackageName": "strings",
                             "Alias": "strings"
                         },
@@ -1369,29 +1361,25 @@
                             "Alias": "sync"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/fileutil",
-                            "Alias": "fileutil"
+                            "PackageName": "github.com/mattn/go-shellwords",
+                            "Alias": "go-shellwords"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/sliceutil",
+                            "PackageName": "go.gary.cool/go-stockutil/sliceutil",
                             "Alias": "sliceutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/stringutil",
+                            "PackageName": "go.gary.cool/go-stockutil/stringutil",
                             "Alias": "stringutil"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/typeutil",
+                            "PackageName": "go.gary.cool/go-stockutil/typeutil",
                             "Alias": "typeutil"
-                        },
-                        {
-                            "PackageName": "github.com/mattn/go-shellwords",
-                            "Alias": "go-shellwords"
                         }
                     ],
-                    "Size": 2678,
-                    "LineCount": 124,
-                    "SourceLineCount": 99,
+                    "Size": 2332,
+                    "LineCount": 112,
+                    "SourceLineCount": 89,
                     "FunctionCount": 1,
                     "TypeCount": 1,
                     "ConstantCount": 0,
@@ -1409,11 +1397,11 @@
                     ],
                     "Returns": [
                         {
-                            "Type": "map[string]interface{}"
+                            "Type": "map[string]any"
                         }
                     ],
-                    "Signature": "Collect(only ...string) map[string]interface{}",
-                    "Source": "ewoJdmFyIHdnIHN5bmMuV2FpdEdyb3VwCgl2YXIgbWVyZ2Vsb2NrIHN5bmMuTXV0ZXgKCW91dHB1dCA6PSBtYWtlKG1hcFtzdHJpbmddaW50ZXJmYWNle30pCgljb2xsZWN0IDo9IGZ1bmMod2cgKnN5bmMuV2FpdEdyb3VwLCB3YW50IHN0cmluZywgY29sbGVjdG9yIENvbGxlY3RvcikgewoJCXdnLkFkZCgxKQoJCWdvIGZ1bmMoKSB7CgkJCWlmIGxlbihvbmx5KSA9PSAwIHx8IHNsaWNldXRpbC5Db250YWluc1N0cmluZyhvbmx5LCB3YW50KSB7CgkJCQltZXJnZWxvY2suTG9jaygpCgkJCQlmb3IgaywgdiA6PSByYW5nZSBjb2xsZWN0b3IuQ29sbGVjdCgpIHsKCQkJCQlvdXRwdXRba10gPSBub3JtYWxpemUodikKCQkJCX0KCQkJCW1lcmdlbG9jay5VbmxvY2soKQoJCQl9CgkJCXdnLkRvbmUoKQoJCX0oKQoJfQoJY29sbGVjdCgmd2csIGBjcHVgLCBDUFV7fSkKCWNvbGxlY3QoJndnLCBgbWVtb3J5YCwgTWVtb3J5e30pCgljb2xsZWN0KCZ3ZywgYGtlcm5lbGAsIEtlcm5lbHt9KQoJY29sbGVjdCgmd2csIGBuZXR3b3JrYCwgTmV0d29ya3t9KQoJY29sbGVjdCgmd2csIGBvc2AsIE9Te30pCgljb2xsZWN0KCZ3ZywgYHN5c3RlbWAsIFN5c3RlbXt9KQoJY29sbGVjdCgmd2csIGBpcG1pYCwgSVBNSXt9KQoJY29sbGVjdCgmd2csIGBkaXNrLmJsb2NrYCwgQmxvY2tEZXZpY2Vze30pCgljb2xsZWN0KCZ3ZywgYGRpc2subW91bnRzYCwgTW91bnRze30pCgl3Zy5XYWl0KCkKCXJldHVybiBvdXRwdXQKfQ==",
+                    "Signature": "Collect(only ...string) map[string]any",
+                    "Source": "ewoJdmFyIHdnIHN5bmMuV2FpdEdyb3VwCgl2YXIgbWVyZ2Vsb2NrIHN5bmMuTXV0ZXgKCW91dHB1dCA6PSBtYWtlKG1hcFtzdHJpbmddYW55KQoJY29sbGVjdCA6PSBmdW5jKHdnICpzeW5jLldhaXRHcm91cCwgd2FudCBzdHJpbmcsIGNvbGxlY3RvciBDb2xsZWN0b3IpIHsKCQl3Zy5HbyhmdW5jKCkgewoJCQlpZiBsZW4ob25seSkgPT0gMCB8fCBzbGljZXV0aWwuQ29udGFpbnNTdHJpbmcob25seSwgd2FudCkgewoJCQkJbWVyZ2Vsb2NrLkxvY2soKQoJCQkJZm9yIGssIHYgOj0gcmFuZ2UgY29sbGVjdG9yLkNvbGxlY3QoKSB7CgkJCQkJb3V0cHV0W2tdID0gbm9ybWFsaXplKHYpCgkJCQl9CgkJCQltZXJnZWxvY2suVW5sb2NrKCkKCQkJfQoJCX0pCgl9Cgljb2xsZWN0KCZ3ZywgYGNwdWAsIENQVXt9KQoJY29sbGVjdCgmd2csIGBtZW1vcnlgLCBNZW1vcnl7fSkKCWNvbGxlY3QoJndnLCBga2VybmVsYCwgS2VybmVse30pCgljb2xsZWN0KCZ3ZywgYG5ldHdvcmtgLCBOZXR3b3Jre30pCgljb2xsZWN0KCZ3ZywgYG9zYCwgT1N7fSkKCWNvbGxlY3QoJndnLCBgc3lzdGVtYCwgU3lzdGVte30pCgljb2xsZWN0KCZ3ZywgYGlwbWlgLCBJUE1Je30pCgljb2xsZWN0KCZ3ZywgYGRpc2suYmxvY2tgLCBCbG9ja0RldmljZXN7fSkKCWNvbGxlY3QoJndnLCBgZGlzay5tb3VudHNgLCBNb3VudHN7fSkKCXdnLldhaXQoKQoJcmV0dXJuIG91dHB1dAp9",
                     "IsPackageLevel": true
                 }
             ],
@@ -1427,10 +1415,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1438,10 +1426,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1449,10 +1437,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1473,10 +1461,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1484,10 +1472,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1495,10 +1483,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1609,7 +1597,7 @@
                 },
                 "Collector": {
                     "Name": "Collector",
-                    "Source": "dHlwZSBDb2xsZWN0b3IgaW50ZXJmYWNleyBDb2xsZWN0KCkgbWFwW3N0cmluZ11pbnRlcmZhY2V7fSB9"
+                    "Source": "dHlwZSBDb2xsZWN0b3IgaW50ZXJmYWNleyBDb2xsZWN0KCkgbWFwW3N0cmluZ11hbnkgfQ=="
                 },
                 "IPMI": {
                     "Name": "IPMI",
@@ -1620,10 +1608,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1638,10 +1626,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1649,10 +1637,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1660,10 +1648,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1678,10 +1666,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1689,10 +1677,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1700,10 +1688,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1718,10 +1706,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1729,10 +1717,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1740,10 +1728,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1758,10 +1746,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1776,10 +1764,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1787,10 +1775,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         },
                         {
@@ -1798,10 +1786,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1816,10 +1804,10 @@
                             "ReceiverName": "self",
                             "Returns": [
                                 {
-                                    "Type": "map[string]interface{}"
+                                    "Type": "map[string]any"
                                 }
                             ],
-                            "Signature": "Collect() map[string]interface{}",
+                            "Signature": "Collect() map[string]any",
                             "IsPackageLevel": false
                         }
                     ],
@@ -1829,10 +1817,10 @@
         },
         {
             "Name": "plugins",
-            "CanonicalImportPath": "gorthub.com/ghetzel/sysfact/plugins",
+            "CanonicalImportPath": "github.com/ghetzel/sysfact/plugins",
             "ImportPath": "plugins",
             "ParentPackage": "sysfact",
-            "URL": "https://gorthub.com/ghetzel/sysfact.git",
+            "URL": "https://github.com/ghetzel/sysfact",
             "Synopsis": "",
             "MainFunction": false,
             "CommentWordCount": 0,
@@ -1860,11 +1848,11 @@
                             "Alias": "fmt"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/sysfact/data",
+                            "PackageName": "go.gary.cool/sysfact/data",
                             "Alias": "data"
                         }
                     ],
-                    "Size": 441,
+                    "Size": 435,
                     "LineCount": 27,
                     "SourceLineCount": 20,
                     "FunctionCount": 1,
@@ -1874,7 +1862,7 @@
                 },
                 {
                     "Name": "plugins.go",
-                    "Size": 139,
+                    "Size": 131,
                     "LineCount": 11,
                     "SourceLineCount": 8,
                     "FunctionCount": 0,
@@ -1934,11 +1922,11 @@
                             "Alias": "time"
                         },
                         {
-                            "PackageName": "github.com/ghetzel/go-stockutil/log",
+                            "PackageName": "go.gary.cool/go-stockutil/log",
                             "Alias": "log"
                         }
                     ],
-                    "Size": 7104,
+                    "Size": 7082,
                     "LineCount": 270,
                     "SourceLineCount": 204,
                     "FunctionCount": 1,
@@ -1979,10 +1967,10 @@
                         },
                         {
                             "Name": "Value",
-                            "Type": "interface{}"
+                            "Type": "any"
                         }
                     ],
-                    "Source": "dHlwZSBPYnNlcnZhdGlvbiBzdHJ1Y3QgewoJTmFtZSAgc3RyaW5nCglWYWx1ZSBpbnRlcmZhY2V7fQp9"
+                    "Source": "dHlwZSBPYnNlcnZhdGlvbiBzdHJ1Y3QgewoJTmFtZSAgc3RyaW5nCglWYWx1ZSBhbnkKfQ=="
                 },
                 "Plugin": {
                     "Name": "Plugin",

@@ -4,16 +4,16 @@ import (
 	"strings"
 
 	"github.com/dustin/go-humanize"
-	"github.com/ghetzel/go-stockutil/fileutil"
-	"github.com/ghetzel/go-stockutil/mathutil"
-	"github.com/ghetzel/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/mathutil"
+	"go.gary.cool/go-stockutil/stringutil"
 )
 
 type Memory struct {
 }
 
-func (self Memory) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self Memory) Collect() map[string]any {
+	out := make(map[string]any)
 
 	// basic OS memory info
 	if meminfo, err := fileutil.ReadAllLines(`/proc/meminfo`); err == nil {

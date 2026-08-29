@@ -3,18 +3,18 @@ package data
 import (
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/mathutil"
-	"github.com/ghetzel/go-stockutil/rxutil"
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
+	"go.gary.cool/go-stockutil/mathutil"
+	"go.gary.cool/go-stockutil/rxutil"
+	"go.gary.cool/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
 type CPU struct {
 	lastStats *CPUStats
 }
 
-func (self CPU) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self CPU) Collect() map[string]any {
+	out := make(map[string]any)
 
 	var ncpu = shell(`sysctl -n hw.logicalcpu`).NInt()
 	var pcpu = shell(`sysctl -n hw.packages`).NInt()

@@ -5,7 +5,6 @@ import (
 	"encoding/json"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"os"
 	"reflect"
@@ -13,14 +12,14 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ghetzel/cli"
-	"github.com/ghetzel/go-stockutil/executil"
-	"github.com/ghetzel/go-stockutil/fileutil"
-	"github.com/ghetzel/go-stockutil/log"
-	"github.com/ghetzel/go-stockutil/maputil"
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghetzel/sysfact"
 	"github.com/ghodss/yaml"
+	"go.gary.cool/cli"
+	"go.gary.cool/go-stockutil/executil"
+	"go.gary.cool/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/log"
+	"go.gary.cool/go-stockutil/maputil"
+	"go.gary.cool/go-stockutil/stringutil"
+	"go.gary.cool/sysfact"
 )
 
 func main() {
@@ -115,8 +114,8 @@ func main() {
 	}
 
 	app.Action = func(c *cli.Context) {
-		var report map[string]interface{}
-		tags := make(map[string]interface{})
+		var report map[string]any
+		tags := make(map[string]any)
 
 		for _, kv := range c.StringSlice(`tag`) {
 			parts := strings.SplitN(kv, `=`, 2)
@@ -133,11 +132,11 @@ func main() {
 			return
 		}
 
-		tagsets := make(map[string]map[string]interface{})
+		tagsets := make(map[string]map[string]any)
 		tuples := make(sysfact.TupleSet, 0)
 		modifiedTuples := make(map[string]sysfact.TupleSet)
 
-		if err := maputil.Walk(report, func(value interface{}, path []string, leaf bool) error {
+		if err := maputil.Walk(report, func(value any, path []string, leaf bool) error {
 			if leaf && len(path) > 0 {
 				path = strings.Split(path[0], `.`)
 				key := strings.Join(path, `.`)
@@ -154,7 +153,7 @@ func main() {
 						}
 
 						if tags, ok := tagsets[tagsetKey]; !ok {
-							tagsets[tagsetKey] = map[string]interface{}{
+							tagsets[tagsetKey] = map[string]any{
 								index_key: v,
 							}
 						} else {
@@ -286,7 +285,7 @@ func main() {
 
 				if fileutil.IsTerminal() {
 					input = strings.Join(c.Args(), ` `)
-				} else if in, err := ioutil.ReadAll(os.Stdin); err == nil {
+				} else if in, err := io.ReadAll(os.Stdin); err == nil {
 					input = string(in)
 				} else {
 					log.Fatal(err)
@@ -311,7 +310,7 @@ func main() {
 
 				if filename := c.Args().First(); filename != `` {
 					template = fileutil.MustReadAllString(filename)
-				} else if in, err := ioutil.ReadAll(os.Stdin); err == nil {
+				} else if in, err := io.ReadAll(os.Stdin); err == nil {
 					template = string(in)
 				} else {
 					log.Fatal(err)
@@ -382,7 +381,7 @@ func main() {
 	app.Run(os.Args)
 }
 
-func writeWithFormat(w io.Writer, format string, tuples sysfact.TupleSet, tags map[string]interface{}) {
+func writeWithFormat(w io.Writer, format string, tuples sysfact.TupleSet, tags map[string]any) {
 	now := time.Now()
 
 	switch format {
@@ -448,8 +447,8 @@ func writeWithFormat(w io.Writer, format string, tuples sysfact.TupleSet, tags m
 	}
 }
 
-func toFloat(in interface{}) (float64, error) {
-	floatT := reflect.TypeOf(float64(0))
+func toFloat(in any) (float64, error) {
+	floatT := reflect.TypeFor[float64]()
 
 	if reflect.TypeOf(in).ConvertibleTo(floatT) {
 		floatV := reflect.ValueOf(in).Convert(floatT)

@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	"github.com/ghetzel/go-stockutil/log"
+	"go.gary.cool/go-stockutil/log"
 )
 
 type ShellPlugin struct {
@@ -24,7 +24,7 @@ type ShellPlugin struct {
 	MaxTimeout       time.Duration
 }
 
-func (self ShellPlugin) autotype(value string) interface{} {
+func (self ShellPlugin) autotype(value string) any {
 	rxBoolTrue := regexp.MustCompile(`(?i)^(?:true|t|1|on|yes|enabled?|active)$`)
 	rxBoolFalse := regexp.MustCompile(`(?i)^(?:false|f|0|off|no|disabled?|inactive)$`)
 	rxFloat := regexp.MustCompile(`^-?[0-9]+\.[0-9]+$`)
@@ -52,7 +52,7 @@ func (self ShellPlugin) autotype(value string) interface{} {
 	}
 }
 
-func (self ShellPlugin) totype(value string, typename string) (interface{}, error) {
+func (self ShellPlugin) totype(value string, typename string) (any, error) {
 	rxBoolTrue := regexp.MustCompile(`(?i)^(?:true|t|1|on|yes|enabled?|active)$`)
 	rxBoolFalse := regexp.MustCompile(`(?i)^(?:false|f|0|off|no|disabled?|inactive)$`)
 

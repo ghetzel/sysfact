@@ -1,14 +1,14 @@
 package data
 
 import (
-	"github.com/ghetzel/go-stockutil/mathutil"
+	"go.gary.cool/go-stockutil/mathutil"
 )
 
 type Memory struct {
 }
 
-func (self Memory) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self Memory) Collect() map[string]any {
+	out := make(map[string]any)
 
 	var pgsz, total, swap, wired, active, inactive, free, cache int64
 

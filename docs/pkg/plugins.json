@@ -1,9 +1,9 @@
 {
     "Name": "plugins",
-    "CanonicalImportPath": "gorthub.com/ghetzel/sysfact/plugins",
+    "CanonicalImportPath": "github.com/ghetzel/sysfact/plugins",
     "ImportPath": "plugins",
     "ParentPackage": "sysfact",
-    "URL": "https://gorthub.com/ghetzel/sysfact.git",
+    "URL": "https://github.com/ghetzel/sysfact",
     "Synopsis": "",
     "MainFunction": false,
     "CommentWordCount": 0,
@@ -31,11 +31,11 @@
                     "Alias": "fmt"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/sysfact/data",
+                    "PackageName": "go.gary.cool/sysfact/data",
                     "Alias": "data"
                 }
             ],
-            "Size": 441,
+            "Size": 435,
             "LineCount": 27,
             "SourceLineCount": 20,
             "FunctionCount": 1,
@@ -45,7 +45,7 @@
         },
         {
             "Name": "plugins.go",
-            "Size": 139,
+            "Size": 131,
             "LineCount": 11,
             "SourceLineCount": 8,
             "FunctionCount": 0,
@@ -105,11 +105,11 @@
                     "Alias": "time"
                 },
                 {
-                    "PackageName": "github.com/ghetzel/go-stockutil/log",
+                    "PackageName": "go.gary.cool/go-stockutil/log",
                     "Alias": "log"
                 }
             ],
-            "Size": 7104,
+            "Size": 7082,
             "LineCount": 270,
             "SourceLineCount": 204,
             "FunctionCount": 1,
@@ -150,10 +150,10 @@
                 },
                 {
                     "Name": "Value",
-                    "Type": "interface{}"
+                    "Type": "any"
                 }
             ],
-            "Source": "dHlwZSBPYnNlcnZhdGlvbiBzdHJ1Y3QgewoJTmFtZSAgc3RyaW5nCglWYWx1ZSBpbnRlcmZhY2V7fQp9"
+            "Source": "dHlwZSBPYnNlcnZhdGlvbiBzdHJ1Y3QgewoJTmFtZSAgc3RyaW5nCglWYWx1ZSBhbnkKfQ=="
         },
         "Plugin": {
             "Name": "Plugin",

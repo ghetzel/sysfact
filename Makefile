@@ -1,24 +1,22 @@
-PKGS        := $(shell go list ./... 2> /dev/null | grep -v '/vendor')
-LOCALS      := $(shell find . -type f -name '*.go' -not -path "./vendor*/*")
 BIN         ?= sysfact
 
 .EXPORT_ALL_VARIABLES:
 GO111MODULE  = on
 CGO_ENABLED ?= 0
 
-all: deps fmt build docs
+all: deps fmt test build docs
 
 fmt:
-	gofmt -w $(LOCALS)
+	go fmt ./...
 	go generate -x ./...
 	-go mod tidy
 
 deps:
 	go get ./...
-	go vet ./...
+	go vet -printf=false ./...
 
 test: fmt deps
-	go test $(PKGS)
+	go test -printf=false ./...
 	./bin/$(BIN) apply -s test/src/ -d test/dest/
 
 build: fmt

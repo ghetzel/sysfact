@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="/sysfact/-/bootstrap.min.css">
         <link rel="stylesheet" href="/sysfact/-/site.css">
 
-        <title>sysfact.git - Golang Package Documentation</title>
+        <title>sysfact - Golang Package Documentation</title>
     </head>
     <body>
         <nav class="navbar navbar-default" role="navigation">
@@ -69,7 +69,7 @@
                     
                     <ul class="nav navbar-nav navbar-right">
                         <li class="navbar-text">
-                            v0.8.2
+                            v0.9.0
                         </li>
                     </ul>
                     
@@ -81,9 +81,9 @@
             
 <br>
 <div class="clearfix" id="x-projnav">
-	<a href="https://gorthub.com/ghetzel/sysfact.git"><strong>sysfact.git:</strong></a>
+	<a href="https://github.com/ghetzel/sysfact"><strong>sysfact:</strong></a>
 	
-	<span class="text-muted">https://gorthub.com/ghetzel/sysfact.git</span>
+	<span class="text-muted">https://github.com/ghetzel/sysfact</span>
 	
 
 	<span class="pull-right">
@@ -97,7 +97,7 @@
 <h2 id="pkg-overview">package sysfact</h2>
 
 <p>
-	<code>import "gorthub.com/ghetzel/sysfact"</code>
+	<code>import "github.com/ghetzel/sysfact"</code>
 </p>
 
 
@@ -132,13 +132,13 @@
 	
     <li>
 		<strong>
-		<a href="#RenderString">func RenderString(data map[string]interface{}, template string) (string, error)</a>
+		<a href="#RenderString">func RenderString(data map[string]any, template string) (string, error)</a>
 		</strong>
 	</li>
 	
     <li>
 		<strong>
-		<a href="#Report">func Report(paths ...string) (map[string]interface{}, error)</a>
+		<a href="#Report">func Report(paths ...string) (map[string]any, error)</a>
 		</strong>
 	</li>
 	
@@ -225,7 +225,7 @@
 				<a href="#Reporter.GetReportValues">
 					func
 					(self *Reporter)
-					GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error)
+					GetReportValues(fields []string, skipFields []string) (map[string]any, error)
 				</a>
 				</strong>
 			</li>
@@ -239,7 +239,7 @@
 				<a href="#Reporter.Report">
 					func
 					(self *Reporter)
-					Report() (map[string]interface{}, error)
+					Report() (map[string]any, error)
 				</a>
 				</strong>
 			</li>
@@ -276,7 +276,7 @@
 				<a href="#Trigger.Do">
 					func
 					(self Trigger)
-					Do(action string, path string, data map[string]interface{}, logger logFunc) error
+					Do(action string, path string, data map[string]any, logger logFunc) error
 				</a>
 				
 			</li>
@@ -325,7 +325,7 @@
 
 
 <h4 id="pkg-files">
-	<a href="https://gorthub.com/ghetzel/sysfact.git">Package Files</a>
+	<a href="https://github.com/ghetzel/sysfact">Package Files</a>
 	<a class="permalink" href="#pkg-files">&#182;</a>
 </h4>
 
@@ -350,7 +350,7 @@
 			
 		</td>
 		<td class="text-right">12KB</td>
-		<td class="text-right">377</td>
+		<td class="text-right">376</td>
 		<td class="text-right">6</td>
 		<td class="text-right">2</td>
 		<td class="text-right"></td>
@@ -377,7 +377,7 @@
 			<a href="tuple.go">tuple.go</a>
 			
 		</td>
-		<td class="text-right">889B</td>
+		<td class="text-right">851B</td>
 		<td class="text-right">40</td>
 		<td class="text-right">5</td>
 		<td class="text-right">2</td>
@@ -430,7 +430,7 @@
 const <span id="FormatCamelize">FormatCamelize  </span> = 
 const <span id="FormatPascalize">FormatPascalize </span> = 
 const <span id="FormatUnderscore">FormatUnderscore</span> = iota
-const <span id="Version">Version         </span> = `0.8.2`
+const <span id="Version">Version         </span> = `0.9.0`
 </pre>
 </div>
 
@@ -474,7 +474,7 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 </h3>
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
-	<pre>func RenderString(data map[string]interface{}, template string) (string, error)</pre>
+	<pre>func RenderString(data map[string]any, template string) (string, error)</pre>
 </div>
 
 
@@ -488,7 +488,7 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 </h3>
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
-	<pre>func Report(paths ...string) (map[string]interface{}, error)</pre>
+	<pre>func Report(paths ...string) (map[string]any, error)</pre>
 </div>
 
 
@@ -529,7 +529,7 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
-	<pre>func (self InfluxdbPayload) Generate(series TupleSet, tags map[string]interface{}, now *time.Time) (string, error)</pre>
+	<pre>func (self InfluxdbPayload) Generate(series TupleSet, tags map[string]any, now *time.Time) (string, error)</pre>
 </div>
 
 
@@ -654,7 +654,7 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
-	<pre>func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map[string]interface{}, error)</pre>
+	<pre>func (self *Reporter) GetReportValues(fields []string, skipFields []string) (map[string]any, error)</pre>
 </div>
 
 <p><p>Generates a report and retrieves the values of the given fields.</p>
@@ -674,7 +674,7 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
-	<pre>func (self *Reporter) Report() (map[string]interface{}, error)</pre>
+	<pre>func (self *Reporter) Report() (map[string]any, error)</pre>
 </div>
 
 <p><p>Generate and return the full report from all discovered plugins.</p>
@@ -737,7 +737,7 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
-	<pre>func (self Trigger) Do(action string, path string, data map[string]interface{}, logger logFunc) error</pre>
+	<pre>func (self Trigger) Do(action string, path string, data map[string]any, logger logFunc) error</pre>
 </div>
 
 
@@ -770,9 +770,9 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 	
 	<pre>type Tuple struct {
 	Key           string
-	Value         interface{}
+	Value         any
 	NormalizedKey string
-	Tags          map[string]interface{}
+	Tags          map[string]any
 }</pre>
 </div>
 
@@ -880,7 +880,7 @@ var <span id="RenderPatterns">RenderPatterns              </span> =
 
 <div class="funcdecl decl">
 	<a title="View Source" href="">&#10070;</a>
-	<pre>func (self TupleSet) ToMap(flat bool) map[string]interface{}</pre>
+	<pre>func (self TupleSet) ToMap(flat bool) map[string]any</pre>
 </div>
 
 

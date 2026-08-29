@@ -6,8 +6,8 @@ import (
 	"strings"
 	"time"
 
-	"github.com/ghetzel/go-stockutil/maputil"
-	"github.com/ghetzel/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/maputil"
+	"go.gary.cool/go-stockutil/stringutil"
 )
 
 type InfluxdbPayload []string
@@ -15,7 +15,7 @@ type InfluxdbPayload []string
 var InfluxdbTagValueCharFilter = regexp.MustCompile(`\s{2,}`)
 var InfluxdbTagValueCharCompress = regexp.MustCompile(`[\s,]+`)
 
-func (self InfluxdbPayload) Generate(series TupleSet, tags map[string]interface{}, now *time.Time) (string, error) {
+func (self InfluxdbPayload) Generate(series TupleSet, tags map[string]any, now *time.Time) (string, error) {
 	var epochUs int64
 
 	if now == nil {

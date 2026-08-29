@@ -3,14 +3,14 @@ package sysfact
 import (
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/maputil"
+	"go.gary.cool/go-stockutil/maputil"
 )
 
 type Tuple struct {
 	Key           string
-	Value         interface{}
+	Value         any
 	NormalizedKey string
-	Tags          map[string]interface{}
+	Tags          map[string]any
 }
 
 type TupleSet []Tuple
@@ -36,8 +36,8 @@ func (self TupleSet) Swap(i, j int) {
 	self[j] = tmp
 }
 
-func (self TupleSet) ToMap(flat bool) map[string]interface{} {
-	output := make(map[string]interface{})
+func (self TupleSet) ToMap(flat bool) map[string]any {
+	output := make(map[string]any)
 
 	for _, tuple := range self {
 		output[tuple.Key] = tuple.Value

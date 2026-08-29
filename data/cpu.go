@@ -3,8 +3,8 @@ package data
 import (
 	"time"
 
-	"github.com/ghetzel/go-stockutil/mathutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
+	"go.gary.cool/go-stockutil/mathutil"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
 type CPUStats struct {
@@ -69,8 +69,8 @@ func (self *CPUStats) deltaFrom(other *CPUStats) {
 	}
 }
 
-func (self CPUStats) data(logicalCoreCount int) map[string]interface{} {
-	var out = make(map[string]interface{})
+func (self CPUStats) data(logicalCoreCount int) map[string]any {
+	var out = make(map[string]any)
 
 	for i := -1; i < logicalCoreCount; i++ {
 		var total = float64(self.Total(i))

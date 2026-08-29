@@ -3,7 +3,7 @@ package plugins
 import (
 	"fmt"
 
-	"github.com/ghetzel/sysfact/data"
+	"go.gary.cool/sysfact/data"
 )
 
 type EmbeddedPlugin struct {

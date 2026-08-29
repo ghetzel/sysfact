@@ -4,20 +4,20 @@ import (
 	"bytes"
 	"fmt"
 	"io"
-	"io/ioutil"
+
 	"os"
 	"os/user"
 	"path/filepath"
 	"strings"
 
-	"github.com/ghetzel/diecast"
-	"github.com/ghetzel/go-stockutil/convutil"
-	"github.com/ghetzel/go-stockutil/executil"
-	"github.com/ghetzel/go-stockutil/fileutil"
-	"github.com/ghetzel/go-stockutil/log"
-	"github.com/ghetzel/go-stockutil/maputil"
-	"github.com/ghetzel/go-stockutil/typeutil"
 	"github.com/mcuadros/go-defaults"
+	"go.gary.cool/diecast"
+	"go.gary.cool/go-stockutil/convutil"
+	"go.gary.cool/go-stockutil/executil"
+	"go.gary.cool/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/log"
+	"go.gary.cool/go-stockutil/maputil"
+	"go.gary.cool/go-stockutil/typeutil"
 	"gopkg.in/yaml.v2"
 )
 
@@ -41,7 +41,7 @@ var RenderPatterns = []string{
 	`${uuid}`,
 }
 
-type logFunc func(format string, args ...interface{})
+type logFunc func(format string, args ...any)
 
 type Trigger struct {
 	On      string `yaml:"on"`
@@ -63,7 +63,7 @@ func (self Trigger) Should(action string, path string) bool {
 	return false
 }
 
-func (self Trigger) Do(action string, path string, data map[string]interface{}, logger logFunc) error {
+func (self Trigger) Do(action string, path string, data map[string]any, logger logFunc) error {
 	var report = maputil.M(data)
 	report.Set(`action`, action)
 	report.Set(`path`, path)
@@ -99,7 +99,7 @@ type RenderOptions struct {
 	FollowSymlinks     bool      `yaml:"follow_symlinks"`
 	AdditionalPatterns []string  `yaml:"patterns"`
 	Triggers           []Trigger `yaml:"triggers"`
-	report             map[string]interface{}
+	report             map[string]any
 }
 
 func (self *RenderOptions) runTriggers(action string, pathVisited string) error {
@@ -199,7 +199,7 @@ func (self *RenderOptions) destPath(srcpath string) string {
 	}
 }
 
-func (self *RenderOptions) log(format string, args ...interface{}) {
+func (self *RenderOptions) log(format string, args ...any) {
 	var logPrefix string
 
 	if self.DryRun {
@@ -209,7 +209,7 @@ func (self *RenderOptions) log(format string, args ...interface{}) {
 	log.Noticef(logPrefix+format, args...)
 }
 
-func (self *RenderOptions) logMinor(format string, args ...interface{}) {
+func (self *RenderOptions) logMinor(format string, args ...any) {
 	var logPrefix string
 
 	if self.DryRun {
@@ -279,7 +279,7 @@ func (self *RenderOptions) Enforce(path string) error {
 }
 
 // Render the given template string using the given data.
-func RenderString(data map[string]interface{}, template string) (string, error) {
+func RenderString(data map[string]any, template string) (string, error) {
 	// Render template using diecast and return the output
 	if rendered, err := diecast.EvalInline(template, data, nil); err == nil {
 		return rendered, nil
@@ -391,7 +391,7 @@ func renderTree(options *RenderOptions) error {
 
 			if src, err := fileutil.ReadAllString(srcpath); err == nil {
 				if rendered, err := RenderString(options.report, src); err == nil {
-					source = ioutil.NopCloser(bytes.NewBufferString(rendered))
+					source = io.NopCloser(bytes.NewBufferString(rendered))
 				} else {
 					return fmt.Errorf("render template: %v", err)
 				}

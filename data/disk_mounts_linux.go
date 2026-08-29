@@ -4,15 +4,15 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/fileutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
+	"go.gary.cool/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
 type Mounts struct {
 }
 
-func (self Mounts) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self Mounts) Collect() map[string]any {
+	out := make(map[string]any)
 	mnt := 0
 
 	if mounts, err := fileutil.ReadAllLines(`/proc/mounts`); err == nil {

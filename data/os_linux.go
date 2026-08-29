@@ -3,17 +3,17 @@ package data
 import (
 	"runtime"
 
-	"github.com/ghetzel/go-stockutil/fileutil"
-	"github.com/ghetzel/go-stockutil/pathutil"
-	"github.com/ghetzel/go-stockutil/rxutil"
-	"github.com/ghetzel/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/pathutil"
+	"go.gary.cool/go-stockutil/rxutil"
+	"go.gary.cool/go-stockutil/stringutil"
 )
 
 type OS struct {
 }
 
-func (self OS) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self OS) Collect() map[string]any {
+	out := make(map[string]any)
 
 	out[`os.platform`] = runtime.GOOS
 

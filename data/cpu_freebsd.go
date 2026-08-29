@@ -4,16 +4,16 @@ import (
 	"fmt"
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/mathutil"
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
+	"go.gary.cool/go-stockutil/mathutil"
+	"go.gary.cool/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
 type CPU struct {
 }
 
-func (self CPU) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self CPU) Collect() map[string]any {
+	out := make(map[string]any)
 
 	ncpu := int(shell(`sysctl -n hw.ncpu`).Int())
 	model, speed := stringutil.SplitPair(shell(`sysctl -n hw.model`).String(), `@`)

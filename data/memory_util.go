@@ -5,11 +5,11 @@ import (
 	"strings"
 
 	"github.com/dustin/go-humanize"
-	"github.com/ghetzel/go-stockutil/stringutil"
-	"github.com/ghetzel/go-stockutil/typeutil"
+	"go.gary.cool/go-stockutil/stringutil"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
-func dmidecodeMemory(out map[string]interface{}) {
+func dmidecodeMemory(out map[string]any) {
 	// Memory Banks
 	banks := shell(`dmidecode -t 16`).String()
 
@@ -19,7 +19,7 @@ func dmidecodeMemory(out map[string]interface{}) {
 		} else {
 			prefix := fmt.Sprintf("memory.hw.banks.%d.", i-1)
 
-			for _, line := range strings.Split(bank, "\n") {
+			for line := range strings.SplitSeq(bank, "\n") {
 				k, v := stringutil.SplitPair(line, `:`)
 				k = strings.TrimSpace(k)
 				k = strings.ToLower(k)

@@ -7,8 +7,8 @@ import (
 	"sort"
 	"strings"
 
-	"github.com/ghetzel/go-stockutil/log"
-	"github.com/ghetzel/go-stockutil/typeutil"
+	"go.gary.cool/go-stockutil/log"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
 type geomConfig struct {
@@ -73,8 +73,8 @@ type BlockDevices struct {
 	BlockDeviceRoot string
 }
 
-func (self BlockDevices) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self BlockDevices) Collect() map[string]any {
+	out := make(map[string]any)
 	devid := 0
 
 	var geom geomXml
@@ -110,7 +110,7 @@ func (self BlockDevices) Collect() map[string]interface{} {
 	return out
 }
 
-func (self BlockDevices) collectDevice(geom *geomDescriptor) map[string]interface{} {
+func (self BlockDevices) collectDevice(geom *geomDescriptor) map[string]any {
 	var provider geomTarget
 
 	if len(geom.Providers) > 0 {
@@ -119,7 +119,7 @@ func (self BlockDevices) collectDevice(geom *geomDescriptor) map[string]interfac
 		return nil
 	}
 
-	return map[string]interface{}{
+	return map[string]any{
 		`name`:               provider.Name,
 		`device`:             fmt.Sprintf("/dev/%s", provider.Name),
 		`size`:               provider.MediaSize,

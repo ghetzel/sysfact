@@ -15,7 +15,7 @@ Soon. _Soon..._
 ### From Source
 
 ```
-go get -u github.com/ghetzel/sysfact/cmd/sysfact
+go get -u go.gary.cool/sysfact/cmd/sysfact
 ```
 
 ## Formatting

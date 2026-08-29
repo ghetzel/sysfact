@@ -9,8 +9,8 @@ import (
 type OS struct {
 }
 
-func (self OS) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self OS) Collect() map[string]any {
+	out := make(map[string]any)
 
 	out[`os.platform`] = runtime.GOOS
 	out[`os.family`] = runtime.GOOS

@@ -3,8 +3,8 @@ package data
 type Mounts struct {
 }
 
-func (self Mounts) Collect() map[string]interface{} {
-	out := make(map[string]interface{})
+func (self Mounts) Collect() map[string]any {
+	out := make(map[string]any)
 	// mnt := 0
 
 	// if mounts, err := fileutil.ReadAllLines(`/proc/mounts`); err == nil {
