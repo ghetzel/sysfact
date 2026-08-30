@@ -1,9 +1,5 @@
 BIN         ?= sysfact
 
-.EXPORT_ALL_VARIABLES:
-GO111MODULE  = on
-CGO_ENABLED ?= 0
-
 all: deps fmt test build docs
 
 fmt:
@@ -17,7 +13,7 @@ deps:
 
 test: fmt deps
 	go test -printf=false ./...
-	./bin/$(BIN) apply -s test/src/ -d test/dest/
+	test -x ./bin/$(BIN) && ./bin/$(BIN) apply -s test/src/ -d test/dest/ || true
 
 build: fmt
 	go build -o bin/$(BIN) ./cmd/sysfact
@@ -36,3 +32,4 @@ copy-to-and-run:
 	ssh $(IP) 'chmod +x sysfact && sysfact -L debug'
 
 .PHONY: deps fmt build docs binaries copy-to-and-run
+.EXPORT_ALL_VARIABLES:

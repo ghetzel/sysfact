@@ -2,10 +2,12 @@ package data
 
 import (
 	"fmt"
-	"io/ioutil"
+	"os"
 	"path/filepath"
+	"strings"
 
 	"go.gary.cool/go-stockutil/fileutil"
+	"go.gary.cool/go-stockutil/typeutil"
 )
 
 type BlockDevices struct {
@@ -21,7 +23,7 @@ func (self BlockDevices) Collect() map[string]any {
 		root = r
 	}
 
-	if items, err := ioutil.ReadDir(root); err == nil {
+	if items, err := os.ReadDir(root); err == nil {
 		for _, entry := range items {
 			devroot := filepath.Join(root, entry.Name())
 
@@ -53,5 +55,13 @@ func (self BlockDevices) collectDevice(blockpath string) map[string]any {
 		`revision`:           readvalue(blockpath, `device`, `rev`).String(),
 		`blocksize.physical`: physical,
 		`blocksize.logical`:  logical,
+	}
+}
+
+func readvalue(pathparts ...string) typeutil.Variant {
+	if value, err := fileutil.ReadAllString(filepath.Join(pathparts...)); err == nil {
+		return typeutil.V(strings.TrimSpace(value))
+	} else {
+		return typeutil.Nil()
 	}
 }
